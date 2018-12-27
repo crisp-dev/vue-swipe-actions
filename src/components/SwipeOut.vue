@@ -1,292 +1,310 @@
 <template>
-	<div class="swipeout"
-		:class="{'swipeout--transitioning' : isTransitioning, 'swipeout--disabled': disabled}">
-		<div v-if="hasLeft" class="swipeout-left" ref="left">
-			<slot name="left" :close="closeActions"></slot>
-		</div>
-		<div v-if="hasRight" class="swipeout-right" ref="right">
-			<slot name="right" :close="closeActions"></slot>
-		</div>
-		<div class="swipeout-content" ref="content" @click="contentClick">
-			<slot :revealRight="revealRight" :revealLeft="revealLeft" :close="closeActions"></slot>
-		</div>
-	</div>
+  <div
+    class="swipeout"
+    :class="{'swipeout--transitioning' : isTransitioning, 'swipeout--disabled': disabled}"
+  >
+    <div v-if="hasLeft" class="swipeout-left" ref="left">
+      <slot :close="closeActions" name="left"></slot>
+    </div>
+    <div v-if="hasRight" class="swipeout-right" ref="right">
+      <slot :close="closeActions" name="right"></slot>
+    </div>
+    <div class="swipeout-content" ref="content">
+      <slot :close="closeActions" :revealRight="revealRight" :revealLeft="revealLeft"></slot>
+    </div>
+  </div>
 </template>
 <script>
-	/* eslint-disable */
-	import Hammer from 'hammerjs';
+/* eslint-disable */
+import Hammer from "hammerjs";
 
-	function reduceSwipe(x) {
-		return Math.pow(x, 0.65); // eslint-disable-line
-	}
+function reduceSwipe(x) {
+  return Math.pow(x, 0.65); // eslint-disable-line
+}
 
-	function translateX(x) {
-		if (x === 0)
-			return '';
+function translateX(x) {
+  if (x === 0) return "";
 
-		return `translate3d(${x}px, 0, 0)`;
-	}
+  return `translate3d(${x}px, 0, 0)`;
+}
 
-	export default {
-		name: 'swipe-item',
-		data() {
-			return {
-				hammer: null,
-				startLeft: 0,
-				isActive: false,
-				isTransitioning: false,
-				direction: null,
-				// hasLeft: true, //'left' in this.$slots || 'left' in this.$scopedSlots,
-				// hasRight: 'right' in this.$slots,
-				leftOpen: false,
-				rightOpen: false,
-				leftActionsWidth: 0,
-				rightActionsWidth: 0,
-			};
-		},
-		computed: {
-			hasLeft() {
-				return 'left' in this.$slots || 'left' in this.$scopedSlots;
-			},
-			hasRight() {
-				return 'right' in this.$slots || 'right' in this.$scopedSlots;
-			}
-		},
-		props: {
-			threshold: {
-				type: Number,
-				default: 45,
-			},
-			/**
-			 * Is the item disabled
-			 */
-			disabled: {
-				type: Boolean,
-				default: false,
-			}	
-		},
-		mounted() {
-			if (!this.hasLeft && !this.hasRight)
-				return;
-			this._createHammer();
-		},
-		beforeDestroy() {
-			if (this.hammer)
-				this.hammer.destroy();
-			this.hammer = null;
-		},
-		methods: {
-			// public
-			closeActions() {
-				if (this.isActive)
-					return;
+export default {
+  name: "swipe-item",
+  data() {
+    return {
+      hammer: null,
+      startLeft: 0,
+      isActive: false,
+      closing: false,
+      isTransitioning: false,
+      direction: null,
+      // hasLeft: true, //'left' in this.$slots || 'left' in this.$scopedSlots,
+      // hasRight: 'right' in this.$slots,
+      leftOpen: false,
+      rightOpen: false,
+      leftActionsWidth: 0,
+      rightActionsWidth: 0
+    };
+  },
+  computed: {
+    hasLeft() {
+      return "left" in this.$slots || "left" in this.$scopedSlots;
+    },
+    hasRight() {
+      return "right" in this.$slots || "right" in this.$scopedSlots;
+    }
+  },
+  props: {
+    threshold: {
+      type: Number,
+      default: 45
+    },
+    /**
+     * Is the item disabled
+     */
+    disabled: {
+      type: Boolean,
+      default: false
+    }
+  },
+  mounted() {
+    if (!this.hasLeft && !this.hasRight) return;
+    this._createHammer();
+  },
+  beforeDestroy() {
+    if (this.hammer) this.hammer.destroy();
+    this.hammer = null;
+  },
+  methods: {
+    // public
+    closeActions() {
+      if (this.isActive) return;
 
-				this._animateSlide(0, this._distanceSwiped());
-				this.leftOpen = false;
-				this.rightOpen = false;
-				this.startLeft = 0;
-			},
-			revealLeft() {
-				if (this.isActive)
-					return;
+      const content = this.$refs.content;
+      const left = this.$refs.left;
+      const right = this.$refs.right;
 
-				const oldLeft = this.$refs.content.getBoundingClientRect().left;
-				this.leftOpen = true;
-				this._animateSlide(this.leftActionsWidth, oldLeft);
-			},
-			revealRight() {
-				if (this.isActive)
-					return;
+      this.closing = true;
 
-				const oldLeft = this.$refs.content.getBoundingClientRect().left;
-				this.rightOpen = true;
-				this._animateSlide(-this.rightActionsWidth, oldLeft);
-			},
-			// private
-			_createHammer() {
-				this.hammer = new Hammer.Manager(this.$el, {
-					touchAction: 'pan-y',
-					cssProps: {
-						userSelect: '',
-					},
-				});
+      setTimeout(() => {
+        window.requestAnimationFrame(() => {
+          content.style.transform = translateX(0, 0, 0);
+          right.children[0].style.transform = translateX(0, 0, 0);
+          left.children[0].style.transform = translateX(0, 0, 0);
 
-				const doubelTab = new Hammer.Tap({ event: 'doubletap', taps: 2 });
-				this.hammer.add(doubelTab);
+          this.closing = false;
+        });
+      }, 100);
 
-				const singleTap = new Hammer.Tap({ event: 'singletap' });
-				this.hammer.add(singleTap);
+      this.leftOpen = false;
+      this.rightOpen = false;
+      this.startLeft = 0;
+    },
+    revealLeft() {
+      if (this.isActive || this.closing) return;
 
-				doubelTab.recognizeWith(singleTap);
-				singleTap.requireFailure(doubelTab);
+      const oldLeft = this.$refs.content.getBoundingClientRect().left;
+      this.leftOpen = true;
+      this._animateSlide(this.leftActionsWidth, oldLeft);
+    },
+    revealRight() {
+      if (this.isActive || this.closing) return;
 
-				const pan = new Hammer.Pan({ event: 'pan' });
-				this.hammer.add(pan);
+      const oldLeft = this.$refs.content.getBoundingClientRect().left;
+      this.rightOpen = true;
+      this._animateSlide(-this.rightActionsWidth, oldLeft);
+    },
+    // private
+    _createHammer() {
+      this.hammer = new Hammer.Manager(this.$el, {
+        touchAction: "pan-y",
+        cssProps: {
+          userSelect: ""
+        }
+      });
 
-				this.hammer.on('singletap', e => this._singleTap(e));
-				this.hammer.on('doubletap', e => this._doubleTap(e));
+      const doubelTab = new Hammer.Tap({ event: "doubletap", taps: 2 });
+      this.hammer.add(doubelTab);
 
-				this.hammer.get('pan').set({ threshold: 0 });
-				this.hammer.on('panstart', this._startListener);
-				this.hammer.on('panleft panright', this._swipeListener);
-				this.hammer.on('panend', this._stopListener);
-			},
-			_distanceSwiped() {
-				const contentRect = this.$refs.content.getBoundingClientRect();
-				const elementRect = this.$el.getBoundingClientRect();
-				return contentRect.left - elementRect.left - this.$el.clientLeft;
-			},
-			_startListener(event) {
-				if (this.disabled)
-					return null;
+      const singleTap = new Hammer.Tap({ event: "singletap" });
+      this.hammer.add(singleTap);
 
-				this.isTransitioning = false;
-				if (event.deltaY >= -5 && event.deltaY <= 5) {
-					this.leftActionsWidth = this.$refs.left ? this.$refs.left.clientWidth : 0;
-					this.rightActionsWidth = this.$refs.right ? this.$refs.right.clientWidth : 0;
+      doubelTab.recognizeWith(singleTap);
+      singleTap.requireFailure(doubelTab);
 
-					this.startLeft = this._distanceSwiped();
-					this.isActive = true;
-					this.$emit('active', true);
+      const pan = new Hammer.Pan({ event: "pan" });
+      this.hammer.add(pan);
 
-					if (event.deltaX > 0)
-						this.direction = 'ltr';
-					if (event.deltaX < 0)
-						this.direction = 'rtl';
-				}
+      this.hammer.get("pan").set({ threshold: 0 });
+      this.hammer.on("panstart", this._startListener);
+      this.hammer.on("panleft panright", this._swipeListener);
+      this.hammer.on("panend", this._stopListener);
+    },
+    _distanceSwiped() {
+      const contentRect = this.$refs.content.getBoundingClientRect();
+      const elementRect = this.$el.getBoundingClientRect();
+      return contentRect.left - elementRect.left - this.$el.clientLeft;
+    },
+    _startListener(event) {
+      if (this.disabled || this.closing) return null;
 
-				this.closeActions();
-			},
-			_swipeListener(event) {
-				if (!this.isActive || this.disabled)
-					return null;
+      this.isTransitioning = false;
+      if (event.deltaY >= -5 && event.deltaY <= 5) {
+        this.leftActionsWidth = this.$refs.left
+          ? this.$refs.left.clientWidth
+          : 0;
+        this.rightActionsWidth = this.$refs.right
+          ? this.$refs.right.clientWidth
+          : 0;
 
-				const newX = this.startLeft + event.deltaX;
+        this.startLeft = this._distanceSwiped();
+        this.isActive = true;
 
-				// attempting to reveal the right actions after revealing the left actions
-				if (this.startLeft === 0 && this.direction === 'ltr' && newX < 0)
-					return this._animateSlide(-reduceSwipe(-newX));
+        if (event.deltaX > 0) this.direction = "ltr";
+        if (event.deltaX < 0) this.direction = "rtl";
+      }
 
-				// attempting to reveal the left actions after revealing the right actions
-				if (this.startLeft === 0 && this.direction === 'rtl' && newX > 0)
-					return this._animateSlide(reduceSwipe(newX));
+      this.closeActions();
+    },
+    _swipeListener(event) {
+      if (!this.isActive || this.disabled || this.closing) return null;
 
-				// attempting to reveal the right actions after starting with the left actions revealed
-				if (this.startLeft < 0 && newX > 0)
-					return this._animateSlide(reduceSwipe(newX));
+      const newX = this.startLeft + event.deltaX;
 
-				// attempting to reveal the left actions after starting with the right actions revealed
-				if (this.startLeft > 0 && newX < 0)
-					return this._animateSlide(-reduceSwipe(-newX));
+      // attempting to reveal the right actions after revealing the left actions
+      if (this.startLeft === 0 && this.direction === "ltr" && newX < 0) {
+        return this._animateSlide(-reduceSwipe(-newX));
+      }
 
-				// overswiping left-to-right
-				if (newX < -this.rightActionsWidth)
-					return this._animateSlide(-(this.rightActionsWidth + reduceSwipe(Math.abs(newX + this.rightActionsWidth))));
+      // attempting to reveal the left actions after revealing the right actions
+      if (this.startLeft === 0 && this.direction === "rtl" && newX > 0) {
+        return this._animateSlide(reduceSwipe(newX));
+      }
 
-				if (newX > this.leftActionsWidth)
-					return this._animateSlide(+(this.leftActionsWidth + reduceSwipe(newX - this.leftActionsWidth)));
+      // attempting to reveal the right actions after starting with the left actions revealed
+      if (this.startLeft < 0 && newX > 0)
+        return this._animateSlide(reduceSwipe(newX));
 
+      // attempting to reveal the left actions after starting with the right actions revealed
+      if (this.startLeft > 0 && newX < 0)
+        return this._animateSlide(-reduceSwipe(-newX));
 
-				return this._animateSlide(newX);
-			},
-			_stopListener(event) {
-				if (!this.isActive || this.disabled)
-					return null;
+      // overswiping left-to-right
+      if (newX < -this.rightActionsWidth)
+        return this._animateSlide(
+          -(
+            this.rightActionsWidth +
+            reduceSwipe(Math.abs(newX + this.rightActionsWidth))
+          )
+        );
 
-				const oldLeft = this.$refs.content.getBoundingClientRect().left;
-				this.isActive = false;
-				this.$emit('active', false);
+      if (newX > this.leftActionsWidth)
+        return this._animateSlide(
+          +(this.leftActionsWidth + reduceSwipe(newX - this.leftActionsWidth))
+        );
 
-				// close left actions
-				if (this.startLeft > 0 && event.deltaX <= -this.threshold)
-					return this.closeActions(); // _animateSlide(0, oldLeft);
+      return this._animateSlide(newX);
+    },
+    _stopListener(event) {
+      if (!this.isActive || this.disabled || this.closing) return null;
 
-				// close right actions
-				if (this.startLeft < 0 && event.deltaX >= this.threshold)
-					return this.closeActions(); // this._animateSlide(0, oldLeft);
+      const oldLeft = this.$refs.content.getBoundingClientRect().left;
+      this.isActive = false;
 
-				const currentLeft = this.startLeft + event.deltaX;
+      // close left actions
+      if (this.startLeft > 0 && event.deltaX <= -this.threshold)
+        return this.closeActions(); // _animateSlide(0, oldLeft);
 
-				// reveal left actions
-				if (this.startLeft === 0 && this.direction === 'ltr' && currentLeft >= this.threshold)
-					return this._animateSlide(this.leftActionsWidth, oldLeft);
+      // close right actions
+      if (this.startLeft < 0 && event.deltaX >= this.threshold)
+        return this.closeActions(); // this._animateSlide(0, oldLeft);
 
-				// reveal right actions
-				if (this.startLeft === 0 && this.direction === 'rtl' && currentLeft <= -this.threshold)
-					return this._animateSlide(-this.rightActionsWidth, oldLeft);
+      const currentLeft = this.startLeft + event.deltaX;
 
-				return this._animateSlide(this.startLeft, oldLeft);
-			},
-			// shift actions
-			_shiftLeftActions(newX) {
-				if (!this.hasLeft || newX < 0)
-					return;
+      // reveal left actions
+      if (
+        this.startLeft === 0 &&
+        this.direction === "ltr" &&
+        currentLeft >= this.threshold
+      ) {
+        this.$emit("swipeout:reveal", {
+          direction: this.direction,
+          close: this.closeActions
+        });
+        return this._animateSlide(this.leftActionsWidth, oldLeft);
+      }
 
-				const actions = this.$refs.left;
-				const actionsWidth = this.leftActionsWidth;
+      // reveal right actions
+      if (
+        this.startLeft === 0 &&
+        this.direction === "rtl" &&
+        currentLeft <= -this.threshold
+      ) {
+        this.$emit("swipeout:reveal", {
+          direction: this.direction,
+          close: this.closeActions
+        });
+        return this._animateSlide(-this.rightActionsWidth, oldLeft);
+      }
 
-				const progress = 1 - Math.min(newX / actionsWidth, 1);
-				const deltaX = Math.min(newX, actionsWidth);
+      return this._animateSlide(this.startLeft, oldLeft);
+    },
+    // shift actions
+    _shiftLeftActions(newX) {
+      if (!this.hasLeft || newX < 0) return;
+      if (this.closing) return;
 
-				const children = actions.children;
-				const length = children.length;
-				for (let i = 0; i < length; i++) {
-					const child = children[i];
-					const offsetLeft = actionsWidth - child.offsetLeft - child.offsetWidth;
-					child.style.transform = translateX(deltaX + (offsetLeft * progress));
+      const actions = this.$refs.left;
+      const actionsWidth = this.leftActionsWidth;
 
-					if (length > 1)
-						child.style.zIndex = `${length - i}`;
-				}
-			},
-			_shiftRightActions(newX) {
-				if (!this.hasRight || newX > 0)
-					return;
+      const progress = 1 - Math.min(newX / actionsWidth, 1);
+      const deltaX = Math.min(newX, actionsWidth);
 
-				const actions = this.$refs.right;
+      const children = actions.children;
+      const length = children.length;
+      for (let i = 0; i < length; i++) {
+        const child = children[i];
+        const offsetLeft = actionsWidth - child.offsetLeft - child.offsetWidth;
+        child.style.transform = translateX(deltaX + offsetLeft * progress);
 
-				const actionsWidth = this.rightActionsWidth;
+        if (length > 1) child.style.zIndex = `${length - i}`;
+      }
+    },
+    _shiftRightActions(newX) {
+      if (!this.hasRight || newX > 0) return;
+      if (this.closing) return;
 
-				const progress = 1 + Math.max(newX / actionsWidth, -1);
-				const deltaX = Math.max(newX, -actionsWidth);
-				const children = actions.children;
-				
-				for (let i = 0; i < children.length; i++) {
-					const child = children[i];
-					child.style.transform = translateX(deltaX - (child.offsetLeft * progress));
-				}
-			},
+      const actions = this.$refs.right;
 
-			_animateSlide(to, from) {
-				if (from) {
-					if ((to - from) === 0)
-						return;
-					this.isTransitioning = true;
-				}
+      const actionsWidth = this.rightActionsWidth;
 
-				window.requestAnimationFrame(() => {
-					this.$refs.content.style.transform = translateX(to);
-					this._shiftLeftActions(to, this.leftActionsWidth);
-					this._shiftRightActions(to, this.rightActionsWidth);
-				});
-			},
-			_singleTap(e) {
-				if (this.disabled)
-					return;
-				this.$emit('swipeout:click', e);
-			},
-			_doubleTap(e) {
-				if (this.disabled)
-					return;
-				this.$emit('swipeout:doubleclick', e);
-			},
-			contentClick(e) {
-				if (this.disabled)
-					return;
-				this.$emit('swipeout:contentclick', e);
-			},
-		},
-	};
+      const progress = 1 + Math.max(newX / actionsWidth, -1);
+      const deltaX = Math.max(newX, -actionsWidth);
+      const children = actions.children;
+
+      for (let i = 0; i < children.length; i++) {
+        const child = children[i];
+        child.style.transform = translateX(
+          deltaX - child.offsetLeft * progress
+        );
+      }
+    },
+
+    _animateSlide(to, from) {
+      if (this.closing) return;
+      if (from) {
+        if (to - from === 0) return;
+        this.isTransitioning = true;
+      }
+
+      window.requestAnimationFrame(() => {
+        this.$refs.content.style.transform = translateX(to);
+        this._shiftLeftActions(to, this.leftActionsWidth);
+        this._shiftRightActions(to, this.rightActionsWidth);
+      });
+    }
+  }
+};
 </script>
 <style>
 .swipeout {
@@ -300,7 +318,8 @@
   user-select: auto;
 }
 
-.swipeout .swipeout-left, .swipeout .swipeout-right {
+.swipeout .swipeout-left,
+.swipeout .swipeout-right {
   position: absolute;
   height: 100%;
   display: flex;
@@ -309,14 +328,14 @@
 
 .swipeout.swipeout--transitioning .swipeout-content,
 .swipeout.swipeout--transitioning .swipeout-action {
-	transition: transform 300ms;
+  transition: transform 300ms;
 }
 .swipeout .swipeout-content {
-	width: 100%;
+  width: 100%;
 }
 .swipeout .swipeout-content,
 .swipeout .swipeout-action {
-	will-change: transform;
+  will-change: transform;
 }
 
 .swipeout .swipeout-left {
@@ -329,6 +348,6 @@
   transform: translateX(100%);
 }
 .swipeout-list-item {
-	outline: none;
+  outline: none;
 }
 </style>
