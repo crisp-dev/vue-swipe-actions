@@ -55,6 +55,10 @@ export default {
     }
   },
   props: {
+    item: {
+      type: Object,
+      default: null
+    },
     threshold: {
       type: Number,
       default: 45
@@ -229,6 +233,7 @@ export default {
       ) {
         this.$emit("swipeout:reveal", {
           direction: this.direction,
+          item: this.item,
           close: this.closeActions
         });
         return this._animateSlide(this.leftActionsWidth, oldLeft);
@@ -242,6 +247,7 @@ export default {
       ) {
         this.$emit("swipeout:reveal", {
           direction: this.direction,
+          item: this.item,
           close: this.closeActions
         });
         return this._animateSlide(-this.rightActionsWidth, oldLeft);
