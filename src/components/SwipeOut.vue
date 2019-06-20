@@ -73,7 +73,7 @@ export default {
   },
   mounted() {
     if (!this.hasLeft && !this.hasRight) return;
-    this._createHammer();
+    this._bind();
   },
   beforeDestroy() {
     if (this.hammer) this.hammer.destroy();
@@ -119,7 +119,7 @@ export default {
       this._animateSlide(-this.rightActionsWidth, oldLeft);
     },
     // private
-    _createHammer() {
+    _bind() {
       this.gesture = new TinyGesture(this.$el);
 
       this.gesture.on("panstart", this._startListener);
@@ -158,8 +158,8 @@ export default {
 
       const newX = this.startLeft + this.gesture.touchMoveX;
 
-      if (this.direction === null) {
-        if (newX > 0) {
+      if (this.direction === null && this.gesture.velocityX !== 0) {
+        if (this.gesture.velocityX > 0) {
           this.direction = "ltr";
         } else {
           this.direction = "rtl";
@@ -177,26 +177,30 @@ export default {
       }
 
       // attempting to reveal the right actions after starting with the left actions revealed
-      if (this.startLeft < 0 && newX > 0)
+      if (this.startLeft < 0 && newX > 0) {
         return this._animateSlide(reduceSwipe(newX));
+      }
 
       // attempting to reveal the left actions after starting with the right actions revealed
-      if (this.startLeft > 0 && newX < 0)
+      if (this.startLeft > 0 && newX < 0) {
         return this._animateSlide(-reduceSwipe(-newX));
+      }
 
       // overswiping left-to-right
-      if (newX < -this.rightActionsWidth)
+      if (newX < -this.rightActionsWidth) {
         return this._animateSlide(
           -(
             this.rightActionsWidth +
             reduceSwipe(Math.abs(newX + this.rightActionsWidth))
           )
         );
+      }
 
-      if (newX > this.leftActionsWidth)
+      if (newX > this.leftActionsWidth) {
         return this._animateSlide(
           +(this.leftActionsWidth + reduceSwipe(newX - this.leftActionsWidth))
         );
+      }
 
       return this._animateSlide(newX);
     },
