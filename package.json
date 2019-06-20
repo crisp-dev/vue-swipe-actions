@@ -1,7 +1,7 @@
 {
   "name": "vue-swipe-actions",
   "description": "iOS style swipe actions",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -31,7 +31,7 @@
     "url": "https://github.com/eCollect/vue-swipe-actions"
   },
   "dependencies": {
-    "hammerjs": "^2.0.8",
+    "tinygesture": "^1.1.4",
     "vue": "^2.5.21",
     "vue-cli": "^2.9.6"
   },

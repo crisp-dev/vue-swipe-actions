@@ -16,7 +16,7 @@
 </template>
 <script>
 /* eslint-disable */
-import Hammer from "hammerjs";
+import TinyGesture from 'tinygesture';
 
 function reduceSwipe(x) {
   return Math.pow(x, 0.65); // eslint-disable-line
@@ -32,8 +32,8 @@ export default {
   name: "swipe-item",
   data() {
     return {
-      hammer: null,
       startLeft: 0,
+      startX: 0,
       isActive: false,
       closing: false,
       isTransitioning: false,
@@ -120,29 +120,11 @@ export default {
     },
     // private
     _createHammer() {
-      this.hammer = new Hammer.Manager(this.$el, {
-        touchAction: "pan-y",
-        cssProps: {
-          userSelect: ""
-        }
-      });
+      this.gesture = new TinyGesture(this.$el);
 
-      const doubelTab = new Hammer.Tap({ event: "doubletap", taps: 2 });
-      this.hammer.add(doubelTab);
-
-      const singleTap = new Hammer.Tap({ event: "singletap" });
-      this.hammer.add(singleTap);
-
-      doubelTab.recognizeWith(singleTap);
-      singleTap.requireFailure(doubelTab);
-
-      const pan = new Hammer.Pan({ event: "pan" });
-      this.hammer.add(pan);
-
-      this.hammer.get("pan").set({ threshold: 0 });
-      this.hammer.on("panstart", this._startListener);
-      this.hammer.on("panleft panright", this._swipeListener);
-      this.hammer.on("panend", this._stopListener);
+      this.gesture.on("panstart", this._startListener);
+      this.gesture.on("panmove", this._swipeListener);
+      this.gesture.on("panend", this._stopListener);
     },
     _distanceSwiped() {
       const contentRect = this.$refs.content.getBoundingClientRect();
@@ -153,27 +135,36 @@ export default {
       if (this.disabled || this.closing) return null;
 
       this.isTransitioning = false;
-      if (event.deltaY >= -5 && event.deltaY <= 5) {
+
+      if (this.gesture.touchMoveY >= -5 && this.gesture.touchMoveY <= 5) {
         this.leftActionsWidth = this.$refs.left
           ? this.$refs.left.clientWidth
           : 0;
+
         this.rightActionsWidth = this.$refs.right
           ? this.$refs.right.clientWidth
           : 0;
 
         this.startLeft = this._distanceSwiped();
+
         this.isActive = true;
 
-        if (event.deltaX > 0) this.direction = "ltr";
-        if (event.deltaX < 0) this.direction = "rtl";
+        this.startX = this.gesture.touchStartX;
       }
-
       this.closeActions();
     },
     _swipeListener(event) {
       if (!this.isActive || this.disabled || this.closing) return null;
 
-      const newX = this.startLeft + event.deltaX;
+      const newX = this.startLeft + this.gesture.touchMoveX;
+
+      if (this.direction === null) {
+        if (newX > 0) {
+          this.direction = "ltr";
+        } else {
+          this.direction = "rtl";
+        }
+      }
 
       // attempting to reveal the right actions after revealing the left actions
       if (this.startLeft === 0 && this.direction === "ltr" && newX < 0) {
@@ -213,21 +204,20 @@ export default {
       if (!this.isActive || this.disabled || this.closing) return null;
 
       const oldLeft = this.$refs.content.getBoundingClientRect().left;
+
       this.isActive = false;
 
       // close left actions
-      if (this.startLeft > 0 && event.deltaX <= -this.threshold)
+      if (this.startLeft > 0 && this.gesture.touchMoveX <= -this.threshold)
         return this.closeActions(); // _animateSlide(0, oldLeft);
 
       // close right actions
-      if (this.startLeft < 0 && event.deltaX >= this.threshold)
+      if (this.startLeft < 0 && this.gesture.touchMoveX >= this.threshold)
         return this.closeActions(); // this._animateSlide(0, oldLeft);
 
-      const currentLeft = this.startLeft + event.deltaX;
-
+      const currentLeft = this.startLeft + this.gesture.touchMoveX;
       // reveal left actions
       if (
-        this.startLeft === 0 &&
         this.direction === "ltr" &&
         currentLeft >= this.threshold
       ) {
@@ -236,12 +226,10 @@ export default {
           item: this.item,
           close: this.closeActions
         });
-        return this._animateSlide(this.leftActionsWidth, oldLeft);
       }
 
       // reveal right actions
       if (
-        this.startLeft === 0 &&
         this.direction === "rtl" &&
         currentLeft <= -this.threshold
       ) {
@@ -250,8 +238,9 @@ export default {
           item: this.item,
           close: this.closeActions
         });
-        return this._animateSlide(-this.rightActionsWidth, oldLeft);
       }
+
+      this.direction = null;
 
       return this._animateSlide(this.startLeft, oldLeft);
     },
