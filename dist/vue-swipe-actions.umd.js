@@ -994,12 +994,12 @@ if (typeof window !== 'undefined') {
 // Indicate to webpack that this file can be concatenated
 /* harmony default export */ var setPublicPath = (null);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"770cfbdb-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SwipeOut.vue?vue&type=template&id=2ad72311&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"770cfbdb-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SwipeOut.vue?vue&type=template&id=4fc8fc0b&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"swipeout",class:{'swipeout--transitioning' : _vm.isTransitioning, 'swipeout--disabled': _vm.disabled}},[(_vm.hasLeft)?_c('div',{ref:"left",staticClass:"swipeout-left"},[_vm._t("left",null,{"close":_vm.closeActions})],2):_vm._e(),(_vm.hasRight)?_c('div',{ref:"right",staticClass:"swipeout-right"},[_vm._t("right",null,{"close":_vm.closeActions})],2):_vm._e(),_c('div',{ref:"content",staticClass:"swipeout-content"},[_vm._t("default",null,{"close":_vm.closeActions,"revealRight":_vm.revealRight,"revealLeft":_vm.revealLeft})],2)])}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/SwipeOut.vue?vue&type=template&id=2ad72311&
+// CONCATENATED MODULE: ./src/components/SwipeOut.vue?vue&type=template&id=4fc8fc0b&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.number.constructor.js
 var es6_number_constructor = __webpack_require__("c5f6");
@@ -1357,47 +1357,37 @@ function translateX(x) {
     _swipeListener: function _swipeListener(event) {
       if (!this.isActive || this.disabled || this.closing) return null;
       var newX = this.startLeft + this.gesture.touchMoveX;
-      console.log(this.startX);
-      console.log(this.gesture);
 
       if (this.direction === null && this.gesture.velocityX !== 0) {
-        console.log("this.gesture.velocityX =" + this.gesture.velocityX);
-
         if (this.gesture.velocityX > 0) {
           this.direction = "ltr";
         } else {
           this.direction = "rtl";
         }
-      }
+      } // attempting to reveal the right actions after revealing the left actions
 
-      console.log(this.direction); // attempting to reveal the right actions after revealing the left actions
 
       if (this.startLeft === 0 && this.direction === "ltr" && newX < 0) {
-        console.log("1");
         return this._animateSlide(-reduceSwipe(-newX));
       } // attempting to reveal the left actions after revealing the right actions
 
 
       if (this.startLeft === 0 && this.direction === "rtl" && newX > 0) {
-        console.log("2");
         return this._animateSlide(reduceSwipe(newX));
       } // attempting to reveal the right actions after starting with the left actions revealed
 
 
       if (this.startLeft < 0 && newX > 0) {
-        console.log("3");
         return this._animateSlide(reduceSwipe(newX));
       } // attempting to reveal the left actions after starting with the right actions revealed
 
 
       if (this.startLeft > 0 && newX < 0) {
-        console.log("4");
         return this._animateSlide(-reduceSwipe(-newX));
       } // overswiping left-to-right
 
 
       if (newX < -this.rightActionsWidth) {
-        console.log("5");
         return this._animateSlide(-(this.rightActionsWidth + reduceSwipe(Math.abs(newX + this.rightActionsWidth))));
       }
 
@@ -1405,7 +1395,6 @@ function translateX(x) {
         return this._animateSlide(+(this.leftActionsWidth + reduceSwipe(newX - this.leftActionsWidth)));
       }
 
-      console.log("6");
       return this._animateSlide(newX);
     },
     _stopListener: function _stopListener(event) {
