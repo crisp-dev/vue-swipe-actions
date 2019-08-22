@@ -985,12 +985,12 @@ if (typeof window !== 'undefined') {
 // Indicate to webpack that this file can be concatenated
 /* harmony default export */ var setPublicPath = (null);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"770cfbdb-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SwipeOut.vue?vue&type=template&id=4fc8fc0b&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"770cfbdb-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SwipeOut.vue?vue&type=template&id=07a01de1&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"swipeout",class:{'swipeout--transitioning' : _vm.isTransitioning, 'swipeout--disabled': _vm.disabled}},[(_vm.hasLeft)?_c('div',{ref:"left",staticClass:"swipeout-left"},[_vm._t("left",null,{"close":_vm.closeActions})],2):_vm._e(),(_vm.hasRight)?_c('div',{ref:"right",staticClass:"swipeout-right"},[_vm._t("right",null,{"close":_vm.closeActions})],2):_vm._e(),_c('div',{ref:"content",staticClass:"swipeout-content"},[_vm._t("default",null,{"close":_vm.closeActions,"revealRight":_vm.revealRight,"revealLeft":_vm.revealLeft})],2)])}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/SwipeOut.vue?vue&type=template&id=4fc8fc0b&
+// CONCATENATED MODULE: ./src/components/SwipeOut.vue?vue&type=template&id=07a01de1&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.number.constructor.js
 var es6_number_constructor = __webpack_require__("c5f6");
@@ -1332,6 +1332,8 @@ function translateX(x) {
       return contentRect.left - elementRect.left - this.$el.clientLeft;
     },
     _startListener: function _startListener(event) {
+      // If it's not a left click
+      if (event.which !== 1) return null;
       if (this.disabled || this.closing) return null;
       this.isTransitioning = false;
 

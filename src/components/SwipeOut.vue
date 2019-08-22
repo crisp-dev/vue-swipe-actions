@@ -132,6 +132,9 @@ export default {
       return contentRect.left - elementRect.left - this.$el.clientLeft;
     },
     _startListener(event) {
+      // If it's not a left click
+      if (event.which !== 1) return null;
+      
       if (this.disabled || this.closing) return null;
 
       this.isTransitioning = false;
