@@ -120,6 +120,11 @@ export default {
     },
     // private
     _bind() {
+      // Disable default drag behavior on Firefox
+      this.$el.addEventListener("dragstart", function (e) {
+        e.preventDefault();
+      });
+
       this.gesture = new TinyGesture(this.$el);
 
       this.gesture.on("panstart", this._startListener);
