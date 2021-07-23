@@ -1,12 +1,9 @@
 <template>
   <div id="app">
     <swipe-list class="card" :disabled="!enabled" :items="mockSwipeList" transition-key="id" @swipeout:contentclick="contentClick" @swipeout:click="itemClick" @swipeout:doubleclick="itemDblClick">
-      <template slot-scope="{ item, index, revealLeft, revealRight, close }">
+      <template slot-scope="{ item }">
         <!-- item is the corresponding object from the array -->
-        <!-- index is clearly the index -->
-        <!-- revealLeft is method which toggles the left side -->
-        <!-- revealRight is method which toggles the right side -->
-        <!-- close is method which closes an opened side -->
+
         <div class="card-content">
           <!-- style content how ever you like -->
           <h2>{{ item.title }}</h2>
@@ -28,7 +25,7 @@
       </template>
       <!-- right swipe side template and slot-scope="{ item }" is the item clearly -->
       <!-- remove <template slot="right" slot-scope="{ item }"> if you dont wanna have right swipe side  -->
-      <template slot="right" slot-scope="{ item }">
+      <template slot="right" slot-scope="{ }">
         <div class="swipeout-action blue">
           <!-- place icon here or what ever you want -->
           <i class="fa fa-heart"></i>

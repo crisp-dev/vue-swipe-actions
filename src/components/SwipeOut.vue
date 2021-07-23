@@ -75,7 +75,7 @@ export default {
     if (!this.hasLeft && !this.hasRight) return;
     this._bind();
   },
-  beforeDestroy() {
+  beforeUnmount() {
     if (this.hammer) this.hammer.destroy();
     this.hammer = null;
   },
