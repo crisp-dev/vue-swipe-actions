@@ -487,6 +487,17 @@ module.exports = !!Object.getOwnPropertySymbols && !fails(function () {
 
 /***/ }),
 
+/***/ "4a44":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_7_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_7_oneOf_1_1_node_modules_vue_loader_v16_dist_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_1_0_node_modules_vue_loader_v16_dist_index_js_ref_1_1_SwipeOut_vue_vue_type_style_index_0_id_91f4923e_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("ae1e");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_7_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_7_oneOf_1_1_node_modules_vue_loader_v16_dist_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_1_0_node_modules_vue_loader_v16_dist_index_js_ref_1_1_SwipeOut_vue_vue_type_style_index_0_id_91f4923e_lang_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_7_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_7_oneOf_1_1_node_modules_vue_loader_v16_dist_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_1_0_node_modules_vue_loader_v16_dist_index_js_ref_1_1_SwipeOut_vue_vue_type_style_index_0_id_91f4923e_lang_css__WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+
+
+/***/ }),
+
 /***/ "4d64":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1038,13 +1049,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__8bbf__;
 
 /***/ }),
 
-/***/ "8f68":
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-
 /***/ "90e3":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1266,6 +1270,13 @@ if (isForced(NUMBER, !NativeNumber(' 0o1') || !NativeNumber('0b1') || NativeNumb
   defineBuiltIn(global, NUMBER, NumberWrapper, { constructor: true });
 }
 
+
+/***/ }),
+
+/***/ "ae1e":
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
 
 /***/ }),
 
@@ -1546,17 +1557,6 @@ module.exports = function (exec) {
 
 /***/ }),
 
-/***/ "d056":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_7_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_7_oneOf_1_1_node_modules_vue_loader_v16_dist_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_1_0_node_modules_vue_loader_v16_dist_index_js_ref_1_1_SwipeOut_vue_vue_type_style_index_0_id_ef8d7a70_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("8f68");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_7_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_7_oneOf_1_1_node_modules_vue_loader_v16_dist_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_1_0_node_modules_vue_loader_v16_dist_index_js_ref_1_1_SwipeOut_vue_vue_type_style_index_0_id_ef8d7a70_lang_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_7_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_7_oneOf_1_1_node_modules_vue_loader_v16_dist_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_1_0_node_modules_vue_loader_v16_dist_index_js_ref_1_1_SwipeOut_vue_vue_type_style_index_0_id_ef8d7a70_lang_css__WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
-
-
-/***/ }),
-
 /***/ "d066":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1768,7 +1768,6 @@ __webpack_require__.r(__webpack_exports__);
 
 // EXPORTS
 __webpack_require__.d(__webpack_exports__, "SwipeOut", function() { return /* reexport */ SwipeOut; });
-__webpack_require__.d(__webpack_exports__, "SwipeList", function() { return /* reexport */ SwipeList; });
 
 // CONCATENATED MODULE: ./node_modules/@vue/cli-service/lib/commands/build/setPublicPath.js
 // This file is imported into lib/wc client bundles.
@@ -1797,9 +1796,19 @@ if (typeof window !== 'undefined') {
 // EXTERNAL MODULE: external {"commonjs":"vue","commonjs2":"vue","root":"Vue"}
 var external_commonjs_vue_commonjs2_vue_root_Vue_ = __webpack_require__("8bbf");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--13-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/vue-loader-v16/dist/templateLoader.js??ref--6!./node_modules/cache-loader/dist/cjs.js??ref--1-0!./node_modules/vue-loader-v16/dist??ref--1-1!./src/components/SwipeOut.vue?vue&type=template&id=ef8d7a70
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--13-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/vue-loader-v16/dist/templateLoader.js??ref--6!./node_modules/cache-loader/dist/cjs.js??ref--1-0!./node_modules/vue-loader-v16/dist??ref--1-1!./src/components/SwipeOut.vue?vue&type=template&id=91f4923e
 
 var _hoisted_1 = {
+  key: 0,
+  ref: "left",
+  class: "swipeout-left"
+};
+var _hoisted_2 = {
+  key: 1,
+  ref: "right",
+  class: "swipeout-right"
+};
+var _hoisted_3 = {
   class: "swipeout-content",
   ref: "content"
 };
@@ -1809,29 +1818,19 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       'swipeout--transitioning': $data.isTransitioning,
       'swipeout--disabled': $props.disabled
     }])
-  }, [$options.hasLeft ? (Object(external_commonjs_vue_commonjs2_vue_root_Vue_["openBlock"])(), Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createElementBlock"])("div", {
-    key: 0,
-    ref: "left",
-    class: Object(external_commonjs_vue_commonjs2_vue_root_Vue_["normalizeClass"])(["swipeout-left", {
-      'swipeout--opened': $data.leftOpen
-    }])
-  }, [Object(external_commonjs_vue_commonjs2_vue_root_Vue_["renderSlot"])(_ctx.$slots, "left", {
-    close: $options.closeActions
-  })], 2)) : Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createCommentVNode"])("", true), $options.hasRight ? (Object(external_commonjs_vue_commonjs2_vue_root_Vue_["openBlock"])(), Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createElementBlock"])("div", {
-    key: 1,
-    ref: "right",
-    class: Object(external_commonjs_vue_commonjs2_vue_root_Vue_["normalizeClass"])(["swipeout-right", {
-      'swipeout--opened': $data.rightOpen
-    }])
-  }, [Object(external_commonjs_vue_commonjs2_vue_root_Vue_["renderSlot"])(_ctx.$slots, "right", {
-    close: $options.closeActions
-  })], 2)) : Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createCommentVNode"])("", true), Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createElementVNode"])("div", _hoisted_1, [Object(external_commonjs_vue_commonjs2_vue_root_Vue_["renderSlot"])(_ctx.$slots, "default", {
+  }, [$options.hasLeft ? (Object(external_commonjs_vue_commonjs2_vue_root_Vue_["openBlock"])(), Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createElementBlock"])("div", _hoisted_1, [Object(external_commonjs_vue_commonjs2_vue_root_Vue_["renderSlot"])(_ctx.$slots, "left", {
+    close: $options.closeActions,
+    reached: $data.leftReached
+  })], 512)) : Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createCommentVNode"])("", true), $options.hasRight ? (Object(external_commonjs_vue_commonjs2_vue_root_Vue_["openBlock"])(), Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createElementBlock"])("div", _hoisted_2, [Object(external_commonjs_vue_commonjs2_vue_root_Vue_["renderSlot"])(_ctx.$slots, "right", {
+    close: $options.closeActions,
+    reached: $data.rightReached
+  })], 512)) : Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createCommentVNode"])("", true), Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createElementVNode"])("div", _hoisted_3, [Object(external_commonjs_vue_commonjs2_vue_root_Vue_["renderSlot"])(_ctx.$slots, "default", {
     close: $options.closeActions,
     revealRight: $options.revealRight,
     revealLeft: $options.revealLeft
   })], 512)], 2);
 }
-// CONCATENATED MODULE: ./src/components/SwipeOut.vue?vue&type=template&id=ef8d7a70
+// CONCATENATED MODULE: ./src/components/SwipeOut.vue?vue&type=template&id=91f4923e
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.number.constructor.js
 var es_number_constructor = __webpack_require__("a9e3");
@@ -2065,20 +2064,20 @@ function translateX(x) {
       closing: false,
       isTransitioning: false,
       direction: null,
-      // hasLeft: true, //'left' in this.$slots || 'left' in this.$scopedSlots,
-      // hasRight: 'right' in this.$slots,
       leftOpen: false,
       rightOpen: false,
+      leftReached: false,
+      rightReached: false,
       leftActionsWidth: 0,
       rightActionsWidth: 0
     };
   },
   computed: {
     hasLeft: function hasLeft() {
-      return "left" in this.$slots || "left" in this.$scopedSlots;
+      return this.$slots["left"] ? true : false;
     },
     hasRight: function hasRight() {
-      return "right" in this.$slots || "right" in this.$scopedSlots;
+      return this.$slots["right"] ? true : false;
     }
   },
   props: {
@@ -2090,10 +2089,6 @@ function translateX(x) {
       type: Number,
       default: 45
     },
-
-    /**
-     * Is the item disabled
-     */
     disabled: {
       type: Boolean,
       default: false
@@ -2128,6 +2123,8 @@ function translateX(x) {
       }, 100);
       this.leftOpen = false;
       this.rightOpen = false;
+      this.leftReached = false;
+      this.rightReached = false;
       this.startLeft = 0;
     },
     revealLeft: function revealLeft() {
@@ -2186,8 +2183,11 @@ function translateX(x) {
         } else {
           this.direction = "rtl";
         }
-      } // attempting to reveal the right actions after revealing the left actions
+      } // assign reached markers
 
+
+      this.leftReached = this.direction === "ltr" && newX >= this.threshold;
+      this.rightReached = this.direction === "rtl" && newX <= -this.threshold; // attempting to reveal the right actions after revealing the left actions
 
       if (this.startLeft === 0 && this.direction === "ltr" && newX < 0) {
         return this._animateSlide(-reduceSwipe(-newX));
@@ -2232,7 +2232,6 @@ function translateX(x) {
       var currentLeft = this.startLeft + this.gesture.touchMoveX; // reveal left actions
 
       if (this.direction === "ltr" && currentLeft >= this.threshold) {
-        this.leftOpen = true;
         this.$emit("swipeout:reveal", {
           direction: this.direction,
           item: this.item,
@@ -2242,7 +2241,6 @@ function translateX(x) {
 
 
       if (this.direction === "rtl" && currentLeft <= -this.threshold) {
-        this.rightOpen = true;
         this.$emit("swipeout:reveal", {
           direction: this.direction,
           item: this.item,
@@ -2307,8 +2305,8 @@ function translateX(x) {
 });
 // CONCATENATED MODULE: ./src/components/SwipeOut.vue?vue&type=script&lang=js
  
-// EXTERNAL MODULE: ./src/components/SwipeOut.vue?vue&type=style&index=0&id=ef8d7a70&lang=css
-var SwipeOutvue_type_style_index_0_id_ef8d7a70_lang_css = __webpack_require__("d056");
+// EXTERNAL MODULE: ./src/components/SwipeOut.vue?vue&type=style&index=0&id=91f4923e&lang=css
+var SwipeOutvue_type_style_index_0_id_91f4923e_lang_css = __webpack_require__("4a44");
 
 // EXTERNAL MODULE: ./node_modules/vue-loader-v16/dist/exportHelper.js
 var exportHelper = __webpack_require__("6b0d");
@@ -2325,136 +2323,7 @@ var exportHelper_default = /*#__PURE__*/__webpack_require__.n(exportHelper);
 const __exports__ = /*#__PURE__*/exportHelper_default()(SwipeOutvue_type_script_lang_js, [['render',render]])
 
 /* harmony default export */ var SwipeOut = (__exports__);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--13-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/vue-loader-v16/dist/templateLoader.js??ref--6!./node_modules/cache-loader/dist/cjs.js??ref--1-0!./node_modules/vue-loader-v16/dist??ref--1-1!./src/components/SwipeList.vue?vue&type=template&id=3ca1d55a
-
-var SwipeListvue_type_template_id_3ca1d55a_hoisted_1 = {
-  slot: "left",
-  "slot-scope": "{ close }"
-};
-var _hoisted_2 = {
-  "slot-scope": "{ close, revealRight, revealLeft }"
-};
-var _hoisted_3 = {
-  slot: "right",
-  "slot-scope": "{ close }"
-};
-
-var _hoisted_4 = /*#__PURE__*/Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createTextVNode"])("No results !");
-
-function SwipeListvue_type_template_id_3ca1d55a_render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _component_swipe_out = Object(external_commonjs_vue_commonjs2_vue_root_Vue_["resolveComponent"])("swipe-out");
-
-  return Object(external_commonjs_vue_commonjs2_vue_root_Vue_["openBlock"])(), Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createElementBlock"])("div", {
-    class: Object(external_commonjs_vue_commonjs2_vue_root_Vue_["normalizeClass"])([{
-      'swipeout--disabled': $props.disabled
-    }, "swipeout-list"])
-  }, [(Object(external_commonjs_vue_commonjs2_vue_root_Vue_["openBlock"])(true), Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createElementBlock"])(external_commonjs_vue_commonjs2_vue_root_Vue_["Fragment"], null, Object(external_commonjs_vue_commonjs2_vue_root_Vue_["renderList"])($props.items, function (item, index) {
-    return Object(external_commonjs_vue_commonjs2_vue_root_Vue_["openBlock"])(), Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createBlock"])(_component_swipe_out, {
-      key: item[$props.transitionKey] || index,
-      ref_for: true,
-      ref: "list-item-".concat(index),
-      disabled: $props.disabled,
-      threshold: $props.threshold,
-      class: Object(external_commonjs_vue_commonjs2_vue_root_Vue_["normalizeClass"])($options._getClass(item)),
-      "onSwipeout:reveal": function onSwipeoutReveal($event) {
-        return $options._emitReveal($event, item);
-      }
-    }, {
-      default: Object(external_commonjs_vue_commonjs2_vue_root_Vue_["withCtx"])(function () {
-        return [Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createElementVNode"])("template", SwipeListvue_type_template_id_3ca1d55a_hoisted_1, [Object(external_commonjs_vue_commonjs2_vue_root_Vue_["renderSlot"])(_ctx.$slots, "left", {
-          close: _ctx.close,
-          item: item
-        })]), Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createElementVNode"])("template", _hoisted_2, [Object(external_commonjs_vue_commonjs2_vue_root_Vue_["renderSlot"])(_ctx.$slots, "default", {
-          item: item,
-          index: index,
-          close: _ctx.close,
-          revealRight: _ctx.revealRight,
-          revealLeft: _ctx.revealLeft
-        })]), Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createElementVNode"])("template", _hoisted_3, [Object(external_commonjs_vue_commonjs2_vue_root_Vue_["renderSlot"])(_ctx.$slots, "right", {
-          close: _ctx.close,
-          item: item
-        })])];
-      }),
-      _: 2
-    }, 1032, ["disabled", "threshold", "class", "onSwipeout:reveal"]);
-  }), 128)), !$props.items.length ? Object(external_commonjs_vue_commonjs2_vue_root_Vue_["renderSlot"])(_ctx.$slots, "empty", {
-    key: 0
-  }, function () {
-    return [_hoisted_4];
-  }) : Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createCommentVNode"])("", true)], 2);
-}
-// CONCATENATED MODULE: ./src/components/SwipeList.vue?vue&type=template&id=3ca1d55a
-
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--13-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--1-0!./node_modules/vue-loader-v16/dist??ref--1-1!./src/components/SwipeList.vue?vue&type=script&lang=js
-
-
-/* eslint-disable */
-
-/* harmony default export */ var SwipeListvue_type_script_lang_js = ({
-  name: "vue-swipe-list",
-  props: {
-    items: {
-      type: Array,
-      required: true
-    },
-    transitionKey: {
-      type: String,
-      default: "id"
-    },
-    threshold: {
-      type: Number,
-      default: 45
-    },
-    disabled: {
-      type: Boolean,
-      default: false
-    },
-    isNew: {
-      type: Function,
-      default: function _default() {}
-    },
-    isNewClass: {
-      type: String,
-      default: ""
-    },
-    onReveal: {
-      type: Function,
-      default: function _default() {}
-    }
-  },
-  methods: {
-    _getClass: function _getClass(item) {
-      var _class = "swipeout-list-item";
-
-      if (this.isNew(item)) {
-        _class += " " + this.isNewClass;
-      }
-
-      return _class;
-    },
-    _emitReveal: function _emitReveal(event, item) {
-      this.onReveal(event.direction, item, function () {
-        event.close();
-      });
-    }
-  },
-  components: {
-    SwipeOut: SwipeOut
-  }
-});
-// CONCATENATED MODULE: ./src/components/SwipeList.vue?vue&type=script&lang=js
- 
-// CONCATENATED MODULE: ./src/components/SwipeList.vue
-
-
-
-
-
-const SwipeList_exports_ = /*#__PURE__*/exportHelper_default()(SwipeListvue_type_script_lang_js, [['render',SwipeListvue_type_template_id_3ca1d55a_render]])
-
-/* harmony default export */ var SwipeList = (SwipeList_exports_);
 // CONCATENATED MODULE: ./src/components/index.js
-
 
 
 // CONCATENATED MODULE: ./node_modules/@vue/cli-service/lib/commands/build/entry-lib-no-default.js
