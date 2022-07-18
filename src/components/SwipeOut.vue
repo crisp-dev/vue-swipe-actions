@@ -3,10 +3,10 @@
     class="swipeout"
     :class="{'swipeout--transitioning' : isTransitioning, 'swipeout--disabled': disabled}"
   >
-    <div v-if="hasLeft" class="swipeout-left" ref="left">
+    <div v-if="hasLeft" ref="left" class="swipeout-left" :class="{'swipeout--opened': leftOpen}">
       <slot :close="closeActions" name="left"></slot>
     </div>
-    <div v-if="hasRight" class="swipeout-right" ref="right">
+    <div v-if="hasRight" ref="right" class="swipeout-right" :class="{'swipeout--opened': rightOpen}">
       <slot :close="closeActions" name="right"></slot>
     </div>
     <div class="swipeout-content" ref="content">
@@ -233,6 +233,8 @@ export default {
         this.direction === "ltr" &&
         currentLeft >= this.threshold
       ) {
+        this.leftOpen = true;
+
         this.$emit("swipeout:reveal", {
           direction: this.direction,
           item: this.item,
@@ -245,6 +247,8 @@ export default {
         this.direction === "rtl" &&
         currentLeft <= -this.threshold
       ) {
+        this.rightOpen = true;
+
         this.$emit("swipeout:reveal", {
           direction: this.direction,
           item: this.item,
