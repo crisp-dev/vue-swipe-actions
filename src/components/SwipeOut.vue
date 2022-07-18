@@ -3,11 +3,11 @@
     class="swipeout"
     :class="{'swipeout--transitioning' : isTransitioning, 'swipeout--disabled': disabled}"
   >
-    <div v-if="hasLeft" ref="left" class="swipeout-left" :class="{'swipeout--opened': leftOpen}">
-      <slot :close="closeActions" name="left"></slot>
+    <div v-if="hasLeft" ref="left" class="swipeout-left">
+      <slot :close="closeActions" :reached="leftReached" name="left"></slot>
     </div>
-    <div v-if="hasRight" ref="right" class="swipeout-right" :class="{'swipeout--opened': rightOpen}">
-      <slot :close="closeActions" name="right"></slot>
+    <div v-if="hasRight" ref="right" class="swipeout-right">
+      <slot :close="closeActions" :reached="rightReached" name="right"></slot>
     </div>
     <div class="swipeout-content" ref="content">
       <slot :close="closeActions" :revealRight="revealRight" :revealLeft="revealLeft"></slot>
@@ -40,6 +40,8 @@ export default {
       direction: null,
       leftOpen: false,
       rightOpen: false,
+      leftReached: false,
+      rightReached: false,
       leftActionsWidth: 0,
       rightActionsWidth: 0
     };
@@ -97,6 +99,8 @@ export default {
 
       this.leftOpen = false;
       this.rightOpen = false;
+      this.leftReached = false;
+      this.rightReached = false;
       this.startLeft = 0;
     },
     revealLeft() {
@@ -169,6 +173,10 @@ export default {
         }
       }
 
+      // assign reached markers
+      this.leftReached = (this.direction === "ltr" && newX >= this.threshold);
+      this.rightReached = (this.direction === "rtl" && newX <= -this.threshold);
+
       // attempting to reveal the right actions after revealing the left actions
       if (this.startLeft === 0 && this.direction === "ltr" && newX < 0) {
         return this._animateSlide(-reduceSwipe(-newX));
@@ -228,8 +236,6 @@ export default {
         this.direction === "ltr" &&
         currentLeft >= this.threshold
       ) {
-        this.leftOpen = true;
-
         this.$emit("swipeout:reveal", {
           direction: this.direction,
           item: this.item,
@@ -242,8 +248,6 @@ export default {
         this.direction === "rtl" &&
         currentLeft <= -this.threshold
       ) {
-        this.rightOpen = true;
-
         this.$emit("swipeout:reveal", {
           direction: this.direction,
           item: this.item,

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <swipe-out v-for="(item, index) in mockSwipeList" :disabled="!enabled" :key="item.id" @swipeout:contentclick="contentClick" @swipeout:click="itemClick" @swipeout:doubleclick="itemDblClick" class="card">
+    <swipe-out v-for="(item, index) in mockSwipeList" :disabled="!enabled" :key="item.id" :threshold="180" @swipeout:contentclick="contentClick" @swipeout:click="itemClick" @swipeout:doubleclick="itemDblClick" class="card">
       <div class="card-content">
         <!-- style content how ever you like -->
         <h2>{{ item.title }}</h2>
@@ -9,24 +9,24 @@
       </div>
       <!-- left swipe side template and slot-scope="{ item }" is the item clearly -->
       <!-- remove <template slot="left" slot-scope="{ item }"> if you dont wanna have left swipe side  -->
-      <template v-slot:left="{ item, close }">
-        <div class="swipeout-action red" @click="remove(item)" title="remove">
+      <template v-slot:left="{ item, close, reached }">
+        <div class="swipeout-action red" @click="remove(item)" title="remove" :class="{'black-override': reached}">
           <!-- place icon here or what ever you want -->
           <i class="fa fa-trash"></i>
         </div>
-        <div  class="swipeout-action purple" @click="close">
+        <div  class="swipeout-action purple" @click="close" :class="{'black-override': reached}">
           <!-- place icon here or what ever you want -->
           <i class="fa fa-close"></i>
         </div>
       </template>
       <!-- right swipe side template and slot-scope="{ item }" is the item clearly -->
       <!-- remove <template slot="right" slot-scope="{ item }"> if you dont wanna have right swipe side  -->
-      <template v-slot:right="{ }">
-        <div class="swipeout-action blue">
+      <template v-slot:right="{ reached }">
+        <div class="swipeout-action blue" :class="{'black-override': reached}">
           <!-- place icon here or what ever you want -->
           <i class="fa fa-heart"></i>
         </div>
-        <div class="swipeout-action green">
+        <div class="swipeout-action green" :class="{'black-override': reached}">
           <!-- place icon here or what ever you want -->
           <i class="fa fa-heart"></i>
         </div>
@@ -151,6 +151,10 @@
         &:hover {
         background-color: darken(rgb(76,217,100), 5%);
         }
+    }
+    &.black-override {
+      color: white !important;
+      background-color: rgb(0,0,0) !important;
     }
 }
 .swipeout-list-item {
