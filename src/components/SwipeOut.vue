@@ -38,8 +38,6 @@ export default {
       closing: false,
       isTransitioning: false,
       direction: null,
-      // hasLeft: true, //'left' in this.$slots || 'left' in this.$scopedSlots,
-      // hasRight: 'right' in this.$slots,
       leftOpen: false,
       rightOpen: false,
       leftActionsWidth: 0,
@@ -48,10 +46,10 @@ export default {
   },
   computed: {
     hasLeft() {
-      return "left" in this.$slots || "left" in this.$scopedSlots;
+      return this.$slots["left"] ? true : false;
     },
     hasRight() {
-      return "right" in this.$slots || "right" in this.$scopedSlots;
+      return this.$slots["right"] ? true : false;
     }
   },
   props: {
@@ -63,9 +61,6 @@ export default {
       type: Number,
       default: 45
     },
-    /**
-     * Is the item disabled
-     */
     disabled: {
       type: Boolean,
       default: false

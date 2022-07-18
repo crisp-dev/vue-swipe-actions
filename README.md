@@ -9,12 +9,11 @@ npm install --save vue-swipe-actions
 ```
 
 ```js
-import { SwipeList, SwipeOut } from 'vue-swipe-actions';
+import { SwipeOut } from 'vue-swipe-actions';
 
 export default {
   components: {
-    SwipeOut,
-    SwipeList
+    SwipeOut
   }
 };
 ```
@@ -26,28 +25,6 @@ export default {
 ```javascript
 import 'vue-swipe-actions/dist/vue-swipe-actions.css';
 ```
-
-### SwipeList
-
-SwipeList component is just a helper for listing multiple SwipeOuts.
-
-#### Props
-
-| Prop             | Data Type | Required|Default| Description        |
-| ---------------- | --------- |-------- |-------|------------------ |
-| `items`          | Array     | *       |       | An array with your data |
-| `transition-key` | String    |         |id     | Your key for :key when list is v-for-ed, if not found array index will used|
-| `disabled`       | Boolean   |         |false  | if true items will be disabled, and text selection will be possible (on desktop). adds class ``swipeout--disabled``  |
-| `threshold`      | Number    |         |45     | With that property you can fine tune when actions are considered open |
-
-#### Events
-
-| Prop                    | Payload         | Description        |
-| ----------------------- | --------------- | -|
-| `swipeout:click`        | { event, item } | Emitted on single click/tap on the item |
-| `swipeout:doubleclick`  | { event, item } | Emitted on double click/tap on the item |
-| `active`                | Boolean         | Emitted when the user is opening/closing the any of the actions |
-
 
 ### SwipeOut
 
@@ -69,20 +46,18 @@ SwipeOut is the main component, representing a single item with it's actions.
 | `active`                | Boolean         | Emitted when the user is opening/closing the any of the actions |
 
 ```html
-<swipe-list :items="mockSwipeList" transition-key="id" @swipeout:contentclick="contentClick" @swipeout:click="itemClick" @swipeout:doubleclick="itemDblClick">
-  <template slot-scope="{ item, index, revealLeft, revealRight, close }">
-    <!-- item is the corresponding object from the array -->
-    <!-- index is clearly the index -->
-    <!-- revealLeft is method which toggles the left side -->
-    <!-- revealRight is method which toggles the right side -->
-    <!-- close is method which closes an opened side -->
-    <div class="card-content">
-      <!-- style content how ever you like -->
-      <h2>{{ item.title }}</h2>
-      <p>{{ item.description }}</p>
-      <span>{{ index }}</span>
-    </div>
-  </template>
+<swipe-out v-for="(item, index) in mockSwipeList" :key="item.id" @swipeout:contentclick="contentClick" @swipeout:click="itemClick" @swipeout:doubleclick="itemDblClick">
+  <!-- item is the corresponding object from the array -->
+  <!-- index is clearly the index -->
+  <!-- revealLeft is method which toggles the left side -->
+  <!-- revealRight is method which toggles the right side -->
+  <!-- close is method which closes an opened side -->
+  <div class="card-content">
+    <!-- style content how ever you like -->
+    <h2>{{ item.title }}</h2>
+    <p>{{ item.description }}</p>
+    <span>{{ index }}</span>
+  </div>
   <template slot="left" slot-scope="{ item, close }">
       <!-- remove <template slot="left" slot-scope="{ item }"> if you dont wanna have left swipe side  -->
       <!-- close is method which closes an opened side -->
@@ -107,13 +82,12 @@ SwipeOut is the main component, representing a single item with it's actions.
     <!-- change mockSwipeList to an empty array to see this slot in action  -->
     list is empty ( filtered or just empty )
   </div>
-</swipe-list>
+</swipe-out>
 ```
 
 ```js
 components: {
-  SwipeOut,
-  SwipeList,
+  SwipeOut
 },
 data() {
   return {

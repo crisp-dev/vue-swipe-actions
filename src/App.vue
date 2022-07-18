@@ -1,19 +1,15 @@
 <template>
   <div id="app">
-    <swipe-list class="card" :disabled="!enabled" :items="mockSwipeList" transition-key="id" @swipeout:contentclick="contentClick" @swipeout:click="itemClick" @swipeout:doubleclick="itemDblClick">
-      <template slot-scope="{ item }">
-        <!-- item is the corresponding object from the array -->
-
-        <div class="card-content">
-          <!-- style content how ever you like -->
-          <h2>{{ item.title }}</h2>
-          <p>{{ item.description }}</p>
-          <span>{{ index }}</span>
-        </div>
-      </template>
+    <swipe-out v-for="(item, index) in mockSwipeList" :disabled="!enabled" :key="item.id" @swipeout:contentclick="contentClick" @swipeout:click="itemClick" @swipeout:doubleclick="itemDblClick" class="card">
+      <div class="card-content">
+        <!-- style content how ever you like -->
+        <h2>{{ item.title }}</h2>
+        <p>{{ item.description }}</p>
+        <span>{{ index }}</span>
+      </div>
       <!-- left swipe side template and slot-scope="{ item }" is the item clearly -->
       <!-- remove <template slot="left" slot-scope="{ item }"> if you dont wanna have left swipe side  -->
-      <template slot="left" slot-scope="{ item, close }">
+      <template v-slot:left="{ item, close }">
         <div class="swipeout-action red" @click="remove(item)" title="remove">
           <!-- place icon here or what ever you want -->
           <i class="fa fa-trash"></i>
@@ -25,7 +21,7 @@
       </template>
       <!-- right swipe side template and slot-scope="{ item }" is the item clearly -->
       <!-- remove <template slot="right" slot-scope="{ item }"> if you dont wanna have right swipe side  -->
-      <template slot="right" slot-scope="{ }">
+      <template v-slot:right="{ }">
         <div class="swipeout-action blue">
           <!-- place icon here or what ever you want -->
           <i class="fa fa-heart"></i>
@@ -35,24 +31,19 @@
           <i class="fa fa-heart"></i>
         </div>
       </template>
-      <div slot="empty">
-        <!-- change mockSwipeList to an empty array to see this slot in action  -->
-        list is empty ( filtered or just empty )
-      </div>
-    </swipe-list>
+    </swipe-out>
     <p><small><i>Press and hold [shift] to select text</i></small></p>
   </div>
 </template>
 
 <script>
   /* eslint-disable */
-  import { SwipeList, SwipeOut } from './components/index';
+  import { SwipeOut } from './components/index';
 
   export default {
     name: 'app',
     components: {
-      SwipeOut,
-      SwipeList,
+      SwipeOut
     },
     data() {
       return {
