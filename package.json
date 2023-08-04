@@ -5,7 +5,7 @@
   "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "NODE_ENV=production vue-cli-service build",
+    "_build": "NODE_ENV=production vue-cli-service build",
     "build-bundle": "vue-cli-service --mode production build --target lib --name vue-swipe-actions ./src/components/index.js",
     "lint": "vue-cli-service lint",
     "deploy": "gh-pages-deploy"
