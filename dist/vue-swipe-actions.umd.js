@@ -1,3 +1,11 @@
+/*
+ * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("vue"));
@@ -7,2537 +15,1167 @@
 		exports["vue-swipe-actions"] = factory(require("vue"));
 	else
 		root["vue-swipe-actions"] = factory(root["Vue"]);
-})((typeof self !== 'undefined' ? self : this), function(__WEBPACK_EXTERNAL_MODULE__8bbf__) {
-return /******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
-/******/
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId]) {
-/******/ 			return installedModules[moduleId].exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
-/******/ 			exports: {}
-/******/ 		};
-/******/
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
-/******/
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/
-/******/
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-/******/
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-/******/
-/******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
-/******/ 		}
-/******/ 	};
-/******/
-/******/ 	// define __esModule on exports
-/******/ 	__webpack_require__.r = function(exports) {
-/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 		}
-/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 	};
-/******/
-/******/ 	// create a fake namespace object
-/******/ 	// mode & 1: value is a module id, require it
-/******/ 	// mode & 2: merge all properties of value into the ns
-/******/ 	// mode & 4: return value when already ns object
-/******/ 	// mode & 8|1: behave like require
-/******/ 	__webpack_require__.t = function(value, mode) {
-/******/ 		if(mode & 1) value = __webpack_require__(value);
-/******/ 		if(mode & 8) return value;
-/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
-/******/ 		var ns = Object.create(null);
-/******/ 		__webpack_require__.r(ns);
-/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
-/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
-/******/ 		return ns;
-/******/ 	};
-/******/
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-/******/
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-/******/
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
-/******/
-/******/
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "fae3");
-/******/ })
-/************************************************************************/
-/******/ ({
+})((typeof self !== 'undefined' ? self : this), function(__WEBPACK_EXTERNAL_MODULE_vue__) {
+return /******/ (function() { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ({
 
-/***/ "00ee":
-/***/ (function(module, exports, __webpack_require__) {
-
-var wellKnownSymbol = __webpack_require__("b622");
-
-var TO_STRING_TAG = wellKnownSymbol('toStringTag');
-var test = {};
-
-test[TO_STRING_TAG] = 'z';
-
-module.exports = String(test) === '[object z]';
-
-
-/***/ }),
-
-/***/ "04f8":
-/***/ (function(module, exports, __webpack_require__) {
-
-/* eslint-disable es/no-symbol -- required for testing */
-var V8_VERSION = __webpack_require__("2d00");
-var fails = __webpack_require__("d039");
-var global = __webpack_require__("da84");
-
-var $String = global.String;
-
-// eslint-disable-next-line es/no-object-getownpropertysymbols -- required for testing
-module.exports = !!Object.getOwnPropertySymbols && !fails(function () {
-  var symbol = Symbol();
-  // Chrome 38 Symbol has incorrect toString conversion
-  // `get-own-property-symbols` polyfill symbols converted to object are not Symbol instances
-  // nb: Do not call `String` directly to avoid this being optimized out to `symbol+''` which will,
-  // of course, fail.
-  return !$String(symbol) || !(Object(symbol) instanceof Symbol) ||
-    // Chrome 38-40 symbols are not inherited from DOM collections prototypes to instances
-    !Symbol.sham && V8_VERSION && V8_VERSION < 41;
-});
-
-
-/***/ }),
-
-/***/ "06cf":
-/***/ (function(module, exports, __webpack_require__) {
-
-var DESCRIPTORS = __webpack_require__("83ab");
-var call = __webpack_require__("c65b");
-var propertyIsEnumerableModule = __webpack_require__("d1e7");
-var createPropertyDescriptor = __webpack_require__("5c6c");
-var toIndexedObject = __webpack_require__("fc6a");
-var toPropertyKey = __webpack_require__("a04b");
-var hasOwn = __webpack_require__("1a2d");
-var IE8_DOM_DEFINE = __webpack_require__("0cfb");
-
-// eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
-var $getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
-
-// `Object.getOwnPropertyDescriptor` method
-// https://tc39.es/ecma262/#sec-object.getownpropertydescriptor
-exports.f = DESCRIPTORS ? $getOwnPropertyDescriptor : function getOwnPropertyDescriptor(O, P) {
-  O = toIndexedObject(O);
-  P = toPropertyKey(P);
-  if (IE8_DOM_DEFINE) try {
-    return $getOwnPropertyDescriptor(O, P);
-  } catch (error) { /* empty */ }
-  if (hasOwn(O, P)) return createPropertyDescriptor(!call(propertyIsEnumerableModule.f, O, P), O[P]);
-};
-
-
-/***/ }),
-
-/***/ "07fa":
-/***/ (function(module, exports, __webpack_require__) {
-
-var toLength = __webpack_require__("50c4");
-
-// `LengthOfArrayLike` abstract operation
-// https://tc39.es/ecma262/#sec-lengthofarraylike
-module.exports = function (obj) {
-  return toLength(obj.length);
-};
-
-
-/***/ }),
-
-/***/ "0cfb":
-/***/ (function(module, exports, __webpack_require__) {
-
-var DESCRIPTORS = __webpack_require__("83ab");
-var fails = __webpack_require__("d039");
-var createElement = __webpack_require__("cc12");
-
-// Thanks to IE8 for its funny defineProperty
-module.exports = !DESCRIPTORS && !fails(function () {
-  // eslint-disable-next-line es/no-object-defineproperty -- required for testing
-  return Object.defineProperty(createElement('div'), 'a', {
-    get: function () { return 7; }
-  }).a != 7;
-});
-
-
-/***/ }),
-
-/***/ "0d51":
+/***/ "./node_modules/@soda/get-current-script/index.js":
+/*!********************************************************!*\
+  !*** ./node_modules/@soda/get-current-script/index.js ***!
+  \********************************************************/
 /***/ (function(module, exports) {
 
-var $String = String;
-
-module.exports = function (argument) {
-  try {
-    return $String(argument);
-  } catch (error) {
-    return 'Object';
-  }
-};
-
+eval("var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;// addapted from the document.currentScript polyfill by Adam Miller\n// MIT license\n// source: https://github.com/amiller-gh/currentScript-polyfill\n\n// added support for Firefox https://bugzilla.mozilla.org/show_bug.cgi?id=1620505\n\n(function (root, factory) {\n  if (true) {\n    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),\n\t\t__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?\n\t\t(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),\n\t\t__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));\n  } else {}\n}(typeof self !== 'undefined' ? self : this, function () {\n  function getCurrentScript () {\n    var descriptor = Object.getOwnPropertyDescriptor(document, 'currentScript')\n    // for chrome\n    if (!descriptor && 'currentScript' in document && document.currentScript) {\n      return document.currentScript\n    }\n\n    // for other browsers with native support for currentScript\n    if (descriptor && descriptor.get !== getCurrentScript && document.currentScript) {\n      return document.currentScript\n    }\n  \n    // IE 8-10 support script readyState\n    // IE 11+ & Firefox support stack trace\n    try {\n      throw new Error();\n    }\n    catch (err) {\n      // Find the second match for the \"at\" string to get file src url from stack.\n      var ieStackRegExp = /.*at [^(]*\\((.*):(.+):(.+)\\)$/ig,\n        ffStackRegExp = /@([^@]*):(\\d+):(\\d+)\\s*$/ig,\n        stackDetails = ieStackRegExp.exec(err.stack) || ffStackRegExp.exec(err.stack),\n        scriptLocation = (stackDetails && stackDetails[1]) || false,\n        line = (stackDetails && stackDetails[2]) || false,\n        currentLocation = document.location.href.replace(document.location.hash, ''),\n        pageSource,\n        inlineScriptSourceRegExp,\n        inlineScriptSource,\n        scripts = document.getElementsByTagName('script'); // Live NodeList collection\n  \n      if (scriptLocation === currentLocation) {\n        pageSource = document.documentElement.outerHTML;\n        inlineScriptSourceRegExp = new RegExp('(?:[^\\\\n]+?\\\\n){0,' + (line - 2) + '}[^<]*<script>([\\\\d\\\\D]*?)<\\\\/script>[\\\\d\\\\D]*', 'i');\n        inlineScriptSource = pageSource.replace(inlineScriptSourceRegExp, '$1').trim();\n      }\n  \n      for (var i = 0; i < scripts.length; i++) {\n        // If ready state is interactive, return the script tag\n        if (scripts[i].readyState === 'interactive') {\n          return scripts[i];\n        }\n  \n        // If src matches, return the script tag\n        if (scripts[i].src === scriptLocation) {\n          return scripts[i];\n        }\n  \n        // If inline source matches, return the script tag\n        if (\n          scriptLocation === currentLocation &&\n          scripts[i].innerHTML &&\n          scripts[i].innerHTML.trim() === inlineScriptSource\n        ) {\n          return scripts[i];\n        }\n      }\n  \n      // If no match, return null\n      return null;\n    }\n  };\n\n  return getCurrentScript\n}));\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/@soda/get-current-script/index.js?");
 
 /***/ }),
 
-/***/ "13d2":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./node_modules/@vue/cli-service/lib/commands/build/entry-lib-no-default.js":
+/*!**********************************************************************************!*\
+  !*** ./node_modules/@vue/cli-service/lib/commands/build/entry-lib-no-default.js ***!
+  \**********************************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-var uncurryThis = __webpack_require__("e330");
-var fails = __webpack_require__("d039");
-var isCallable = __webpack_require__("1626");
-var hasOwn = __webpack_require__("1a2d");
-var DESCRIPTORS = __webpack_require__("83ab");
-var CONFIGURABLE_FUNCTION_NAME = __webpack_require__("5e77").CONFIGURABLE;
-var inspectSource = __webpack_require__("8925");
-var InternalStateModule = __webpack_require__("69f3");
-
-var enforceInternalState = InternalStateModule.enforce;
-var getInternalState = InternalStateModule.get;
-var $String = String;
-// eslint-disable-next-line es/no-object-defineproperty -- safe
-var defineProperty = Object.defineProperty;
-var stringSlice = uncurryThis(''.slice);
-var replace = uncurryThis(''.replace);
-var join = uncurryThis([].join);
-
-var CONFIGURABLE_LENGTH = DESCRIPTORS && !fails(function () {
-  return defineProperty(function () { /* empty */ }, 'length', { value: 8 }).length !== 8;
-});
-
-var TEMPLATE = String(String).split('String');
-
-var makeBuiltIn = module.exports = function (value, name, options) {
-  if (stringSlice($String(name), 0, 7) === 'Symbol(') {
-    name = '[' + replace($String(name), /^Symbol\(([^)]*)\)/, '$1') + ']';
-  }
-  if (options && options.getter) name = 'get ' + name;
-  if (options && options.setter) name = 'set ' + name;
-  if (!hasOwn(value, 'name') || (CONFIGURABLE_FUNCTION_NAME && value.name !== name)) {
-    if (DESCRIPTORS) defineProperty(value, 'name', { value: name, configurable: true });
-    else value.name = name;
-  }
-  if (CONFIGURABLE_LENGTH && options && hasOwn(options, 'arity') && value.length !== options.arity) {
-    defineProperty(value, 'length', { value: options.arity });
-  }
-  try {
-    if (options && hasOwn(options, 'constructor') && options.constructor) {
-      if (DESCRIPTORS) defineProperty(value, 'prototype', { writable: false });
-    // in V8 ~ Chrome 53, prototypes of some methods, like `Array.prototype.values`, are non-writable
-    } else if (value.prototype) value.prototype = undefined;
-  } catch (error) { /* empty */ }
-  var state = enforceInternalState(value);
-  if (!hasOwn(state, 'source')) {
-    state.source = join(TEMPLATE, typeof name == 'string' ? name : '');
-  } return value;
-};
-
-// add fake Function#toString for correct work wrapped methods / constructors with methods like LoDash isNative
-// eslint-disable-next-line no-extend-native -- required
-Function.prototype.toString = makeBuiltIn(function toString() {
-  return isCallable(this) && getInternalState(this).source || inspectSource(this);
-}, 'toString');
-
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   SwipeOut: function() { return /* reexport safe */ _entry__WEBPACK_IMPORTED_MODULE_1__.SwipeOut; }\n/* harmony export */ });\n/* harmony import */ var _setPublicPath__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./setPublicPath */ \"./node_modules/@vue/cli-service/lib/commands/build/setPublicPath.js\");\n/* harmony import */ var _entry__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ~entry */ \"./src/components/index.js\");\n\n\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/@vue/cli-service/lib/commands/build/entry-lib-no-default.js?");
 
 /***/ }),
 
-/***/ "1626":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./node_modules/@vue/cli-service/lib/commands/build/setPublicPath.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/@vue/cli-service/lib/commands/build/setPublicPath.js ***!
+  \***************************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-var $documentAll = __webpack_require__("8ea1");
-
-var documentAll = $documentAll.all;
-
-// `IsCallable` abstract operation
-// https://tc39.es/ecma262/#sec-iscallable
-module.exports = $documentAll.IS_HTMLDDA ? function (argument) {
-  return typeof argument == 'function' || argument === documentAll;
-} : function (argument) {
-  return typeof argument == 'function';
-};
-
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* eslint-disable no-var */\n// This file is imported into lib/wc client bundles.\n\nif (typeof window !== 'undefined') {\n  var currentScript = window.document.currentScript\n  if (true) {\n    var getCurrentScript = __webpack_require__(/*! @soda/get-current-script */ \"./node_modules/@soda/get-current-script/index.js\")\n    currentScript = getCurrentScript()\n\n    // for backward compatibility, because previously we directly included the polyfill\n    if (!('currentScript' in document)) {\n      Object.defineProperty(document, 'currentScript', { get: getCurrentScript })\n    }\n  }\n\n  var src = currentScript && currentScript.src.match(/(.+\\/)[^/]+\\.js(\\?.*)?$/)\n  if (src) {\n    __webpack_require__.p = src[1] // eslint-disable-line\n  }\n}\n\n// Indicate to webpack that this file can be concatenated\n/* harmony default export */ __webpack_exports__[\"default\"] = (null);\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/@vue/cli-service/lib/commands/build/setPublicPath.js?");
 
 /***/ }),
 
-/***/ "1a2d":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-82.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/components/SwipeOut.vue?vue&type=script&lang=js":
+/*!******************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-82.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/components/SwipeOut.vue?vue&type=script&lang=js ***!
+  \******************************************************************************************************************************************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-var uncurryThis = __webpack_require__("e330");
-var toObject = __webpack_require__("7b0b");
-
-var hasOwnProperty = uncurryThis({}.hasOwnProperty);
-
-// `HasOwnProperty` abstract operation
-// https://tc39.es/ecma262/#sec-hasownproperty
-// eslint-disable-next-line es/no-object-hasown -- safe
-module.exports = Object.hasOwn || function hasOwn(it, key) {
-  return hasOwnProperty(toObject(it), key);
-};
-
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var core_js_modules_es_number_constructor_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.number.constructor.js */ \"./node_modules/core-js/modules/es.number.constructor.js\");\n/* harmony import */ var core_js_modules_es_number_constructor_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_number_constructor_js__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var tinygesture__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tinygesture */ \"./node_modules/tinygesture/TinyGesture.js\");\n\n/* eslint-disable */\n\nfunction reduceSwipe(x) {\n  return Math.pow(x, 0.65); // eslint-disable-line\n}\nfunction translateX(x) {\n  if (x === 0) return \"\";\n  return \"translate3d(\".concat(x, \"px, 0, 0)\");\n}\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  name: \"swipe-item\",\n  data: function data() {\n    return {\n      startLeft: 0,\n      startX: 0,\n      isActive: false,\n      closing: false,\n      isTransitioning: false,\n      direction: null,\n      leftOpen: false,\n      rightOpen: false,\n      leftReached: false,\n      rightReached: false,\n      leftActionsWidth: 0,\n      rightActionsWidth: 0\n    };\n  },\n  computed: {\n    hasLeft: function hasLeft() {\n      return this.$slots[\"left\"] ? true : false;\n    },\n    hasRight: function hasRight() {\n      return this.$slots[\"right\"] ? true : false;\n    }\n  },\n  props: {\n    item: {\n      type: Object,\n      default: null\n    },\n    mode: {\n      type: String,\n      default: \"translate\"\n    },\n    threshold: {\n      type: Number,\n      default: 45\n    },\n    disabled: {\n      type: Boolean,\n      default: false\n    }\n  },\n  mounted: function mounted() {\n    if (!this.hasLeft && !this.hasRight) return;\n    this._bind();\n  },\n  beforeUnmount: function beforeUnmount() {\n    if (this.hammer) this.hammer.destroy();\n    this.hammer = null;\n  },\n  methods: {\n    // public\n    closeActions: function closeActions() {\n      var _this = this;\n      if (this.isActive) return;\n      var content = this.$refs.content;\n      var left = this.$refs.left;\n      var right = this.$refs.right;\n      this.closing = true;\n      setTimeout(function () {\n        window.requestAnimationFrame(function () {\n          content.style.transform = translateX(0, 0, 0);\n          if (_this.mode === \"width\") {\n            if (_this.hasRight) {\n              right.style.visibility = \"hidden\";\n              right.style.opacity = \"0\";\n              right.children[0].style.width = \"0px\";\n            }\n            if (_this.hasLeft) {\n              left.style.visibility = \"hidden\";\n              left.style.opacity = \"0\";\n              left.children[0].style.width = \"0px\";\n            }\n          } else {\n            right.children[0].style.transform = translateX(0, 0, 0);\n            left.children[0].style.transform = translateX(0, 0, 0);\n          }\n          _this.closing = false;\n        });\n      }, 100);\n      this.leftOpen = false;\n      this.rightOpen = false;\n      this.leftReached = false;\n      this.rightReached = false;\n      this.startLeft = 0;\n    },\n    revealLeft: function revealLeft() {\n      if (this.isActive || this.closing) return;\n      var oldLeft = this.$refs.content.getBoundingClientRect().left;\n      this.leftOpen = true;\n      this._animateSlide(this.leftActionsWidth, oldLeft);\n    },\n    revealRight: function revealRight() {\n      if (this.isActive || this.closing) return;\n      var oldLeft = this.$refs.content.getBoundingClientRect().left;\n      this.rightOpen = true;\n      this._animateSlide(-this.rightActionsWidth, oldLeft);\n    },\n    // private\n    _bind: function _bind() {\n      // Disable default drag behavior on Firefox\n      this.$el.addEventListener(\"dragstart\", function (e) {\n        e.preventDefault();\n      });\n      this.gesture = new tinygesture__WEBPACK_IMPORTED_MODULE_1__[\"default\"](this.$el);\n      this.gesture.on(\"panstart\", this._startListener);\n      this.gesture.on(\"panmove\", this._swipeListener);\n      this.gesture.on(\"panend\", this._stopListener);\n      if (this.mode === \"width\") {\n        if (this.hasRight) {\n          this.$refs.right.style.transform = \"none\";\n          this.$refs.right.style.visibility = \"hidden\";\n          this.$refs.right.style.opacity = \"0\";\n          this.$refs.right.style.justifyContent = \"end\";\n        }\n        if (this.hasLeft) {\n          this.$refs.left.style.transform = \"none\";\n          this.$refs.left.style.visibility = \"hidden\";\n          this.$refs.left.style.opacity = \"0\";\n          this.$refs.left.style.justifyContent = \"start\";\n        }\n      }\n    },\n    _distanceSwiped: function _distanceSwiped() {\n      var contentRect = this.$refs.content.getBoundingClientRect();\n      var elementRect = this.$el.getBoundingClientRect();\n      return contentRect.left - elementRect.left - this.$el.clientLeft;\n    },\n    _startListener: function _startListener(event) {\n      // If it's not a left click\n      if (event.which !== 1) return null;\n      if (this.disabled || this.closing) return null;\n      this.isTransitioning = false;\n      if (this.gesture.touchMoveY >= -5 && this.gesture.touchMoveY <= 5) {\n        this.leftActionsWidth = this.$refs.left ? this.$refs.left.clientWidth : 0;\n        this.rightActionsWidth = this.$refs.right ? this.$refs.right.clientWidth : 0;\n        this.startLeft = this._distanceSwiped();\n        this.isActive = true;\n        this.startX = this.gesture.touchStartX;\n      }\n      this.closeActions();\n    },\n    _swipeListener: function _swipeListener(event) {\n      if (!this.isActive || this.disabled || this.closing) return null;\n      var newX = this.startLeft + this.gesture.touchMoveX;\n      if (this.direction === null && this.gesture.velocityX !== 0) {\n        if (this.gesture.velocityX > 0) {\n          this.direction = \"ltr\";\n        } else {\n          this.direction = \"rtl\";\n        }\n      }\n\n      // assign reached markers\n      this.leftReached = this.direction === \"ltr\" && newX >= this.threshold;\n      this.rightReached = this.direction === \"rtl\" && newX <= -this.threshold;\n\n      // attempting to reveal the right actions after revealing the left actions\n      if (this.startLeft === 0 && this.direction === \"ltr\" && newX < 0) {\n        return this._animateSlide(-reduceSwipe(-newX));\n      }\n\n      // attempting to reveal the left actions after revealing the right actions\n      if (this.startLeft === 0 && this.direction === \"rtl\" && newX > 0) {\n        return this._animateSlide(reduceSwipe(newX));\n      }\n\n      // attempting to reveal the right actions after starting with the left actions revealed\n      if (this.startLeft < 0 && newX > 0) {\n        return this._animateSlide(reduceSwipe(newX));\n      }\n\n      // attempting to reveal the left actions after starting with the right actions revealed\n      if (this.startLeft > 0 && newX < 0) {\n        return this._animateSlide(-reduceSwipe(-newX));\n      }\n\n      // overswiping left-to-right\n      if (newX < -this.rightActionsWidth) {\n        return this._animateSlide(-(this.rightActionsWidth + reduceSwipe(Math.abs(newX + this.rightActionsWidth))));\n      }\n      if (newX > this.leftActionsWidth) {\n        return this._animateSlide(+(this.leftActionsWidth + reduceSwipe(newX - this.leftActionsWidth)));\n      }\n      return this._animateSlide(newX);\n    },\n    _stopListener: function _stopListener(event) {\n      if (!this.isActive || this.disabled || this.closing) return null;\n      var oldLeft = this.$refs.content.getBoundingClientRect().left;\n      this.isActive = false;\n\n      // close left actions\n      if (this.startLeft > 0 && this.gesture.touchMoveX <= -this.threshold) return this.closeActions(); // _animateSlide(0, oldLeft);\n\n      // close right actions\n      if (this.startLeft < 0 && this.gesture.touchMoveX >= this.threshold) return this.closeActions(); // this._animateSlide(0, oldLeft);\n\n      var currentLeft = this.startLeft + this.gesture.touchMoveX;\n      // reveal left actions\n      if (this.direction === \"ltr\" && currentLeft >= this.threshold) {\n        this.$emit(\"swipeout:reveal\", {\n          direction: this.direction,\n          item: this.item,\n          close: this.closeActions\n        });\n      }\n\n      // reveal right actions\n      if (this.direction === \"rtl\" && currentLeft <= -this.threshold) {\n        this.$emit(\"swipeout:reveal\", {\n          direction: this.direction,\n          item: this.item,\n          close: this.closeActions\n        });\n      }\n      this.direction = null;\n      return this._animateSlide(this.startLeft, oldLeft);\n    },\n    // shift actions\n    _shiftLeftActions: function _shiftLeftActions(newX) {\n      if (!this.hasLeft || newX < 0) return;\n      if (this.closing) return;\n      var actions = this.$refs.left;\n      var actionsWidth = this.leftActionsWidth;\n      var progress = 1 - Math.min(newX / actionsWidth, 1);\n      var deltaX = Math.min(newX, actionsWidth);\n      var children = actions.children;\n      var length = children.length;\n      if (this.mode === \"width\") {\n        if (deltaX) {\n          actions.style.visibility = \"visible\";\n          actions.style.opacity = \"1\";\n        } else {\n          actions.style.visibility = \"hidden\";\n          actions.style.opacity = \"0\";\n        }\n      }\n      for (var i = 0; i < length; i++) {\n        var child = children[i];\n        var offsetLeft = actionsWidth - child.offsetLeft - child.offsetWidth;\n        if (this.mode === \"width\") {\n          child.style.width = newX + \"px\";\n        } else {\n          child.style.transform = translateX(deltaX + offsetLeft * progress);\n        }\n        if (length > 1) child.style.zIndex = \"\".concat(length - i);\n      }\n    },\n    _shiftRightActions: function _shiftRightActions(newX) {\n      if (!this.hasRight || newX > 0) return;\n      if (this.closing) return;\n      var actions = this.$refs.right;\n      var actionsWidth = this.rightActionsWidth;\n      var progress = 1 + Math.max(newX / actionsWidth, -1);\n      var deltaX = Math.max(newX, -actionsWidth);\n      var children = actions.children;\n      if (this.mode === \"width\") {\n        if (deltaX) {\n          actions.style.visibility = \"visible\";\n          actions.style.opacity = \"1\";\n        } else {\n          actions.style.visibility = \"hidden\";\n          actions.style.opacity = \"0\";\n        }\n      }\n      for (var i = 0; i < children.length; i++) {\n        var child = children[i];\n        if (this.mode === \"width\") {\n          child.style.width = -newX + \"px\";\n        } else {\n          child.style.transform = translateX(deltaX - child.offsetLeft * progress);\n        }\n      }\n    },\n    _animateSlide: function _animateSlide(to, from) {\n      var _this2 = this;\n      if (this.closing) return;\n      if (from) {\n        if (to - from === 0) return;\n        this.isTransitioning = true;\n      }\n      window.requestAnimationFrame(function () {\n        _this2.$refs.content.style.transform = translateX(to);\n        _this2._shiftLeftActions(to, _this2.leftActionsWidth);\n        _this2._shiftRightActions(to, _this2.rightActionsWidth);\n      });\n    }\n  }\n});\n\n//# sourceURL=webpack://vue-swipe-actions/./src/components/SwipeOut.vue?./node_modules/babel-loader/lib/index.js??clonedRuleSet-82.use%5B0%5D!./node_modules/vue-loader/dist/index.js??ruleSet%5B0%5D.use%5B0%5D");
 
 /***/ }),
 
-/***/ "1d80":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-82.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[3]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/components/SwipeOut.vue?vue&type=template&id=00111be4":
+/*!**********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-82.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[3]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/components/SwipeOut.vue?vue&type=template&id=00111be4 ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-var isNullOrUndefined = __webpack_require__("7234");
-
-var $TypeError = TypeError;
-
-// `RequireObjectCoercible` abstract operation
-// https://tc39.es/ecma262/#sec-requireobjectcoercible
-module.exports = function (it) {
-  if (isNullOrUndefined(it)) throw $TypeError("Can't call method on " + it);
-  return it;
-};
-
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   render: function() { return /* binding */ render; }\n/* harmony export */ });\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ \"vue\");\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);\n\nvar _hoisted_1 = {\n  key: 0,\n  ref: \"left\",\n  class: \"swipeout-left\"\n};\nvar _hoisted_2 = {\n  key: 1,\n  ref: \"right\",\n  class: \"swipeout-right\"\n};\nvar _hoisted_3 = {\n  class: \"swipeout-content\",\n  ref: \"content\"\n};\nfunction render(_ctx, _cache, $props, $setup, $data, $options) {\n  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(\"div\", {\n    class: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([\"swipeout\", {\n      'swipeout--transitioning': $data.isTransitioning,\n      'swipeout--disabled': $props.disabled\n    }])\n  }, [$options.hasLeft ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(\"div\", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, \"left\", {\n    close: $options.closeActions,\n    reached: $data.leftReached\n  })], 512 /* NEED_PATCH */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(\"v-if\", true), $options.hasRight ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(\"div\", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, \"right\", {\n    close: $options.closeActions,\n    reached: $data.rightReached\n  })], 512 /* NEED_PATCH */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(\"v-if\", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)(\"div\", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, \"default\", {\n    close: $options.closeActions,\n    revealRight: $options.revealRight,\n    revealLeft: $options.revealLeft\n  })], 512 /* NEED_PATCH */)], 2 /* CLASS */);\n}\n\n//# sourceURL=webpack://vue-swipe-actions/./src/components/SwipeOut.vue?./node_modules/babel-loader/lib/index.js??clonedRuleSet-82.use%5B0%5D!./node_modules/vue-loader/dist/templateLoader.js??ruleSet%5B1%5D.rules%5B3%5D!./node_modules/vue-loader/dist/index.js??ruleSet%5B0%5D.use%5B0%5D");
 
 /***/ }),
 
-/***/ "23cb":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./src/components/index.js":
+/*!*********************************!*\
+  !*** ./src/components/index.js ***!
+  \*********************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-var toIntegerOrInfinity = __webpack_require__("5926");
-
-var max = Math.max;
-var min = Math.min;
-
-// Helper for a popular repeating case of the spec:
-// Let integer be ? ToInteger(index).
-// If integer < 0, let result be max((length + integer), 0); else let result be min(integer, length).
-module.exports = function (index, length) {
-  var integer = toIntegerOrInfinity(index);
-  return integer < 0 ? max(integer + length, 0) : min(integer, length);
-};
-
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   SwipeOut: function() { return /* reexport safe */ _components_SwipeOut__WEBPACK_IMPORTED_MODULE_0__[\"default\"]; }\n/* harmony export */ });\n/* harmony import */ var _components_SwipeOut__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/SwipeOut */ \"./src/components/SwipeOut.vue\");\n\n\n\n//# sourceURL=webpack://vue-swipe-actions/./src/components/index.js?");
 
 /***/ }),
 
-/***/ "23e7":
-/***/ (function(module, exports, __webpack_require__) {
-
-var global = __webpack_require__("da84");
-var getOwnPropertyDescriptor = __webpack_require__("06cf").f;
-var createNonEnumerableProperty = __webpack_require__("9112");
-var defineBuiltIn = __webpack_require__("cb2d");
-var defineGlobalProperty = __webpack_require__("6374");
-var copyConstructorProperties = __webpack_require__("e893");
-var isForced = __webpack_require__("94ca");
-
-/*
-  options.target         - name of the target object
-  options.global         - target is the global object
-  options.stat           - export as static methods of target
-  options.proto          - export as prototype methods of target
-  options.real           - real prototype method for the `pure` version
-  options.forced         - export even if the native feature is available
-  options.bind           - bind methods to the target, required for the `pure` version
-  options.wrap           - wrap constructors to preventing global pollution, required for the `pure` version
-  options.unsafe         - use the simple assignment of property instead of delete + defineProperty
-  options.sham           - add a flag to not completely full polyfills
-  options.enumerable     - export as enumerable property
-  options.dontCallGetSet - prevent calling a getter on target
-  options.name           - the .name of the function if it does not match the key
-*/
-module.exports = function (options, source) {
-  var TARGET = options.target;
-  var GLOBAL = options.global;
-  var STATIC = options.stat;
-  var FORCED, target, key, targetProperty, sourceProperty, descriptor;
-  if (GLOBAL) {
-    target = global;
-  } else if (STATIC) {
-    target = global[TARGET] || defineGlobalProperty(TARGET, {});
-  } else {
-    target = (global[TARGET] || {}).prototype;
-  }
-  if (target) for (key in source) {
-    sourceProperty = source[key];
-    if (options.dontCallGetSet) {
-      descriptor = getOwnPropertyDescriptor(target, key);
-      targetProperty = descriptor && descriptor.value;
-    } else targetProperty = target[key];
-    FORCED = isForced(GLOBAL ? key : TARGET + (STATIC ? '.' : '#') + key, options.forced);
-    // contained in target
-    if (!FORCED && targetProperty !== undefined) {
-      if (typeof sourceProperty == typeof targetProperty) continue;
-      copyConstructorProperties(sourceProperty, targetProperty);
-    }
-    // add a flag to not completely full polyfills
-    if (options.sham || (targetProperty && targetProperty.sham)) {
-      createNonEnumerableProperty(sourceProperty, 'sham', true);
-    }
-    defineBuiltIn(target, key, sourceProperty, options);
-  }
-};
-
-
-/***/ }),
-
-/***/ "241c":
-/***/ (function(module, exports, __webpack_require__) {
-
-var internalObjectKeys = __webpack_require__("ca84");
-var enumBugKeys = __webpack_require__("7839");
-
-var hiddenKeys = enumBugKeys.concat('length', 'prototype');
-
-// `Object.getOwnPropertyNames` method
-// https://tc39.es/ecma262/#sec-object.getownpropertynames
-// eslint-disable-next-line es/no-object-getownpropertynames -- safe
-exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
-  return internalObjectKeys(O, hiddenKeys);
-};
-
-
-/***/ }),
-
-/***/ "2d00":
-/***/ (function(module, exports, __webpack_require__) {
-
-var global = __webpack_require__("da84");
-var userAgent = __webpack_require__("342f");
-
-var process = global.process;
-var Deno = global.Deno;
-var versions = process && process.versions || Deno && Deno.version;
-var v8 = versions && versions.v8;
-var match, version;
-
-if (v8) {
-  match = v8.split('.');
-  // in old Chrome, versions of V8 isn't V8 = Chrome / 10
-  // but their correct versions are not interesting for us
-  version = match[0] > 0 && match[0] < 4 ? 1 : +(match[0] + match[1]);
-}
-
-// BrowserFS NodeJS `process` polyfill incorrectly set `.v8` to `0.0`
-// so check `userAgent` even if `.v8` exists, but 0
-if (!version && userAgent) {
-  match = userAgent.match(/Edge\/(\d+)/);
-  if (!match || match[1] >= 74) {
-    match = userAgent.match(/Chrome\/(\d+)/);
-    if (match) version = +match[1];
-  }
-}
-
-module.exports = version;
-
-
-/***/ }),
-
-/***/ "342f":
-/***/ (function(module, exports) {
-
-module.exports = typeof navigator != 'undefined' && String(navigator.userAgent) || '';
-
-
-/***/ }),
-
-/***/ "3a9b":
-/***/ (function(module, exports, __webpack_require__) {
-
-var uncurryThis = __webpack_require__("e330");
-
-module.exports = uncurryThis({}.isPrototypeOf);
-
-
-/***/ }),
-
-/***/ "3bbe":
-/***/ (function(module, exports, __webpack_require__) {
-
-var isCallable = __webpack_require__("1626");
-
-var $String = String;
-var $TypeError = TypeError;
-
-module.exports = function (argument) {
-  if (typeof argument == 'object' || isCallable(argument)) return argument;
-  throw $TypeError("Can't set " + $String(argument) + ' as a prototype');
-};
-
-
-/***/ }),
-
-/***/ "408a":
-/***/ (function(module, exports, __webpack_require__) {
-
-var uncurryThis = __webpack_require__("e330");
-
-// `thisNumberValue` abstract operation
-// https://tc39.es/ecma262/#sec-thisnumbervalue
-module.exports = uncurryThis(1.0.valueOf);
-
-
-/***/ }),
-
-/***/ "40d5":
-/***/ (function(module, exports, __webpack_require__) {
-
-var fails = __webpack_require__("d039");
-
-module.exports = !fails(function () {
-  // eslint-disable-next-line es/no-function-prototype-bind -- safe
-  var test = (function () { /* empty */ }).bind();
-  // eslint-disable-next-line no-prototype-builtins -- safe
-  return typeof test != 'function' || test.hasOwnProperty('prototype');
-});
-
-
-/***/ }),
-
-/***/ "428f":
-/***/ (function(module, exports, __webpack_require__) {
-
-var global = __webpack_require__("da84");
-
-module.exports = global;
-
-
-/***/ }),
-
-/***/ "44ad":
-/***/ (function(module, exports, __webpack_require__) {
-
-var uncurryThis = __webpack_require__("e330");
-var fails = __webpack_require__("d039");
-var classof = __webpack_require__("c6b6");
-
-var $Object = Object;
-var split = uncurryThis(''.split);
-
-// fallback for non-array-like ES3 and non-enumerable old V8 strings
-module.exports = fails(function () {
-  // throws an error in rhino, see https://github.com/mozilla/rhino/issues/346
-  // eslint-disable-next-line no-prototype-builtins -- safe
-  return !$Object('z').propertyIsEnumerable(0);
-}) ? function (it) {
-  return classof(it) == 'String' ? split(it, '') : $Object(it);
-} : $Object;
-
-
-/***/ }),
-
-/***/ "485a":
-/***/ (function(module, exports, __webpack_require__) {
-
-var call = __webpack_require__("c65b");
-var isCallable = __webpack_require__("1626");
-var isObject = __webpack_require__("861d");
-
-var $TypeError = TypeError;
-
-// `OrdinaryToPrimitive` abstract operation
-// https://tc39.es/ecma262/#sec-ordinarytoprimitive
-module.exports = function (input, pref) {
-  var fn, val;
-  if (pref === 'string' && isCallable(fn = input.toString) && !isObject(val = call(fn, input))) return val;
-  if (isCallable(fn = input.valueOf) && !isObject(val = call(fn, input))) return val;
-  if (pref !== 'string' && isCallable(fn = input.toString) && !isObject(val = call(fn, input))) return val;
-  throw $TypeError("Can't convert object to primitive value");
-};
-
-
-/***/ }),
-
-/***/ "4a44":
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-54.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-54.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/components/SwipeOut.vue?vue&type=style&index=0&id=00111be4&lang=css":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-54.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-54.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/components/SwipeOut.vue?vue&type=style&index=0&id=00111be4&lang=css ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_7_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_7_oneOf_1_1_node_modules_vue_loader_v16_dist_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_1_0_node_modules_vue_loader_v16_dist_index_js_ref_1_1_SwipeOut_vue_vue_type_style_index_0_id_91f4923e_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("ae1e");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_7_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_7_oneOf_1_1_node_modules_vue_loader_v16_dist_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_1_0_node_modules_vue_loader_v16_dist_index_js_ref_1_1_SwipeOut_vue_vue_type_style_index_0_id_91f4923e_lang_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_7_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_7_oneOf_1_1_node_modules_vue_loader_v16_dist_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_1_0_node_modules_vue_loader_v16_dist_index_js_ref_1_1_SwipeOut_vue_vue_type_style_index_0_id_91f4923e_lang_css__WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
-
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/noSourceMaps.js */ \"./node_modules/css-loader/dist/runtime/noSourceMaps.js\");\n/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\");\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);\n// Imports\n\n\nvar ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));\n// Module\n___CSS_LOADER_EXPORT___.push([module.id, \"\\n.swipeout {\\n  position: relative;\\n  overflow: hidden;\\n  -webkit-user-select: none;\\n     -moz-user-select: none;\\n      -ms-user-select: none;\\n          user-select: none;\\n  display: -webkit-box;\\n  display: -ms-flexbox;\\n  display: flex;\\n}\\n.swipeout.swipeout--disabled {\\n  -webkit-user-select: auto;\\n     -moz-user-select: auto;\\n      -ms-user-select: auto;\\n          user-select: auto;\\n}\\n.swipeout .swipeout-left,\\n.swipeout .swipeout-right {\\n  position: absolute;\\n  height: 100%;\\n  display: -webkit-box;\\n  display: -ms-flexbox;\\n  display: flex;\\n  z-index: 1;\\n}\\n.swipeout.swipeout--transitioning .swipeout-content,\\n.swipeout.swipeout--transitioning .swipeout-action {\\n  -webkit-transition: -webkit-transform 300ms;\\n  transition: -webkit-transform 300ms;\\n  transition: transform 300ms;\\n  transition: transform 300ms, -webkit-transform 300ms;\\n}\\n.swipeout .swipeout-content {\\n  width: 100%;\\n}\\n.swipeout .swipeout-content,\\n.swipeout .swipeout-action {\\n  will-change: transform;\\n}\\n.swipeout .swipeout-left {\\n  left: 0;\\n  -webkit-transform: translateX(-100%);\\n          transform: translateX(-100%);\\n}\\n.swipeout .swipeout-right {\\n  right: 0;\\n  -webkit-transform: translateX(100%);\\n          transform: translateX(100%);\\n}\\n.swipeout-list-item {\\n  outline: none;\\n}\\n\", \"\"]);\n// Exports\n/* harmony default export */ __webpack_exports__[\"default\"] = (___CSS_LOADER_EXPORT___);\n\n\n//# sourceURL=webpack://vue-swipe-actions/./src/components/SwipeOut.vue?./node_modules/css-loader/dist/cjs.js??clonedRuleSet-54.use%5B1%5D!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-54.use%5B2%5D!./node_modules/vue-loader/dist/index.js??ruleSet%5B0%5D.use%5B0%5D");
 
 /***/ }),
 
-/***/ "4d64":
-/***/ (function(module, exports, __webpack_require__) {
-
-var toIndexedObject = __webpack_require__("fc6a");
-var toAbsoluteIndex = __webpack_require__("23cb");
-var lengthOfArrayLike = __webpack_require__("07fa");
-
-// `Array.prototype.{ indexOf, includes }` methods implementation
-var createMethod = function (IS_INCLUDES) {
-  return function ($this, el, fromIndex) {
-    var O = toIndexedObject($this);
-    var length = lengthOfArrayLike(O);
-    var index = toAbsoluteIndex(fromIndex, length);
-    var value;
-    // Array#includes uses SameValueZero equality algorithm
-    // eslint-disable-next-line no-self-compare -- NaN check
-    if (IS_INCLUDES && el != el) while (length > index) {
-      value = O[index++];
-      // eslint-disable-next-line no-self-compare -- NaN check
-      if (value != value) return true;
-    // Array#indexOf ignores holes, Array#includes - not
-    } else for (;length > index; index++) {
-      if ((IS_INCLUDES || index in O) && O[index] === el) return IS_INCLUDES || index || 0;
-    } return !IS_INCLUDES && -1;
-  };
-};
-
-module.exports = {
-  // `Array.prototype.includes` method
-  // https://tc39.es/ecma262/#sec-array.prototype.includes
-  includes: createMethod(true),
-  // `Array.prototype.indexOf` method
-  // https://tc39.es/ecma262/#sec-array.prototype.indexof
-  indexOf: createMethod(false)
-};
-
-
-/***/ }),
-
-/***/ "50c4":
-/***/ (function(module, exports, __webpack_require__) {
-
-var toIntegerOrInfinity = __webpack_require__("5926");
-
-var min = Math.min;
-
-// `ToLength` abstract operation
-// https://tc39.es/ecma262/#sec-tolength
-module.exports = function (argument) {
-  return argument > 0 ? min(toIntegerOrInfinity(argument), 0x1FFFFFFFFFFFFF) : 0; // 2 ** 53 - 1 == 9007199254740991
-};
-
-
-/***/ }),
-
-/***/ "5692":
-/***/ (function(module, exports, __webpack_require__) {
-
-var IS_PURE = __webpack_require__("c430");
-var store = __webpack_require__("c6cd");
-
-(module.exports = function (key, value) {
-  return store[key] || (store[key] = value !== undefined ? value : {});
-})('versions', []).push({
-  version: '3.31.1',
-  mode: IS_PURE ? 'pure' : 'global',
-  copyright: '© 2014-2023 Denis Pushkarev (zloirock.ru)',
-  license: 'https://github.com/zloirock/core-js/blob/v3.31.1/LICENSE',
-  source: 'https://github.com/zloirock/core-js'
-});
-
-
-/***/ }),
-
-/***/ "56ef":
-/***/ (function(module, exports, __webpack_require__) {
-
-var getBuiltIn = __webpack_require__("d066");
-var uncurryThis = __webpack_require__("e330");
-var getOwnPropertyNamesModule = __webpack_require__("241c");
-var getOwnPropertySymbolsModule = __webpack_require__("7418");
-var anObject = __webpack_require__("825a");
-
-var concat = uncurryThis([].concat);
-
-// all object keys, includes non-enumerable and symbols
-module.exports = getBuiltIn('Reflect', 'ownKeys') || function ownKeys(it) {
-  var keys = getOwnPropertyNamesModule.f(anObject(it));
-  var getOwnPropertySymbols = getOwnPropertySymbolsModule.f;
-  return getOwnPropertySymbols ? concat(keys, getOwnPropertySymbols(it)) : keys;
-};
-
-
-/***/ }),
-
-/***/ "577e":
-/***/ (function(module, exports, __webpack_require__) {
-
-var classof = __webpack_require__("f5df");
-
-var $String = String;
-
-module.exports = function (argument) {
-  if (classof(argument) === 'Symbol') throw TypeError('Cannot convert a Symbol value to a string');
-  return $String(argument);
-};
-
-
-/***/ }),
-
-/***/ "5899":
-/***/ (function(module, exports) {
-
-// a string of all valid unicode whitespaces
-module.exports = '\u0009\u000A\u000B\u000C\u000D\u0020\u00A0\u1680\u2000\u2001\u2002' +
-  '\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF';
-
-
-/***/ }),
-
-/***/ "58a8":
-/***/ (function(module, exports, __webpack_require__) {
-
-var uncurryThis = __webpack_require__("e330");
-var requireObjectCoercible = __webpack_require__("1d80");
-var toString = __webpack_require__("577e");
-var whitespaces = __webpack_require__("5899");
-
-var replace = uncurryThis(''.replace);
-var ltrim = RegExp('^[' + whitespaces + ']+');
-var rtrim = RegExp('(^|[^' + whitespaces + '])[' + whitespaces + ']+$');
-
-// `String.prototype.{ trim, trimStart, trimEnd, trimLeft, trimRight }` methods implementation
-var createMethod = function (TYPE) {
-  return function ($this) {
-    var string = toString(requireObjectCoercible($this));
-    if (TYPE & 1) string = replace(string, ltrim, '');
-    if (TYPE & 2) string = replace(string, rtrim, '$1');
-    return string;
-  };
-};
-
-module.exports = {
-  // `String.prototype.{ trimLeft, trimStart }` methods
-  // https://tc39.es/ecma262/#sec-string.prototype.trimstart
-  start: createMethod(1),
-  // `String.prototype.{ trimRight, trimEnd }` methods
-  // https://tc39.es/ecma262/#sec-string.prototype.trimend
-  end: createMethod(2),
-  // `String.prototype.trim` method
-  // https://tc39.es/ecma262/#sec-string.prototype.trim
-  trim: createMethod(3)
-};
-
-
-/***/ }),
-
-/***/ "5926":
-/***/ (function(module, exports, __webpack_require__) {
-
-var trunc = __webpack_require__("b42e");
-
-// `ToIntegerOrInfinity` abstract operation
-// https://tc39.es/ecma262/#sec-tointegerorinfinity
-module.exports = function (argument) {
-  var number = +argument;
-  // eslint-disable-next-line no-self-compare -- NaN check
-  return number !== number || number === 0 ? 0 : trunc(number);
-};
-
-
-/***/ }),
-
-/***/ "59ed":
-/***/ (function(module, exports, __webpack_require__) {
-
-var isCallable = __webpack_require__("1626");
-var tryToString = __webpack_require__("0d51");
-
-var $TypeError = TypeError;
-
-// `Assert: IsCallable(argument) is true`
-module.exports = function (argument) {
-  if (isCallable(argument)) return argument;
-  throw $TypeError(tryToString(argument) + ' is not a function');
-};
-
-
-/***/ }),
-
-/***/ "5c6c":
-/***/ (function(module, exports) {
-
-module.exports = function (bitmap, value) {
-  return {
-    enumerable: !(bitmap & 1),
-    configurable: !(bitmap & 2),
-    writable: !(bitmap & 4),
-    value: value
-  };
-};
-
-
-/***/ }),
-
-/***/ "5e77":
-/***/ (function(module, exports, __webpack_require__) {
-
-var DESCRIPTORS = __webpack_require__("83ab");
-var hasOwn = __webpack_require__("1a2d");
-
-var FunctionPrototype = Function.prototype;
-// eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
-var getDescriptor = DESCRIPTORS && Object.getOwnPropertyDescriptor;
-
-var EXISTS = hasOwn(FunctionPrototype, 'name');
-// additional protection from minified / mangled / dropped function names
-var PROPER = EXISTS && (function something() { /* empty */ }).name === 'something';
-var CONFIGURABLE = EXISTS && (!DESCRIPTORS || (DESCRIPTORS && getDescriptor(FunctionPrototype, 'name').configurable));
-
-module.exports = {
-  EXISTS: EXISTS,
-  PROPER: PROPER,
-  CONFIGURABLE: CONFIGURABLE
-};
-
-
-/***/ }),
-
-/***/ "6374":
-/***/ (function(module, exports, __webpack_require__) {
-
-var global = __webpack_require__("da84");
-
-// eslint-disable-next-line es/no-object-defineproperty -- safe
-var defineProperty = Object.defineProperty;
-
-module.exports = function (key, value) {
-  try {
-    defineProperty(global, key, { value: value, configurable: true, writable: true });
-  } catch (error) {
-    global[key] = value;
-  } return value;
-};
-
-
-/***/ }),
-
-/***/ "69f3":
-/***/ (function(module, exports, __webpack_require__) {
-
-var NATIVE_WEAK_MAP = __webpack_require__("cdce");
-var global = __webpack_require__("da84");
-var isObject = __webpack_require__("861d");
-var createNonEnumerableProperty = __webpack_require__("9112");
-var hasOwn = __webpack_require__("1a2d");
-var shared = __webpack_require__("c6cd");
-var sharedKey = __webpack_require__("f772");
-var hiddenKeys = __webpack_require__("d012");
-
-var OBJECT_ALREADY_INITIALIZED = 'Object already initialized';
-var TypeError = global.TypeError;
-var WeakMap = global.WeakMap;
-var set, get, has;
-
-var enforce = function (it) {
-  return has(it) ? get(it) : set(it, {});
-};
-
-var getterFor = function (TYPE) {
-  return function (it) {
-    var state;
-    if (!isObject(it) || (state = get(it)).type !== TYPE) {
-      throw TypeError('Incompatible receiver, ' + TYPE + ' required');
-    } return state;
-  };
-};
-
-if (NATIVE_WEAK_MAP || shared.state) {
-  var store = shared.state || (shared.state = new WeakMap());
-  /* eslint-disable no-self-assign -- prototype methods protection */
-  store.get = store.get;
-  store.has = store.has;
-  store.set = store.set;
-  /* eslint-enable no-self-assign -- prototype methods protection */
-  set = function (it, metadata) {
-    if (store.has(it)) throw TypeError(OBJECT_ALREADY_INITIALIZED);
-    metadata.facade = it;
-    store.set(it, metadata);
-    return metadata;
-  };
-  get = function (it) {
-    return store.get(it) || {};
-  };
-  has = function (it) {
-    return store.has(it);
-  };
-} else {
-  var STATE = sharedKey('state');
-  hiddenKeys[STATE] = true;
-  set = function (it, metadata) {
-    if (hasOwn(it, STATE)) throw TypeError(OBJECT_ALREADY_INITIALIZED);
-    metadata.facade = it;
-    createNonEnumerableProperty(it, STATE, metadata);
-    return metadata;
-  };
-  get = function (it) {
-    return hasOwn(it, STATE) ? it[STATE] : {};
-  };
-  has = function (it) {
-    return hasOwn(it, STATE);
-  };
-}
-
-module.exports = {
-  set: set,
-  get: get,
-  has: has,
-  enforce: enforce,
-  getterFor: getterFor
-};
-
-
-/***/ }),
-
-/***/ "6b0d":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./node_modules/css-loader/dist/runtime/api.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/css-loader/dist/runtime/api.js ***!
+  \*****************************************************/
+/***/ (function(module) {
 
 "use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-// runtime helper for setting properties on components
-// in a tree-shakable way
-exports.default = (sfc, props) => {
-    const target = sfc.__vccOpts || sfc;
-    for (const [key, val] of props) {
-        target[key] = val;
-    }
-    return target;
-};
-
+eval("\n\n/*\n  MIT License http://www.opensource.org/licenses/mit-license.php\n  Author Tobias Koppers @sokra\n*/\nmodule.exports = function (cssWithMappingToString) {\n  var list = [];\n\n  // return the list of modules as css string\n  list.toString = function toString() {\n    return this.map(function (item) {\n      var content = \"\";\n      var needLayer = typeof item[5] !== \"undefined\";\n      if (item[4]) {\n        content += \"@supports (\".concat(item[4], \") {\");\n      }\n      if (item[2]) {\n        content += \"@media \".concat(item[2], \" {\");\n      }\n      if (needLayer) {\n        content += \"@layer\".concat(item[5].length > 0 ? \" \".concat(item[5]) : \"\", \" {\");\n      }\n      content += cssWithMappingToString(item);\n      if (needLayer) {\n        content += \"}\";\n      }\n      if (item[2]) {\n        content += \"}\";\n      }\n      if (item[4]) {\n        content += \"}\";\n      }\n      return content;\n    }).join(\"\");\n  };\n\n  // import a list of modules into the list\n  list.i = function i(modules, media, dedupe, supports, layer) {\n    if (typeof modules === \"string\") {\n      modules = [[null, modules, undefined]];\n    }\n    var alreadyImportedModules = {};\n    if (dedupe) {\n      for (var k = 0; k < this.length; k++) {\n        var id = this[k][0];\n        if (id != null) {\n          alreadyImportedModules[id] = true;\n        }\n      }\n    }\n    for (var _k = 0; _k < modules.length; _k++) {\n      var item = [].concat(modules[_k]);\n      if (dedupe && alreadyImportedModules[item[0]]) {\n        continue;\n      }\n      if (typeof layer !== \"undefined\") {\n        if (typeof item[5] === \"undefined\") {\n          item[5] = layer;\n        } else {\n          item[1] = \"@layer\".concat(item[5].length > 0 ? \" \".concat(item[5]) : \"\", \" {\").concat(item[1], \"}\");\n          item[5] = layer;\n        }\n      }\n      if (media) {\n        if (!item[2]) {\n          item[2] = media;\n        } else {\n          item[1] = \"@media \".concat(item[2], \" {\").concat(item[1], \"}\");\n          item[2] = media;\n        }\n      }\n      if (supports) {\n        if (!item[4]) {\n          item[4] = \"\".concat(supports);\n        } else {\n          item[1] = \"@supports (\".concat(item[4], \") {\").concat(item[1], \"}\");\n          item[4] = supports;\n        }\n      }\n      list.push(item);\n    }\n  };\n  return list;\n};\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/css-loader/dist/runtime/api.js?");
 
 /***/ }),
 
-/***/ "7156":
-/***/ (function(module, exports, __webpack_require__) {
-
-var isCallable = __webpack_require__("1626");
-var isObject = __webpack_require__("861d");
-var setPrototypeOf = __webpack_require__("d2bb");
-
-// makes subclassing work correct for wrapped built-ins
-module.exports = function ($this, dummy, Wrapper) {
-  var NewTarget, NewTargetPrototype;
-  if (
-    // it can work only with native `setPrototypeOf`
-    setPrototypeOf &&
-    // we haven't completely correct pre-ES6 way for getting `new.target`, so use this
-    isCallable(NewTarget = dummy.constructor) &&
-    NewTarget !== Wrapper &&
-    isObject(NewTargetPrototype = NewTarget.prototype) &&
-    NewTargetPrototype !== Wrapper.prototype
-  ) setPrototypeOf($this, NewTargetPrototype);
-  return $this;
-};
-
-
-/***/ }),
-
-/***/ "7234":
-/***/ (function(module, exports) {
-
-// we can't use just `it == null` since of `document.all` special case
-// https://tc39.es/ecma262/#sec-IsHTMLDDA-internal-slot-aec
-module.exports = function (it) {
-  return it === null || it === undefined;
-};
-
-
-/***/ }),
-
-/***/ "7282":
-/***/ (function(module, exports, __webpack_require__) {
-
-var uncurryThis = __webpack_require__("e330");
-var aCallable = __webpack_require__("59ed");
-
-module.exports = function (object, key, method) {
-  try {
-    // eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
-    return uncurryThis(aCallable(Object.getOwnPropertyDescriptor(object, key)[method]));
-  } catch (error) { /* empty */ }
-};
-
-
-/***/ }),
-
-/***/ "7418":
-/***/ (function(module, exports) {
-
-// eslint-disable-next-line es/no-object-getownpropertysymbols -- safe
-exports.f = Object.getOwnPropertySymbols;
-
-
-/***/ }),
-
-/***/ "7839":
-/***/ (function(module, exports) {
-
-// IE8- don't enum bug keys
-module.exports = [
-  'constructor',
-  'hasOwnProperty',
-  'isPrototypeOf',
-  'propertyIsEnumerable',
-  'toLocaleString',
-  'toString',
-  'valueOf'
-];
-
-
-/***/ }),
-
-/***/ "7b0b":
-/***/ (function(module, exports, __webpack_require__) {
-
-var requireObjectCoercible = __webpack_require__("1d80");
-
-var $Object = Object;
-
-// `ToObject` abstract operation
-// https://tc39.es/ecma262/#sec-toobject
-module.exports = function (argument) {
-  return $Object(requireObjectCoercible(argument));
-};
-
-
-/***/ }),
-
-/***/ "825a":
-/***/ (function(module, exports, __webpack_require__) {
-
-var isObject = __webpack_require__("861d");
-
-var $String = String;
-var $TypeError = TypeError;
-
-// `Assert: Type(argument) is Object`
-module.exports = function (argument) {
-  if (isObject(argument)) return argument;
-  throw $TypeError($String(argument) + ' is not an object');
-};
-
-
-/***/ }),
-
-/***/ "83ab":
-/***/ (function(module, exports, __webpack_require__) {
-
-var fails = __webpack_require__("d039");
-
-// Detect IE8's incomplete defineProperty implementation
-module.exports = !fails(function () {
-  // eslint-disable-next-line es/no-object-defineproperty -- required for testing
-  return Object.defineProperty({}, 1, { get: function () { return 7; } })[1] != 7;
-});
-
-
-/***/ }),
-
-/***/ "861d":
-/***/ (function(module, exports, __webpack_require__) {
-
-var isCallable = __webpack_require__("1626");
-var $documentAll = __webpack_require__("8ea1");
-
-var documentAll = $documentAll.all;
-
-module.exports = $documentAll.IS_HTMLDDA ? function (it) {
-  return typeof it == 'object' ? it !== null : isCallable(it) || it === documentAll;
-} : function (it) {
-  return typeof it == 'object' ? it !== null : isCallable(it);
-};
-
-
-/***/ }),
-
-/***/ "8875":
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;// addapted from the document.currentScript polyfill by Adam Miller
-// MIT license
-// source: https://github.com/amiller-gh/currentScript-polyfill
-
-// added support for Firefox https://bugzilla.mozilla.org/show_bug.cgi?id=1620505
-
-(function (root, factory) {
-  if (true) {
-    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-  } else {}
-}(typeof self !== 'undefined' ? self : this, function () {
-  function getCurrentScript () {
-    var descriptor = Object.getOwnPropertyDescriptor(document, 'currentScript')
-    // for chrome
-    if (!descriptor && 'currentScript' in document && document.currentScript) {
-      return document.currentScript
-    }
-
-    // for other browsers with native support for currentScript
-    if (descriptor && descriptor.get !== getCurrentScript && document.currentScript) {
-      return document.currentScript
-    }
-  
-    // IE 8-10 support script readyState
-    // IE 11+ & Firefox support stack trace
-    try {
-      throw new Error();
-    }
-    catch (err) {
-      // Find the second match for the "at" string to get file src url from stack.
-      var ieStackRegExp = /.*at [^(]*\((.*):(.+):(.+)\)$/ig,
-        ffStackRegExp = /@([^@]*):(\d+):(\d+)\s*$/ig,
-        stackDetails = ieStackRegExp.exec(err.stack) || ffStackRegExp.exec(err.stack),
-        scriptLocation = (stackDetails && stackDetails[1]) || false,
-        line = (stackDetails && stackDetails[2]) || false,
-        currentLocation = document.location.href.replace(document.location.hash, ''),
-        pageSource,
-        inlineScriptSourceRegExp,
-        inlineScriptSource,
-        scripts = document.getElementsByTagName('script'); // Live NodeList collection
-  
-      if (scriptLocation === currentLocation) {
-        pageSource = document.documentElement.outerHTML;
-        inlineScriptSourceRegExp = new RegExp('(?:[^\\n]+?\\n){0,' + (line - 2) + '}[^<]*<script>([\\d\\D]*?)<\\/script>[\\d\\D]*', 'i');
-        inlineScriptSource = pageSource.replace(inlineScriptSourceRegExp, '$1').trim();
-      }
-  
-      for (var i = 0; i < scripts.length; i++) {
-        // If ready state is interactive, return the script tag
-        if (scripts[i].readyState === 'interactive') {
-          return scripts[i];
-        }
-  
-        // If src matches, return the script tag
-        if (scripts[i].src === scriptLocation) {
-          return scripts[i];
-        }
-  
-        // If inline source matches, return the script tag
-        if (
-          scriptLocation === currentLocation &&
-          scripts[i].innerHTML &&
-          scripts[i].innerHTML.trim() === inlineScriptSource
-        ) {
-          return scripts[i];
-        }
-      }
-  
-      // If no match, return null
-      return null;
-    }
-  };
-
-  return getCurrentScript
-}));
-
-
-/***/ }),
-
-/***/ "8925":
-/***/ (function(module, exports, __webpack_require__) {
-
-var uncurryThis = __webpack_require__("e330");
-var isCallable = __webpack_require__("1626");
-var store = __webpack_require__("c6cd");
-
-var functionToString = uncurryThis(Function.toString);
-
-// this helper broken in `core-js@3.4.1-3.4.4`, so we can't use `shared` helper
-if (!isCallable(store.inspectSource)) {
-  store.inspectSource = function (it) {
-    return functionToString(it);
-  };
-}
-
-module.exports = store.inspectSource;
-
-
-/***/ }),
-
-/***/ "8bbf":
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__8bbf__;
-
-/***/ }),
-
-/***/ "8ea1":
-/***/ (function(module, exports) {
-
-var documentAll = typeof document == 'object' && document.all;
-
-// https://tc39.es/ecma262/#sec-IsHTMLDDA-internal-slot
-// eslint-disable-next-line unicorn/no-typeof-undefined -- required for testing
-var IS_HTMLDDA = typeof documentAll == 'undefined' && documentAll !== undefined;
-
-module.exports = {
-  all: documentAll,
-  IS_HTMLDDA: IS_HTMLDDA
-};
-
-
-/***/ }),
-
-/***/ "90e3":
-/***/ (function(module, exports, __webpack_require__) {
-
-var uncurryThis = __webpack_require__("e330");
-
-var id = 0;
-var postfix = Math.random();
-var toString = uncurryThis(1.0.toString);
-
-module.exports = function (key) {
-  return 'Symbol(' + (key === undefined ? '' : key) + ')_' + toString(++id + postfix, 36);
-};
-
-
-/***/ }),
-
-/***/ "9112":
-/***/ (function(module, exports, __webpack_require__) {
-
-var DESCRIPTORS = __webpack_require__("83ab");
-var definePropertyModule = __webpack_require__("9bf2");
-var createPropertyDescriptor = __webpack_require__("5c6c");
-
-module.exports = DESCRIPTORS ? function (object, key, value) {
-  return definePropertyModule.f(object, key, createPropertyDescriptor(1, value));
-} : function (object, key, value) {
-  object[key] = value;
-  return object;
-};
-
-
-/***/ }),
-
-/***/ "94ca":
-/***/ (function(module, exports, __webpack_require__) {
-
-var fails = __webpack_require__("d039");
-var isCallable = __webpack_require__("1626");
-
-var replacement = /#|\.prototype\./;
-
-var isForced = function (feature, detection) {
-  var value = data[normalize(feature)];
-  return value == POLYFILL ? true
-    : value == NATIVE ? false
-    : isCallable(detection) ? fails(detection)
-    : !!detection;
-};
-
-var normalize = isForced.normalize = function (string) {
-  return String(string).replace(replacement, '.').toLowerCase();
-};
-
-var data = isForced.data = {};
-var NATIVE = isForced.NATIVE = 'N';
-var POLYFILL = isForced.POLYFILL = 'P';
-
-module.exports = isForced;
-
-
-/***/ }),
-
-/***/ "9bf2":
-/***/ (function(module, exports, __webpack_require__) {
-
-var DESCRIPTORS = __webpack_require__("83ab");
-var IE8_DOM_DEFINE = __webpack_require__("0cfb");
-var V8_PROTOTYPE_DEFINE_BUG = __webpack_require__("aed9");
-var anObject = __webpack_require__("825a");
-var toPropertyKey = __webpack_require__("a04b");
-
-var $TypeError = TypeError;
-// eslint-disable-next-line es/no-object-defineproperty -- safe
-var $defineProperty = Object.defineProperty;
-// eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
-var $getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
-var ENUMERABLE = 'enumerable';
-var CONFIGURABLE = 'configurable';
-var WRITABLE = 'writable';
-
-// `Object.defineProperty` method
-// https://tc39.es/ecma262/#sec-object.defineproperty
-exports.f = DESCRIPTORS ? V8_PROTOTYPE_DEFINE_BUG ? function defineProperty(O, P, Attributes) {
-  anObject(O);
-  P = toPropertyKey(P);
-  anObject(Attributes);
-  if (typeof O === 'function' && P === 'prototype' && 'value' in Attributes && WRITABLE in Attributes && !Attributes[WRITABLE]) {
-    var current = $getOwnPropertyDescriptor(O, P);
-    if (current && current[WRITABLE]) {
-      O[P] = Attributes.value;
-      Attributes = {
-        configurable: CONFIGURABLE in Attributes ? Attributes[CONFIGURABLE] : current[CONFIGURABLE],
-        enumerable: ENUMERABLE in Attributes ? Attributes[ENUMERABLE] : current[ENUMERABLE],
-        writable: false
-      };
-    }
-  } return $defineProperty(O, P, Attributes);
-} : $defineProperty : function defineProperty(O, P, Attributes) {
-  anObject(O);
-  P = toPropertyKey(P);
-  anObject(Attributes);
-  if (IE8_DOM_DEFINE) try {
-    return $defineProperty(O, P, Attributes);
-  } catch (error) { /* empty */ }
-  if ('get' in Attributes || 'set' in Attributes) throw $TypeError('Accessors not supported');
-  if ('value' in Attributes) O[P] = Attributes.value;
-  return O;
-};
-
-
-/***/ }),
-
-/***/ "a04b":
-/***/ (function(module, exports, __webpack_require__) {
-
-var toPrimitive = __webpack_require__("c04e");
-var isSymbol = __webpack_require__("d9b5");
-
-// `ToPropertyKey` abstract operation
-// https://tc39.es/ecma262/#sec-topropertykey
-module.exports = function (argument) {
-  var key = toPrimitive(argument, 'string');
-  return isSymbol(key) ? key : key + '';
-};
-
-
-/***/ }),
-
-/***/ "a9e3":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./node_modules/css-loader/dist/runtime/noSourceMaps.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/css-loader/dist/runtime/noSourceMaps.js ***!
+  \**************************************************************/
+/***/ (function(module) {
 
 "use strict";
-
-var $ = __webpack_require__("23e7");
-var IS_PURE = __webpack_require__("c430");
-var DESCRIPTORS = __webpack_require__("83ab");
-var global = __webpack_require__("da84");
-var path = __webpack_require__("428f");
-var uncurryThis = __webpack_require__("e330");
-var isForced = __webpack_require__("94ca");
-var hasOwn = __webpack_require__("1a2d");
-var inheritIfRequired = __webpack_require__("7156");
-var isPrototypeOf = __webpack_require__("3a9b");
-var isSymbol = __webpack_require__("d9b5");
-var toPrimitive = __webpack_require__("c04e");
-var fails = __webpack_require__("d039");
-var getOwnPropertyNames = __webpack_require__("241c").f;
-var getOwnPropertyDescriptor = __webpack_require__("06cf").f;
-var defineProperty = __webpack_require__("9bf2").f;
-var thisNumberValue = __webpack_require__("408a");
-var trim = __webpack_require__("58a8").trim;
-
-var NUMBER = 'Number';
-var NativeNumber = global[NUMBER];
-var PureNumberNamespace = path[NUMBER];
-var NumberPrototype = NativeNumber.prototype;
-var TypeError = global.TypeError;
-var stringSlice = uncurryThis(''.slice);
-var charCodeAt = uncurryThis(''.charCodeAt);
-
-// `ToNumeric` abstract operation
-// https://tc39.es/ecma262/#sec-tonumeric
-var toNumeric = function (value) {
-  var primValue = toPrimitive(value, 'number');
-  return typeof primValue == 'bigint' ? primValue : toNumber(primValue);
-};
-
-// `ToNumber` abstract operation
-// https://tc39.es/ecma262/#sec-tonumber
-var toNumber = function (argument) {
-  var it = toPrimitive(argument, 'number');
-  var first, third, radix, maxCode, digits, length, index, code;
-  if (isSymbol(it)) throw TypeError('Cannot convert a Symbol value to a number');
-  if (typeof it == 'string' && it.length > 2) {
-    it = trim(it);
-    first = charCodeAt(it, 0);
-    if (first === 43 || first === 45) {
-      third = charCodeAt(it, 2);
-      if (third === 88 || third === 120) return NaN; // Number('+0x1') should be NaN, old V8 fix
-    } else if (first === 48) {
-      switch (charCodeAt(it, 1)) {
-        case 66: case 98: radix = 2; maxCode = 49; break; // fast equal of /^0b[01]+$/i
-        case 79: case 111: radix = 8; maxCode = 55; break; // fast equal of /^0o[0-7]+$/i
-        default: return +it;
-      }
-      digits = stringSlice(it, 2);
-      length = digits.length;
-      for (index = 0; index < length; index++) {
-        code = charCodeAt(digits, index);
-        // parseInt parses a string to a first unavailable symbol
-        // but ToNumber should return NaN if a string contains unavailable symbols
-        if (code < 48 || code > maxCode) return NaN;
-      } return parseInt(digits, radix);
-    }
-  } return +it;
-};
-
-var FORCED = isForced(NUMBER, !NativeNumber(' 0o1') || !NativeNumber('0b1') || NativeNumber('+0x1'));
-
-var calledWithNew = function (dummy) {
-  // includes check on 1..constructor(foo) case
-  return isPrototypeOf(NumberPrototype, dummy) && fails(function () { thisNumberValue(dummy); });
-};
-
-// `Number` constructor
-// https://tc39.es/ecma262/#sec-number-constructor
-var NumberWrapper = function Number(value) {
-  var n = arguments.length < 1 ? 0 : NativeNumber(toNumeric(value));
-  return calledWithNew(this) ? inheritIfRequired(Object(n), this, NumberWrapper) : n;
-};
-
-NumberWrapper.prototype = NumberPrototype;
-if (FORCED && !IS_PURE) NumberPrototype.constructor = NumberWrapper;
-
-$({ global: true, constructor: true, wrap: true, forced: FORCED }, {
-  Number: NumberWrapper
-});
-
-// Use `internal/copy-constructor-properties` helper in `core-js@4`
-var copyConstructorProperties = function (target, source) {
-  for (var keys = DESCRIPTORS ? getOwnPropertyNames(source) : (
-    // ES3:
-    'MAX_VALUE,MIN_VALUE,NaN,NEGATIVE_INFINITY,POSITIVE_INFINITY,' +
-    // ES2015 (in case, if modules with ES2015 Number statics required before):
-    'EPSILON,MAX_SAFE_INTEGER,MIN_SAFE_INTEGER,isFinite,isInteger,isNaN,isSafeInteger,parseFloat,parseInt,' +
-    // ESNext
-    'fromString,range'
-  ).split(','), j = 0, key; keys.length > j; j++) {
-    if (hasOwn(source, key = keys[j]) && !hasOwn(target, key)) {
-      defineProperty(target, key, getOwnPropertyDescriptor(source, key));
-    }
-  }
-};
-
-if (IS_PURE && PureNumberNamespace) copyConstructorProperties(path[NUMBER], PureNumberNamespace);
-if (FORCED || IS_PURE) copyConstructorProperties(path[NUMBER], NativeNumber);
-
+eval("\n\nmodule.exports = function (i) {\n  return i[1];\n};\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/css-loader/dist/runtime/noSourceMaps.js?");
 
 /***/ }),
 
-/***/ "ae1e":
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-
-/***/ "aed9":
-/***/ (function(module, exports, __webpack_require__) {
-
-var DESCRIPTORS = __webpack_require__("83ab");
-var fails = __webpack_require__("d039");
-
-// V8 ~ Chrome 36-
-// https://bugs.chromium.org/p/v8/issues/detail?id=3334
-module.exports = DESCRIPTORS && fails(function () {
-  // eslint-disable-next-line es/no-object-defineproperty -- required for testing
-  return Object.defineProperty(function () { /* empty */ }, 'prototype', {
-    value: 42,
-    writable: false
-  }).prototype != 42;
-});
-
-
-/***/ }),
-
-/***/ "b42e":
-/***/ (function(module, exports) {
-
-var ceil = Math.ceil;
-var floor = Math.floor;
-
-// `Math.trunc` method
-// https://tc39.es/ecma262/#sec-math.trunc
-// eslint-disable-next-line es/no-math-trunc -- safe
-module.exports = Math.trunc || function trunc(x) {
-  var n = +x;
-  return (n > 0 ? floor : ceil)(n);
-};
-
-
-/***/ }),
-
-/***/ "b622":
-/***/ (function(module, exports, __webpack_require__) {
-
-var global = __webpack_require__("da84");
-var shared = __webpack_require__("5692");
-var hasOwn = __webpack_require__("1a2d");
-var uid = __webpack_require__("90e3");
-var NATIVE_SYMBOL = __webpack_require__("04f8");
-var USE_SYMBOL_AS_UID = __webpack_require__("fdbf");
-
-var Symbol = global.Symbol;
-var WellKnownSymbolsStore = shared('wks');
-var createWellKnownSymbol = USE_SYMBOL_AS_UID ? Symbol['for'] || Symbol : Symbol && Symbol.withoutSetter || uid;
-
-module.exports = function (name) {
-  if (!hasOwn(WellKnownSymbolsStore, name)) {
-    WellKnownSymbolsStore[name] = NATIVE_SYMBOL && hasOwn(Symbol, name)
-      ? Symbol[name]
-      : createWellKnownSymbol('Symbol.' + name);
-  } return WellKnownSymbolsStore[name];
-};
-
-
-/***/ }),
-
-/***/ "c04e":
-/***/ (function(module, exports, __webpack_require__) {
-
-var call = __webpack_require__("c65b");
-var isObject = __webpack_require__("861d");
-var isSymbol = __webpack_require__("d9b5");
-var getMethod = __webpack_require__("dc4a");
-var ordinaryToPrimitive = __webpack_require__("485a");
-var wellKnownSymbol = __webpack_require__("b622");
-
-var $TypeError = TypeError;
-var TO_PRIMITIVE = wellKnownSymbol('toPrimitive');
-
-// `ToPrimitive` abstract operation
-// https://tc39.es/ecma262/#sec-toprimitive
-module.exports = function (input, pref) {
-  if (!isObject(input) || isSymbol(input)) return input;
-  var exoticToPrim = getMethod(input, TO_PRIMITIVE);
-  var result;
-  if (exoticToPrim) {
-    if (pref === undefined) pref = 'default';
-    result = call(exoticToPrim, input, pref);
-    if (!isObject(result) || isSymbol(result)) return result;
-    throw $TypeError("Can't convert object to primitive value");
-  }
-  if (pref === undefined) pref = 'number';
-  return ordinaryToPrimitive(input, pref);
-};
-
-
-/***/ }),
-
-/***/ "c430":
-/***/ (function(module, exports) {
-
-module.exports = false;
-
-
-/***/ }),
-
-/***/ "c65b":
-/***/ (function(module, exports, __webpack_require__) {
-
-var NATIVE_BIND = __webpack_require__("40d5");
-
-var call = Function.prototype.call;
-
-module.exports = NATIVE_BIND ? call.bind(call) : function () {
-  return call.apply(call, arguments);
-};
-
-
-/***/ }),
-
-/***/ "c6b6":
-/***/ (function(module, exports, __webpack_require__) {
-
-var uncurryThis = __webpack_require__("e330");
-
-var toString = uncurryThis({}.toString);
-var stringSlice = uncurryThis(''.slice);
-
-module.exports = function (it) {
-  return stringSlice(toString(it), 8, -1);
-};
-
-
-/***/ }),
-
-/***/ "c6cd":
-/***/ (function(module, exports, __webpack_require__) {
-
-var global = __webpack_require__("da84");
-var defineGlobalProperty = __webpack_require__("6374");
-
-var SHARED = '__core-js_shared__';
-var store = global[SHARED] || defineGlobalProperty(SHARED, {});
-
-module.exports = store;
-
-
-/***/ }),
-
-/***/ "c8ba":
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || new Function("return this")();
-} catch (e) {
-	// This works if the window reference is available
-	if (typeof window === "object") g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-
-/***/ "ca84":
-/***/ (function(module, exports, __webpack_require__) {
-
-var uncurryThis = __webpack_require__("e330");
-var hasOwn = __webpack_require__("1a2d");
-var toIndexedObject = __webpack_require__("fc6a");
-var indexOf = __webpack_require__("4d64").indexOf;
-var hiddenKeys = __webpack_require__("d012");
-
-var push = uncurryThis([].push);
-
-module.exports = function (object, names) {
-  var O = toIndexedObject(object);
-  var i = 0;
-  var result = [];
-  var key;
-  for (key in O) !hasOwn(hiddenKeys, key) && hasOwn(O, key) && push(result, key);
-  // Don't enum bug & hidden keys
-  while (names.length > i) if (hasOwn(O, key = names[i++])) {
-    ~indexOf(result, key) || push(result, key);
-  }
-  return result;
-};
-
-
-/***/ }),
-
-/***/ "cb2d":
-/***/ (function(module, exports, __webpack_require__) {
-
-var isCallable = __webpack_require__("1626");
-var definePropertyModule = __webpack_require__("9bf2");
-var makeBuiltIn = __webpack_require__("13d2");
-var defineGlobalProperty = __webpack_require__("6374");
-
-module.exports = function (O, key, value, options) {
-  if (!options) options = {};
-  var simple = options.enumerable;
-  var name = options.name !== undefined ? options.name : key;
-  if (isCallable(value)) makeBuiltIn(value, name, options);
-  if (options.global) {
-    if (simple) O[key] = value;
-    else defineGlobalProperty(key, value);
-  } else {
-    try {
-      if (!options.unsafe) delete O[key];
-      else if (O[key]) simple = true;
-    } catch (error) { /* empty */ }
-    if (simple) O[key] = value;
-    else definePropertyModule.f(O, key, {
-      value: value,
-      enumerable: false,
-      configurable: !options.nonConfigurable,
-      writable: !options.nonWritable
-    });
-  } return O;
-};
-
-
-/***/ }),
-
-/***/ "cc12":
-/***/ (function(module, exports, __webpack_require__) {
-
-var global = __webpack_require__("da84");
-var isObject = __webpack_require__("861d");
-
-var document = global.document;
-// typeof document.createElement is 'object' in old IE
-var EXISTS = isObject(document) && isObject(document.createElement);
-
-module.exports = function (it) {
-  return EXISTS ? document.createElement(it) : {};
-};
-
-
-/***/ }),
-
-/***/ "cdce":
-/***/ (function(module, exports, __webpack_require__) {
-
-var global = __webpack_require__("da84");
-var isCallable = __webpack_require__("1626");
-
-var WeakMap = global.WeakMap;
-
-module.exports = isCallable(WeakMap) && /native code/.test(String(WeakMap));
-
-
-/***/ }),
-
-/***/ "d012":
-/***/ (function(module, exports) {
-
-module.exports = {};
-
-
-/***/ }),
-
-/***/ "d039":
-/***/ (function(module, exports) {
-
-module.exports = function (exec) {
-  try {
-    return !!exec();
-  } catch (error) {
-    return true;
-  }
-};
-
-
-/***/ }),
-
-/***/ "d066":
-/***/ (function(module, exports, __webpack_require__) {
-
-var global = __webpack_require__("da84");
-var isCallable = __webpack_require__("1626");
-
-var aFunction = function (argument) {
-  return isCallable(argument) ? argument : undefined;
-};
-
-module.exports = function (namespace, method) {
-  return arguments.length < 2 ? aFunction(global[namespace]) : global[namespace] && global[namespace][method];
-};
-
-
-/***/ }),
-
-/***/ "d1e7":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./node_modules/tinygesture/TinyGesture.js":
+/*!*************************************************!*\
+  !*** ./node_modules/tinygesture/TinyGesture.js ***!
+  \*************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-var $propertyIsEnumerable = {}.propertyIsEnumerable;
-// eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
-var getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
-
-// Nashorn ~ JDK8 bug
-var NASHORN_BUG = getOwnPropertyDescriptor && !$propertyIsEnumerable.call({ 1: 2 }, 1);
-
-// `Object.prototype.propertyIsEnumerable` method implementation
-// https://tc39.es/ecma262/#sec-object.prototype.propertyisenumerable
-exports.f = NASHORN_BUG ? function propertyIsEnumerable(V) {
-  var descriptor = getOwnPropertyDescriptor(this, V);
-  return !!descriptor && descriptor.enumerable;
-} : $propertyIsEnumerable;
-
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": function() { return /* binding */ TinyGesture; }\n/* harmony export */ });\n/**\n * TinyGesture.js\n *\n * This service uses passive listeners, so you can't call event.preventDefault()\n * on any of the events.\n *\n * Adapted from https://gist.github.com/SleepWalker/da5636b1abcbaff48c4d\n * and https://github.com/uxitten/xwiper\n */\nclass TinyGesture {\n  constructor (element, options) {\n    options = Object.assign({}, TinyGesture.defaults, options);\n    this.element = element;\n    this.opts = options;\n    this.touchStartX = null;\n    this.touchStartY = null;\n    this.touchEndX = null;\n    this.touchEndY = null;\n    this.velocityX = null;\n    this.velocityY = null;\n    this.longPressTimer = null;\n    this.doubleTapWaiting = false;\n    this.handlers = {\n      'panstart': [],\n      'panmove': [],\n      'panend': [],\n      'swipeleft': [],\n      'swiperight': [],\n      'swipeup': [],\n      'swipedown': [],\n      'tap': [],\n      'doubletap': [],\n      'longpress': []\n    };\n\n    this._onTouchStart = this.onTouchStart.bind(this);\n    this._onTouchMove = this.onTouchMove.bind(this);\n    this._onTouchEnd = this.onTouchEnd.bind(this);\n\n    this.element.addEventListener('touchstart', this._onTouchStart, passiveIfSupported);\n    this.element.addEventListener('touchmove', this._onTouchMove, passiveIfSupported);\n    this.element.addEventListener('touchend', this._onTouchEnd, passiveIfSupported);\n\n    if (this.opts.mouseSupport && !('ontouchstart' in window)) {\n      this.element.addEventListener('mousedown', this._onTouchStart, passiveIfSupported);\n      document.addEventListener('mousemove', this._onTouchMove, passiveIfSupported);\n      document.addEventListener('mouseup', this._onTouchEnd, passiveIfSupported);\n    }\n  }\n\n  destroy () {\n    this.element.removeEventListener('touchstart', this._onTouchStart);\n    this.element.removeEventListener('touchmove', this._onTouchMove);\n    this.element.removeEventListener('touchend', this._onTouchEnd);\n    this.element.removeEventListener('mousedown', this._onTouchStart);\n    document.removeEventListener('mousemove', this._onTouchMove);\n    document.removeEventListener('mouseup', this._onTouchEnd);\n    clearTimeout(this.longPressTimer);\n    clearTimeout(this.doubleTapTimer);\n  }\n\n  on (type, fn) {\n    if (this.handlers[type]) {\n      this.handlers[type].push(fn);\n      return {\n        type,\n        fn,\n        cancel: () => this.off(type, fn)\n      };\n    }\n  }\n\n  off (type, fn) {\n    if (this.handlers[type]) {\n      const idx = this.handlers[type].indexOf(fn);\n      if (idx !== -1) {\n        this.handlers[type].splice(idx, 1);\n      }\n    }\n  }\n\n  fire (type, event) {\n    for (let i = 0; i < this.handlers[type].length; i++) {\n      this.handlers[type][i](event);\n    }\n  }\n\n  onTouchStart (event) {\n    this.thresholdX = this.opts.threshold('x', this);\n    this.thresholdY = this.opts.threshold('y', this);\n    this.disregardVelocityThresholdX = this.opts.disregardVelocityThreshold('x', this);\n    this.disregardVelocityThresholdY = this.opts.disregardVelocityThreshold('y', this);\n    this.touchStartX = (event.type === 'mousedown' ? event.screenX : event.changedTouches[0].screenX);\n    this.touchStartY = (event.type === 'mousedown' ? event.screenY : event.changedTouches[0].screenY);\n    this.touchMoveX = null;\n    this.touchMoveY = null;\n    this.touchEndX = null;\n    this.touchEndY = null;\n    // Long press.\n    this.longPressTimer = setTimeout(() => this.fire('longpress', event), this.opts.longPressTime);\n    this.fire('panstart', event);\n  }\n\n  onTouchMove (event) {\n    if (event.type === 'mousemove' && (!this.touchStartX || this.touchEndX !== null)) {\n      return;\n    }\n    const touchMoveX = (event.type === 'mousemove' ? event.screenX : event.changedTouches[0].screenX) - this.touchStartX;\n    this.velocityX = touchMoveX - this.touchMoveX;\n    this.touchMoveX = touchMoveX;\n    const touchMoveY = (event.type === 'mousemove' ? event.screenY : event.changedTouches[0].screenY) - this.touchStartY;\n    this.velocityY = touchMoveY - this.touchMoveY;\n    this.touchMoveY = touchMoveY;\n    const absTouchMoveX = Math.abs(this.touchMoveX);\n    const absTouchMoveY = Math.abs(this.touchMoveY);\n    this.swipingHorizontal = absTouchMoveX > this.thresholdX;\n    this.swipingVertical = absTouchMoveY > this.thresholdY;\n    this.swipingDirection = absTouchMoveX > absTouchMoveY\n      ? (this.swipingHorizontal ? 'horizontal' : 'pre-horizontal')\n      : (this.swipingVertical ? 'vertical' : 'pre-vertical');\n    if (Math.max(absTouchMoveX, absTouchMoveY) > this.opts.pressThreshold) {\n      clearTimeout(this.longPressTimer);\n    }\n    this.fire('panmove', event);\n  }\n\n  onTouchEnd (event) {\n    if (event.type === 'mouseup' && (!this.touchStartX || this.touchEndX !== null)) {\n      return;\n    }\n    this.touchEndX = (event.type === 'mouseup' ? event.screenX : event.changedTouches[0].screenX);\n    this.touchEndY = (event.type === 'mouseup' ? event.screenY : event.changedTouches[0].screenY);\n    this.fire('panend', event);\n    clearTimeout(this.longPressTimer);\n\n    const x = this.touchEndX - this.touchStartX;\n    const absX = Math.abs(x);\n    const y = this.touchEndY - this.touchStartY;\n    const absY = Math.abs(y);\n\n    if (absX > this.thresholdX || absY > this.thresholdY) {\n      this.swipedHorizontal = this.opts.diagonalSwipes ? Math.abs(x / y) <= this.opts.diagonalLimit : absX >= absY && absX > this.thresholdX;\n      this.swipedVertical = this.opts.diagonalSwipes ? Math.abs(y / x) <= this.opts.diagonalLimit : absY > absX && absY > this.thresholdY;\n      if (this.swipedHorizontal) {\n        if (x < 0) {\n          // Left swipe.\n          if (this.velocityX < -this.opts.velocityThreshold || x < -this.disregardVelocityThresholdX) {\n            this.fire('swipeleft', event);\n          }\n        } else {\n          // Right swipe.\n          if (this.velocityX > this.opts.velocityThreshold || x > this.disregardVelocityThresholdX) {\n            this.fire('swiperight', event);\n          }\n        }\n      }\n      if (this.swipedVertical) {\n        if (y < 0) {\n          // Upward swipe.\n          if (this.velocityY < -this.opts.velocityThreshold || y < -this.disregardVelocityThresholdY) {\n            this.fire('swipeup', event);\n          }\n        } else {\n          // Downward swipe.\n          if (this.velocityY > this.opts.velocityThreshold || y > this.disregardVelocityThresholdY) {\n            this.fire('swipedown', event);\n          }\n        }\n      }\n    } else if (absX < this.opts.pressThreshold && absY < this.opts.pressThreshold) {\n      // Tap.\n      if (this.doubleTapWaiting) {\n        this.doubleTapWaiting = false;\n        clearTimeout(this.doubleTapTimer);\n        this.fire('doubletap', event);\n      } else {\n        this.doubleTapWaiting = true;\n        this.doubleTapTimer = setTimeout(() => this.doubleTapWaiting = false, this.opts.doubleTapTime);\n        this.fire('tap', event);\n      }\n    }\n  }\n}\n\nTinyGesture.defaults = {\n  threshold: (type, self) => Math.max(25, Math.floor(0.15 * (type === 'x' ? window.innerWidth || document.body.clientWidth : window.innerHeight || document.body.clientHeight))),\n  velocityThreshold: 10,\n  disregardVelocityThreshold: (type, self) => Math.floor(0.5 * (type === 'x' ? self.element.clientWidth : self.element.clientHeight)),\n  pressThreshold: 8,\n  diagonalSwipes: false,\n  diagonalLimit: Math.tan(45 * 1.5 / 180 * Math.PI),\n  longPressTime: 500,\n  doubleTapTime: 300,\n  mouseSupport: true\n};\n\n// Passive feature detection.\nlet passiveIfSupported = false;\n\ntry {\n  window.addEventListener('test', null, Object.defineProperty({}, 'passive', { get: function() { passiveIfSupported = { passive: true }; } }));\n} catch(err) {}\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/tinygesture/TinyGesture.js?");
 
 /***/ }),
 
-/***/ "d2bb":
-/***/ (function(module, exports, __webpack_require__) {
-
-/* eslint-disable no-proto -- safe */
-var uncurryThisAccessor = __webpack_require__("7282");
-var anObject = __webpack_require__("825a");
-var aPossiblePrototype = __webpack_require__("3bbe");
-
-// `Object.setPrototypeOf` method
-// https://tc39.es/ecma262/#sec-object.setprototypeof
-// Works with __proto__ only. Old v8 can't work with null proto objects.
-// eslint-disable-next-line es/no-object-setprototypeof -- safe
-module.exports = Object.setPrototypeOf || ('__proto__' in {} ? function () {
-  var CORRECT_SETTER = false;
-  var test = {};
-  var setter;
-  try {
-    setter = uncurryThisAccessor(Object.prototype, '__proto__', 'set');
-    setter(test, []);
-    CORRECT_SETTER = test instanceof Array;
-  } catch (error) { /* empty */ }
-  return function setPrototypeOf(O, proto) {
-    anObject(O);
-    aPossiblePrototype(proto);
-    if (CORRECT_SETTER) setter(O, proto);
-    else O.__proto__ = proto;
-    return O;
-  };
-}() : undefined);
-
-
-/***/ }),
-
-/***/ "d9b5":
-/***/ (function(module, exports, __webpack_require__) {
-
-var getBuiltIn = __webpack_require__("d066");
-var isCallable = __webpack_require__("1626");
-var isPrototypeOf = __webpack_require__("3a9b");
-var USE_SYMBOL_AS_UID = __webpack_require__("fdbf");
-
-var $Object = Object;
-
-module.exports = USE_SYMBOL_AS_UID ? function (it) {
-  return typeof it == 'symbol';
-} : function (it) {
-  var $Symbol = getBuiltIn('Symbol');
-  return isCallable($Symbol) && isPrototypeOf($Symbol.prototype, $Object(it));
-};
-
-
-/***/ }),
-
-/***/ "da84":
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(global) {var check = function (it) {
-  return it && it.Math == Math && it;
-};
-
-// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
-module.exports =
-  // eslint-disable-next-line es/no-global-this -- safe
-  check(typeof globalThis == 'object' && globalThis) ||
-  check(typeof window == 'object' && window) ||
-  // eslint-disable-next-line no-restricted-globals -- safe
-  check(typeof self == 'object' && self) ||
-  check(typeof global == 'object' && global) ||
-  // eslint-disable-next-line no-new-func -- fallback
-  (function () { return this; })() || this || Function('return this')();
-
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__("c8ba")))
-
-/***/ }),
-
-/***/ "dc4a":
-/***/ (function(module, exports, __webpack_require__) {
-
-var aCallable = __webpack_require__("59ed");
-var isNullOrUndefined = __webpack_require__("7234");
-
-// `GetMethod` abstract operation
-// https://tc39.es/ecma262/#sec-getmethod
-module.exports = function (V, P) {
-  var func = V[P];
-  return isNullOrUndefined(func) ? undefined : aCallable(func);
-};
-
-
-/***/ }),
-
-/***/ "e330":
-/***/ (function(module, exports, __webpack_require__) {
-
-var NATIVE_BIND = __webpack_require__("40d5");
-
-var FunctionPrototype = Function.prototype;
-var call = FunctionPrototype.call;
-var uncurryThisWithBind = NATIVE_BIND && FunctionPrototype.bind.bind(call, call);
-
-module.exports = NATIVE_BIND ? uncurryThisWithBind : function (fn) {
-  return function () {
-    return call.apply(fn, arguments);
-  };
-};
-
-
-/***/ }),
-
-/***/ "e893":
-/***/ (function(module, exports, __webpack_require__) {
-
-var hasOwn = __webpack_require__("1a2d");
-var ownKeys = __webpack_require__("56ef");
-var getOwnPropertyDescriptorModule = __webpack_require__("06cf");
-var definePropertyModule = __webpack_require__("9bf2");
-
-module.exports = function (target, source, exceptions) {
-  var keys = ownKeys(source);
-  var defineProperty = definePropertyModule.f;
-  var getOwnPropertyDescriptor = getOwnPropertyDescriptorModule.f;
-  for (var i = 0; i < keys.length; i++) {
-    var key = keys[i];
-    if (!hasOwn(target, key) && !(exceptions && hasOwn(exceptions, key))) {
-      defineProperty(target, key, getOwnPropertyDescriptor(source, key));
-    }
-  }
-};
-
-
-/***/ }),
-
-/***/ "f5df":
-/***/ (function(module, exports, __webpack_require__) {
-
-var TO_STRING_TAG_SUPPORT = __webpack_require__("00ee");
-var isCallable = __webpack_require__("1626");
-var classofRaw = __webpack_require__("c6b6");
-var wellKnownSymbol = __webpack_require__("b622");
-
-var TO_STRING_TAG = wellKnownSymbol('toStringTag');
-var $Object = Object;
-
-// ES3 wrong here
-var CORRECT_ARGUMENTS = classofRaw(function () { return arguments; }()) == 'Arguments';
-
-// fallback for IE11 Script Access Denied error
-var tryGet = function (it, key) {
-  try {
-    return it[key];
-  } catch (error) { /* empty */ }
-};
-
-// getting tag from ES6+ `Object.prototype.toString`
-module.exports = TO_STRING_TAG_SUPPORT ? classofRaw : function (it) {
-  var O, tag, result;
-  return it === undefined ? 'Undefined' : it === null ? 'Null'
-    // @@toStringTag case
-    : typeof (tag = tryGet(O = $Object(it), TO_STRING_TAG)) == 'string' ? tag
-    // builtinTag case
-    : CORRECT_ARGUMENTS ? classofRaw(O)
-    // ES3 arguments fallback
-    : (result = classofRaw(O)) == 'Object' && isCallable(O.callee) ? 'Arguments' : result;
-};
-
-
-/***/ }),
-
-/***/ "f772":
-/***/ (function(module, exports, __webpack_require__) {
-
-var shared = __webpack_require__("5692");
-var uid = __webpack_require__("90e3");
-
-var keys = shared('keys');
-
-module.exports = function (key) {
-  return keys[key] || (keys[key] = uid(key));
-};
-
-
-/***/ }),
-
-/***/ "fae3":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ "./node_modules/vue-loader/dist/exportHelper.js":
+/*!******************************************************!*\
+  !*** ./node_modules/vue-loader/dist/exportHelper.js ***!
+  \******************************************************/
+/***/ (function(__unused_webpack_module, exports) {
 
 "use strict";
-// ESM COMPAT FLAG
-__webpack_require__.r(__webpack_exports__);
-
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, "SwipeOut", function() { return /* reexport */ SwipeOut; });
-
-// CONCATENATED MODULE: ./node_modules/@vue/cli-service/lib/commands/build/setPublicPath.js
-// This file is imported into lib/wc client bundles.
-
-if (typeof window !== 'undefined') {
-  var currentScript = window.document.currentScript
-  if (true) {
-    var getCurrentScript = __webpack_require__("8875")
-    currentScript = getCurrentScript()
-
-    // for backward compatibility, because previously we directly included the polyfill
-    if (!('currentScript' in document)) {
-      Object.defineProperty(document, 'currentScript', { get: getCurrentScript })
-    }
-  }
-
-  var src = currentScript && currentScript.src.match(/(.+\/)[^/]+\.js(\?.*)?$/)
-  if (src) {
-    __webpack_require__.p = src[1] // eslint-disable-line
-  }
-}
-
-// Indicate to webpack that this file can be concatenated
-/* harmony default export */ var setPublicPath = (null);
-
-// EXTERNAL MODULE: external {"commonjs":"vue","commonjs2":"vue","root":"Vue"}
-var external_commonjs_vue_commonjs2_vue_root_Vue_ = __webpack_require__("8bbf");
-
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--13-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/vue-loader-v16/dist/templateLoader.js??ref--6!./node_modules/cache-loader/dist/cjs.js??ref--1-0!./node_modules/vue-loader-v16/dist??ref--1-1!./src/components/SwipeOut.vue?vue&type=template&id=91f4923e
-
-var _hoisted_1 = {
-  key: 0,
-  ref: "left",
-  class: "swipeout-left"
-};
-var _hoisted_2 = {
-  key: 1,
-  ref: "right",
-  class: "swipeout-right"
-};
-var _hoisted_3 = {
-  class: "swipeout-content",
-  ref: "content"
-};
-function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return Object(external_commonjs_vue_commonjs2_vue_root_Vue_["openBlock"])(), Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createElementBlock"])("div", {
-    class: Object(external_commonjs_vue_commonjs2_vue_root_Vue_["normalizeClass"])(["swipeout", {
-      'swipeout--transitioning': $data.isTransitioning,
-      'swipeout--disabled': $props.disabled
-    }])
-  }, [$options.hasLeft ? (Object(external_commonjs_vue_commonjs2_vue_root_Vue_["openBlock"])(), Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createElementBlock"])("div", _hoisted_1, [Object(external_commonjs_vue_commonjs2_vue_root_Vue_["renderSlot"])(_ctx.$slots, "left", {
-    close: $options.closeActions,
-    reached: $data.leftReached
-  })], 512)) : Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createCommentVNode"])("", true), $options.hasRight ? (Object(external_commonjs_vue_commonjs2_vue_root_Vue_["openBlock"])(), Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createElementBlock"])("div", _hoisted_2, [Object(external_commonjs_vue_commonjs2_vue_root_Vue_["renderSlot"])(_ctx.$slots, "right", {
-    close: $options.closeActions,
-    reached: $data.rightReached
-  })], 512)) : Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createCommentVNode"])("", true), Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createElementVNode"])("div", _hoisted_3, [Object(external_commonjs_vue_commonjs2_vue_root_Vue_["renderSlot"])(_ctx.$slots, "default", {
-    close: $options.closeActions,
-    revealRight: $options.revealRight,
-    revealLeft: $options.revealLeft
-  })], 512)], 2);
-}
-// CONCATENATED MODULE: ./src/components/SwipeOut.vue?vue&type=template&id=91f4923e
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.number.constructor.js
-var es_number_constructor = __webpack_require__("a9e3");
-
-// CONCATENATED MODULE: ./node_modules/tinygesture/TinyGesture.js
-/**
- * TinyGesture.js
- *
- * This service uses passive listeners, so you can't call event.preventDefault()
- * on any of the events.
- *
- * Adapted from https://gist.github.com/SleepWalker/da5636b1abcbaff48c4d
- * and https://github.com/uxitten/xwiper
- */
-class TinyGesture {
-  constructor (element, options) {
-    options = Object.assign({}, TinyGesture.defaults, options);
-    this.element = element;
-    this.opts = options;
-    this.touchStartX = null;
-    this.touchStartY = null;
-    this.touchEndX = null;
-    this.touchEndY = null;
-    this.velocityX = null;
-    this.velocityY = null;
-    this.longPressTimer = null;
-    this.doubleTapWaiting = false;
-    this.handlers = {
-      'panstart': [],
-      'panmove': [],
-      'panend': [],
-      'swipeleft': [],
-      'swiperight': [],
-      'swipeup': [],
-      'swipedown': [],
-      'tap': [],
-      'doubletap': [],
-      'longpress': []
-    };
-
-    this._onTouchStart = this.onTouchStart.bind(this);
-    this._onTouchMove = this.onTouchMove.bind(this);
-    this._onTouchEnd = this.onTouchEnd.bind(this);
-
-    this.element.addEventListener('touchstart', this._onTouchStart, passiveIfSupported);
-    this.element.addEventListener('touchmove', this._onTouchMove, passiveIfSupported);
-    this.element.addEventListener('touchend', this._onTouchEnd, passiveIfSupported);
-
-    if (this.opts.mouseSupport && !('ontouchstart' in window)) {
-      this.element.addEventListener('mousedown', this._onTouchStart, passiveIfSupported);
-      document.addEventListener('mousemove', this._onTouchMove, passiveIfSupported);
-      document.addEventListener('mouseup', this._onTouchEnd, passiveIfSupported);
-    }
-  }
-
-  destroy () {
-    this.element.removeEventListener('touchstart', this._onTouchStart);
-    this.element.removeEventListener('touchmove', this._onTouchMove);
-    this.element.removeEventListener('touchend', this._onTouchEnd);
-    this.element.removeEventListener('mousedown', this._onTouchStart);
-    document.removeEventListener('mousemove', this._onTouchMove);
-    document.removeEventListener('mouseup', this._onTouchEnd);
-    clearTimeout(this.longPressTimer);
-    clearTimeout(this.doubleTapTimer);
-  }
-
-  on (type, fn) {
-    if (this.handlers[type]) {
-      this.handlers[type].push(fn);
-      return {
-        type,
-        fn,
-        cancel: () => this.off(type, fn)
-      };
-    }
-  }
-
-  off (type, fn) {
-    if (this.handlers[type]) {
-      const idx = this.handlers[type].indexOf(fn);
-      if (idx !== -1) {
-        this.handlers[type].splice(idx, 1);
-      }
-    }
-  }
-
-  fire (type, event) {
-    for (let i = 0; i < this.handlers[type].length; i++) {
-      this.handlers[type][i](event);
-    }
-  }
-
-  onTouchStart (event) {
-    this.thresholdX = this.opts.threshold('x', this);
-    this.thresholdY = this.opts.threshold('y', this);
-    this.disregardVelocityThresholdX = this.opts.disregardVelocityThreshold('x', this);
-    this.disregardVelocityThresholdY = this.opts.disregardVelocityThreshold('y', this);
-    this.touchStartX = (event.type === 'mousedown' ? event.screenX : event.changedTouches[0].screenX);
-    this.touchStartY = (event.type === 'mousedown' ? event.screenY : event.changedTouches[0].screenY);
-    this.touchMoveX = null;
-    this.touchMoveY = null;
-    this.touchEndX = null;
-    this.touchEndY = null;
-    // Long press.
-    this.longPressTimer = setTimeout(() => this.fire('longpress', event), this.opts.longPressTime);
-    this.fire('panstart', event);
-  }
-
-  onTouchMove (event) {
-    if (event.type === 'mousemove' && (!this.touchStartX || this.touchEndX !== null)) {
-      return;
-    }
-    const touchMoveX = (event.type === 'mousemove' ? event.screenX : event.changedTouches[0].screenX) - this.touchStartX;
-    this.velocityX = touchMoveX - this.touchMoveX;
-    this.touchMoveX = touchMoveX;
-    const touchMoveY = (event.type === 'mousemove' ? event.screenY : event.changedTouches[0].screenY) - this.touchStartY;
-    this.velocityY = touchMoveY - this.touchMoveY;
-    this.touchMoveY = touchMoveY;
-    const absTouchMoveX = Math.abs(this.touchMoveX);
-    const absTouchMoveY = Math.abs(this.touchMoveY);
-    this.swipingHorizontal = absTouchMoveX > this.thresholdX;
-    this.swipingVertical = absTouchMoveY > this.thresholdY;
-    this.swipingDirection = absTouchMoveX > absTouchMoveY
-      ? (this.swipingHorizontal ? 'horizontal' : 'pre-horizontal')
-      : (this.swipingVertical ? 'vertical' : 'pre-vertical');
-    if (Math.max(absTouchMoveX, absTouchMoveY) > this.opts.pressThreshold) {
-      clearTimeout(this.longPressTimer);
-    }
-    this.fire('panmove', event);
-  }
-
-  onTouchEnd (event) {
-    if (event.type === 'mouseup' && (!this.touchStartX || this.touchEndX !== null)) {
-      return;
-    }
-    this.touchEndX = (event.type === 'mouseup' ? event.screenX : event.changedTouches[0].screenX);
-    this.touchEndY = (event.type === 'mouseup' ? event.screenY : event.changedTouches[0].screenY);
-    this.fire('panend', event);
-    clearTimeout(this.longPressTimer);
-
-    const x = this.touchEndX - this.touchStartX;
-    const absX = Math.abs(x);
-    const y = this.touchEndY - this.touchStartY;
-    const absY = Math.abs(y);
-
-    if (absX > this.thresholdX || absY > this.thresholdY) {
-      this.swipedHorizontal = this.opts.diagonalSwipes ? Math.abs(x / y) <= this.opts.diagonalLimit : absX >= absY && absX > this.thresholdX;
-      this.swipedVertical = this.opts.diagonalSwipes ? Math.abs(y / x) <= this.opts.diagonalLimit : absY > absX && absY > this.thresholdY;
-      if (this.swipedHorizontal) {
-        if (x < 0) {
-          // Left swipe.
-          if (this.velocityX < -this.opts.velocityThreshold || x < -this.disregardVelocityThresholdX) {
-            this.fire('swipeleft', event);
-          }
-        } else {
-          // Right swipe.
-          if (this.velocityX > this.opts.velocityThreshold || x > this.disregardVelocityThresholdX) {
-            this.fire('swiperight', event);
-          }
-        }
-      }
-      if (this.swipedVertical) {
-        if (y < 0) {
-          // Upward swipe.
-          if (this.velocityY < -this.opts.velocityThreshold || y < -this.disregardVelocityThresholdY) {
-            this.fire('swipeup', event);
-          }
-        } else {
-          // Downward swipe.
-          if (this.velocityY > this.opts.velocityThreshold || y > this.disregardVelocityThresholdY) {
-            this.fire('swipedown', event);
-          }
-        }
-      }
-    } else if (absX < this.opts.pressThreshold && absY < this.opts.pressThreshold) {
-      // Tap.
-      if (this.doubleTapWaiting) {
-        this.doubleTapWaiting = false;
-        clearTimeout(this.doubleTapTimer);
-        this.fire('doubletap', event);
-      } else {
-        this.doubleTapWaiting = true;
-        this.doubleTapTimer = setTimeout(() => this.doubleTapWaiting = false, this.opts.doubleTapTime);
-        this.fire('tap', event);
-      }
-    }
-  }
-}
-
-TinyGesture.defaults = {
-  threshold: (type, self) => Math.max(25, Math.floor(0.15 * (type === 'x' ? window.innerWidth || document.body.clientWidth : window.innerHeight || document.body.clientHeight))),
-  velocityThreshold: 10,
-  disregardVelocityThreshold: (type, self) => Math.floor(0.5 * (type === 'x' ? self.element.clientWidth : self.element.clientHeight)),
-  pressThreshold: 8,
-  diagonalSwipes: false,
-  diagonalLimit: Math.tan(45 * 1.5 / 180 * Math.PI),
-  longPressTime: 500,
-  doubleTapTime: 300,
-  mouseSupport: true
-};
-
-// Passive feature detection.
-let passiveIfSupported = false;
-
-try {
-  window.addEventListener('test', null, Object.defineProperty({}, 'passive', { get: function() { passiveIfSupported = { passive: true }; } }));
-} catch(err) {}
-
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--13-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--1-0!./node_modules/vue-loader-v16/dist??ref--1-1!./src/components/SwipeOut.vue?vue&type=script&lang=js
-
-/* eslint-disable */
-
-function reduceSwipe(x) {
-  return Math.pow(x, 0.65); // eslint-disable-line
-}
-
-function translateX(x) {
-  if (x === 0) return "";
-  return "translate3d(".concat(x, "px, 0, 0)");
-}
-/* harmony default export */ var SwipeOutvue_type_script_lang_js = ({
-  name: "swipe-item",
-  data: function data() {
-    return {
-      startLeft: 0,
-      startX: 0,
-      isActive: false,
-      closing: false,
-      isTransitioning: false,
-      direction: null,
-      leftOpen: false,
-      rightOpen: false,
-      leftReached: false,
-      rightReached: false,
-      leftActionsWidth: 0,
-      rightActionsWidth: 0
-    };
-  },
-  computed: {
-    hasLeft: function hasLeft() {
-      return this.$slots["left"] ? true : false;
-    },
-    hasRight: function hasRight() {
-      return this.$slots["right"] ? true : false;
-    }
-  },
-  props: {
-    item: {
-      type: Object,
-      default: null
-    },
-    threshold: {
-      type: Number,
-      default: 45
-    },
-    disabled: {
-      type: Boolean,
-      default: false
-    }
-  },
-  mounted: function mounted() {
-    if (!this.hasLeft && !this.hasRight) return;
-    this._bind();
-  },
-  beforeUnmount: function beforeUnmount() {
-    if (this.hammer) this.hammer.destroy();
-    this.hammer = null;
-  },
-  methods: {
-    // public
-    closeActions: function closeActions() {
-      var _this = this;
-      if (this.isActive) return;
-      var content = this.$refs.content;
-      var left = this.$refs.left;
-      var right = this.$refs.right;
-      this.closing = true;
-      setTimeout(function () {
-        window.requestAnimationFrame(function () {
-          content.style.transform = translateX(0, 0, 0);
-          right.children[0].style.transform = translateX(0, 0, 0);
-          left.children[0].style.transform = translateX(0, 0, 0);
-          _this.closing = false;
-        });
-      }, 100);
-      this.leftOpen = false;
-      this.rightOpen = false;
-      this.leftReached = false;
-      this.rightReached = false;
-      this.startLeft = 0;
-    },
-    revealLeft: function revealLeft() {
-      if (this.isActive || this.closing) return;
-      var oldLeft = this.$refs.content.getBoundingClientRect().left;
-      this.leftOpen = true;
-      this._animateSlide(this.leftActionsWidth, oldLeft);
-    },
-    revealRight: function revealRight() {
-      if (this.isActive || this.closing) return;
-      var oldLeft = this.$refs.content.getBoundingClientRect().left;
-      this.rightOpen = true;
-      this._animateSlide(-this.rightActionsWidth, oldLeft);
-    },
-    // private
-    _bind: function _bind() {
-      // Disable default drag behavior on Firefox
-      this.$el.addEventListener("dragstart", function (e) {
-        e.preventDefault();
-      });
-      this.gesture = new TinyGesture(this.$el);
-      this.gesture.on("panstart", this._startListener);
-      this.gesture.on("panmove", this._swipeListener);
-      this.gesture.on("panend", this._stopListener);
-    },
-    _distanceSwiped: function _distanceSwiped() {
-      var contentRect = this.$refs.content.getBoundingClientRect();
-      var elementRect = this.$el.getBoundingClientRect();
-      return contentRect.left - elementRect.left - this.$el.clientLeft;
-    },
-    _startListener: function _startListener(event) {
-      // If it's not a left click
-      if (event.which !== 1) return null;
-      if (this.disabled || this.closing) return null;
-      this.isTransitioning = false;
-      if (this.gesture.touchMoveY >= -5 && this.gesture.touchMoveY <= 5) {
-        this.leftActionsWidth = this.$refs.left ? this.$refs.left.clientWidth : 0;
-        this.rightActionsWidth = this.$refs.right ? this.$refs.right.clientWidth : 0;
-        this.startLeft = this._distanceSwiped();
-        this.isActive = true;
-        this.startX = this.gesture.touchStartX;
-      }
-      this.closeActions();
-    },
-    _swipeListener: function _swipeListener(event) {
-      if (!this.isActive || this.disabled || this.closing) return null;
-      var newX = this.startLeft + this.gesture.touchMoveX;
-      if (this.direction === null && this.gesture.velocityX !== 0) {
-        if (this.gesture.velocityX > 0) {
-          this.direction = "ltr";
-        } else {
-          this.direction = "rtl";
-        }
-      }
-
-      // assign reached markers
-      this.leftReached = this.direction === "ltr" && newX >= this.threshold;
-      this.rightReached = this.direction === "rtl" && newX <= -this.threshold;
-
-      // attempting to reveal the right actions after revealing the left actions
-      if (this.startLeft === 0 && this.direction === "ltr" && newX < 0) {
-        return this._animateSlide(-reduceSwipe(-newX));
-      }
-
-      // attempting to reveal the left actions after revealing the right actions
-      if (this.startLeft === 0 && this.direction === "rtl" && newX > 0) {
-        return this._animateSlide(reduceSwipe(newX));
-      }
-
-      // attempting to reveal the right actions after starting with the left actions revealed
-      if (this.startLeft < 0 && newX > 0) {
-        return this._animateSlide(reduceSwipe(newX));
-      }
-
-      // attempting to reveal the left actions after starting with the right actions revealed
-      if (this.startLeft > 0 && newX < 0) {
-        return this._animateSlide(-reduceSwipe(-newX));
-      }
-
-      // overswiping left-to-right
-      if (newX < -this.rightActionsWidth) {
-        return this._animateSlide(-(this.rightActionsWidth + reduceSwipe(Math.abs(newX + this.rightActionsWidth))));
-      }
-      if (newX > this.leftActionsWidth) {
-        return this._animateSlide(+(this.leftActionsWidth + reduceSwipe(newX - this.leftActionsWidth)));
-      }
-      return this._animateSlide(newX);
-    },
-    _stopListener: function _stopListener(event) {
-      if (!this.isActive || this.disabled || this.closing) return null;
-      var oldLeft = this.$refs.content.getBoundingClientRect().left;
-      this.isActive = false;
-
-      // close left actions
-      if (this.startLeft > 0 && this.gesture.touchMoveX <= -this.threshold) return this.closeActions(); // _animateSlide(0, oldLeft);
-
-      // close right actions
-      if (this.startLeft < 0 && this.gesture.touchMoveX >= this.threshold) return this.closeActions(); // this._animateSlide(0, oldLeft);
-
-      var currentLeft = this.startLeft + this.gesture.touchMoveX;
-      // reveal left actions
-      if (this.direction === "ltr" && currentLeft >= this.threshold) {
-        this.$emit("swipeout:reveal", {
-          direction: this.direction,
-          item: this.item,
-          close: this.closeActions
-        });
-      }
-
-      // reveal right actions
-      if (this.direction === "rtl" && currentLeft <= -this.threshold) {
-        this.$emit("swipeout:reveal", {
-          direction: this.direction,
-          item: this.item,
-          close: this.closeActions
-        });
-      }
-      this.direction = null;
-      return this._animateSlide(this.startLeft, oldLeft);
-    },
-    // shift actions
-    _shiftLeftActions: function _shiftLeftActions(newX) {
-      if (!this.hasLeft || newX < 0) return;
-      if (this.closing) return;
-      var actions = this.$refs.left;
-      var actionsWidth = this.leftActionsWidth;
-      var progress = 1 - Math.min(newX / actionsWidth, 1);
-      var deltaX = Math.min(newX, actionsWidth);
-      var children = actions.children;
-      var length = children.length;
-      for (var i = 0; i < length; i++) {
-        var child = children[i];
-        var offsetLeft = actionsWidth - child.offsetLeft - child.offsetWidth;
-        child.style.transform = translateX(deltaX + offsetLeft * progress);
-        if (length > 1) child.style.zIndex = "".concat(length - i);
-      }
-    },
-    _shiftRightActions: function _shiftRightActions(newX) {
-      if (!this.hasRight || newX > 0) return;
-      if (this.closing) return;
-      var actions = this.$refs.right;
-      var actionsWidth = this.rightActionsWidth;
-      var progress = 1 + Math.max(newX / actionsWidth, -1);
-      var deltaX = Math.max(newX, -actionsWidth);
-      var children = actions.children;
-      for (var i = 0; i < children.length; i++) {
-        var child = children[i];
-        child.style.transform = translateX(deltaX - child.offsetLeft * progress);
-      }
-    },
-    _animateSlide: function _animateSlide(to, from) {
-      var _this2 = this;
-      if (this.closing) return;
-      if (from) {
-        if (to - from === 0) return;
-        this.isTransitioning = true;
-      }
-      window.requestAnimationFrame(function () {
-        _this2.$refs.content.style.transform = translateX(to);
-        _this2._shiftLeftActions(to, _this2.leftActionsWidth);
-        _this2._shiftRightActions(to, _this2.rightActionsWidth);
-      });
-    }
-  }
-});
-// CONCATENATED MODULE: ./src/components/SwipeOut.vue?vue&type=script&lang=js
- 
-// EXTERNAL MODULE: ./src/components/SwipeOut.vue?vue&type=style&index=0&id=91f4923e&lang=css
-var SwipeOutvue_type_style_index_0_id_91f4923e_lang_css = __webpack_require__("4a44");
-
-// EXTERNAL MODULE: ./node_modules/vue-loader-v16/dist/exportHelper.js
-var exportHelper = __webpack_require__("6b0d");
-var exportHelper_default = /*#__PURE__*/__webpack_require__.n(exportHelper);
-
-// CONCATENATED MODULE: ./src/components/SwipeOut.vue
-
-
-
-
-
-
-
-const __exports__ = /*#__PURE__*/exportHelper_default()(SwipeOutvue_type_script_lang_js, [['render',render]])
-
-/* harmony default export */ var SwipeOut = (__exports__);
-// CONCATENATED MODULE: ./src/components/index.js
-
-
-// CONCATENATED MODULE: ./node_modules/@vue/cli-service/lib/commands/build/entry-lib-no-default.js
-
-
-
+eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\n// runtime helper for setting properties on components\n// in a tree-shakable way\nexports[\"default\"] = (sfc, props) => {\n    const target = sfc.__vccOpts || sfc;\n    for (const [key, val] of props) {\n        target[key] = val;\n    }\n    return target;\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/vue-loader/dist/exportHelper.js?");
 
 /***/ }),
 
-/***/ "fc6a":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./src/components/SwipeOut.vue":
+/*!*************************************!*\
+  !*** ./src/components/SwipeOut.vue ***!
+  \*************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-// toObject with fallback for non-array-like ES3 strings
-var IndexedObject = __webpack_require__("44ad");
-var requireObjectCoercible = __webpack_require__("1d80");
-
-module.exports = function (it) {
-  return IndexedObject(requireObjectCoercible(it));
-};
-
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _SwipeOut_vue_vue_type_template_id_00111be4__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SwipeOut.vue?vue&type=template&id=00111be4 */ \"./src/components/SwipeOut.vue?vue&type=template&id=00111be4\");\n/* harmony import */ var _SwipeOut_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SwipeOut.vue?vue&type=script&lang=js */ \"./src/components/SwipeOut.vue?vue&type=script&lang=js\");\n/* harmony import */ var _SwipeOut_vue_vue_type_style_index_0_id_00111be4_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SwipeOut.vue?vue&type=style&index=0&id=00111be4&lang=css */ \"./src/components/SwipeOut.vue?vue&type=style&index=0&id=00111be4&lang=css\");\n/* harmony import */ var _node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../node_modules/vue-loader/dist/exportHelper.js */ \"./node_modules/vue-loader/dist/exportHelper.js\");\n\n\n\n\n;\n\n\nconst __exports__ = /*#__PURE__*/(0,_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__[\"default\"])(_SwipeOut_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"], [['render',_SwipeOut_vue_vue_type_template_id_00111be4__WEBPACK_IMPORTED_MODULE_0__.render],['__file',\"src/components/SwipeOut.vue\"]])\n/* hot reload */\nif (false) {}\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (__exports__);\n\n//# sourceURL=webpack://vue-swipe-actions/./src/components/SwipeOut.vue?");
 
 /***/ }),
 
-/***/ "fdbf":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./src/components/SwipeOut.vue?vue&type=script&lang=js":
+/*!*************************************************************!*\
+  !*** ./src/components/SwipeOut.vue?vue&type=script&lang=js ***!
+  \*************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-/* eslint-disable es/no-symbol -- required for testing */
-var NATIVE_SYMBOL = __webpack_require__("04f8");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": function() { return /* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_82_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_SwipeOut_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"]; }\n/* harmony export */ });\n/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_82_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_SwipeOut_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/babel-loader/lib/index.js??clonedRuleSet-82.use[0]!../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./SwipeOut.vue?vue&type=script&lang=js */ \"./node_modules/babel-loader/lib/index.js??clonedRuleSet-82.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/components/SwipeOut.vue?vue&type=script&lang=js\");\n \n\n//# sourceURL=webpack://vue-swipe-actions/./src/components/SwipeOut.vue?");
 
-module.exports = NATIVE_SYMBOL
-  && !Symbol.sham
-  && typeof Symbol.iterator == 'symbol';
+/***/ }),
 
+/***/ "./src/components/SwipeOut.vue?vue&type=template&id=00111be4":
+/*!*******************************************************************!*\
+  !*** ./src/components/SwipeOut.vue?vue&type=template&id=00111be4 ***!
+  \*******************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   render: function() { return /* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_82_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_3_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_SwipeOut_vue_vue_type_template_id_00111be4__WEBPACK_IMPORTED_MODULE_0__.render; }\n/* harmony export */ });\n/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_82_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_3_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_SwipeOut_vue_vue_type_template_id_00111be4__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/babel-loader/lib/index.js??clonedRuleSet-82.use[0]!../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[3]!../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./SwipeOut.vue?vue&type=template&id=00111be4 */ \"./node_modules/babel-loader/lib/index.js??clonedRuleSet-82.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[3]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/components/SwipeOut.vue?vue&type=template&id=00111be4\");\n\n\n//# sourceURL=webpack://vue-swipe-actions/./src/components/SwipeOut.vue?");
+
+/***/ }),
+
+/***/ "./src/components/SwipeOut.vue?vue&type=style&index=0&id=00111be4&lang=css":
+/*!*********************************************************************************!*\
+  !*** ./src/components/SwipeOut.vue?vue&type=style&index=0&id=00111be4&lang=css ***!
+  \*********************************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_vue_style_loader_index_js_clonedRuleSet_54_use_0_node_modules_css_loader_dist_cjs_js_clonedRuleSet_54_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_54_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_SwipeOut_vue_vue_type_style_index_0_id_00111be4_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/vue-style-loader/index.js??clonedRuleSet-54.use[0]!../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-54.use[1]!../../node_modules/vue-loader/dist/stylePostLoader.js!../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-54.use[2]!../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./SwipeOut.vue?vue&type=style&index=0&id=00111be4&lang=css */ \"./node_modules/vue-style-loader/index.js??clonedRuleSet-54.use[0]!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-54.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-54.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/components/SwipeOut.vue?vue&type=style&index=0&id=00111be4&lang=css\");\n/* harmony import */ var _node_modules_vue_style_loader_index_js_clonedRuleSet_54_use_0_node_modules_css_loader_dist_cjs_js_clonedRuleSet_54_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_54_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_SwipeOut_vue_vue_type_style_index_0_id_00111be4_lang_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_clonedRuleSet_54_use_0_node_modules_css_loader_dist_cjs_js_clonedRuleSet_54_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_54_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_SwipeOut_vue_vue_type_style_index_0_id_00111be4_lang_css__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};\n/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_vue_style_loader_index_js_clonedRuleSet_54_use_0_node_modules_css_loader_dist_cjs_js_clonedRuleSet_54_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_54_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_SwipeOut_vue_vue_type_style_index_0_id_00111be4_lang_css__WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== \"default\") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = function(key) { return _node_modules_vue_style_loader_index_js_clonedRuleSet_54_use_0_node_modules_css_loader_dist_cjs_js_clonedRuleSet_54_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_54_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_SwipeOut_vue_vue_type_style_index_0_id_00111be4_lang_css__WEBPACK_IMPORTED_MODULE_0__[key]; }.bind(0, __WEBPACK_IMPORT_KEY__)\n/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);\n\n\n//# sourceURL=webpack://vue-swipe-actions/./src/components/SwipeOut.vue?");
+
+/***/ }),
+
+/***/ "./node_modules/vue-style-loader/index.js??clonedRuleSet-54.use[0]!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-54.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-54.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/components/SwipeOut.vue?vue&type=style&index=0&id=00111be4&lang=css":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-style-loader/index.js??clonedRuleSet-54.use[0]!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-54.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-54.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/components/SwipeOut.vue?vue&type=style&index=0&id=00111be4&lang=css ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+eval("// style-loader: Adds some css to the DOM by adding a <style> tag\n\n// load the styles\nvar content = __webpack_require__(/*! !!../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-54.use[1]!../../node_modules/vue-loader/dist/stylePostLoader.js!../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-54.use[2]!../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./SwipeOut.vue?vue&type=style&index=0&id=00111be4&lang=css */ \"./node_modules/css-loader/dist/cjs.js??clonedRuleSet-54.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-54.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/components/SwipeOut.vue?vue&type=style&index=0&id=00111be4&lang=css\");\nif(content.__esModule) content = content.default;\nif(typeof content === 'string') content = [[module.id, content, '']];\nif(content.locals) module.exports = content.locals;\n// add the styles to the DOM\nvar add = (__webpack_require__(/*! !../../node_modules/vue-style-loader/lib/addStylesClient.js */ \"./node_modules/vue-style-loader/lib/addStylesClient.js\")[\"default\"])\nvar update = add(\"8bb6501e\", content, false, {\"sourceMap\":false,\"shadowMode\":false});\n// Hot Module Replacement\nif(false) {}\n\n//# sourceURL=webpack://vue-swipe-actions/./src/components/SwipeOut.vue?./node_modules/vue-style-loader/index.js??clonedRuleSet-54.use%5B0%5D!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-54.use%5B1%5D!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-54.use%5B2%5D!./node_modules/vue-loader/dist/index.js??ruleSet%5B0%5D.use%5B0%5D");
+
+/***/ }),
+
+/***/ "./node_modules/vue-style-loader/lib/addStylesClient.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/vue-style-loader/lib/addStylesClient.js ***!
+  \**************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": function() { return /* binding */ addStylesClient; }\n/* harmony export */ });\n/* harmony import */ var _listToStyles__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./listToStyles */ \"./node_modules/vue-style-loader/lib/listToStyles.js\");\n/*\n  MIT License http://www.opensource.org/licenses/mit-license.php\n  Author Tobias Koppers @sokra\n  Modified by Evan You @yyx990803\n*/\n\n\n\nvar hasDocument = typeof document !== 'undefined'\n\nif (typeof DEBUG !== 'undefined' && DEBUG) {\n  if (!hasDocument) {\n    throw new Error(\n    'vue-style-loader cannot be used in a non-browser environment. ' +\n    \"Use { target: 'node' } in your Webpack config to indicate a server-rendering environment.\"\n  ) }\n}\n\n/*\ntype StyleObject = {\n  id: number;\n  parts: Array<StyleObjectPart>\n}\n\ntype StyleObjectPart = {\n  css: string;\n  media: string;\n  sourceMap: ?string\n}\n*/\n\nvar stylesInDom = {/*\n  [id: number]: {\n    id: number,\n    refs: number,\n    parts: Array<(obj?: StyleObjectPart) => void>\n  }\n*/}\n\nvar head = hasDocument && (document.head || document.getElementsByTagName('head')[0])\nvar singletonElement = null\nvar singletonCounter = 0\nvar isProduction = false\nvar noop = function () {}\nvar options = null\nvar ssrIdKey = 'data-vue-ssr-id'\n\n// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>\n// tags it will allow on a page\nvar isOldIE = typeof navigator !== 'undefined' && /msie [6-9]\\b/.test(navigator.userAgent.toLowerCase())\n\nfunction addStylesClient (parentId, list, _isProduction, _options) {\n  isProduction = _isProduction\n\n  options = _options || {}\n\n  var styles = (0,_listToStyles__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(parentId, list)\n  addStylesToDom(styles)\n\n  return function update (newList) {\n    var mayRemove = []\n    for (var i = 0; i < styles.length; i++) {\n      var item = styles[i]\n      var domStyle = stylesInDom[item.id]\n      domStyle.refs--\n      mayRemove.push(domStyle)\n    }\n    if (newList) {\n      styles = (0,_listToStyles__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(parentId, newList)\n      addStylesToDom(styles)\n    } else {\n      styles = []\n    }\n    for (var i = 0; i < mayRemove.length; i++) {\n      var domStyle = mayRemove[i]\n      if (domStyle.refs === 0) {\n        for (var j = 0; j < domStyle.parts.length; j++) {\n          domStyle.parts[j]()\n        }\n        delete stylesInDom[domStyle.id]\n      }\n    }\n  }\n}\n\nfunction addStylesToDom (styles /* Array<StyleObject> */) {\n  for (var i = 0; i < styles.length; i++) {\n    var item = styles[i]\n    var domStyle = stylesInDom[item.id]\n    if (domStyle) {\n      domStyle.refs++\n      for (var j = 0; j < domStyle.parts.length; j++) {\n        domStyle.parts[j](item.parts[j])\n      }\n      for (; j < item.parts.length; j++) {\n        domStyle.parts.push(addStyle(item.parts[j]))\n      }\n      if (domStyle.parts.length > item.parts.length) {\n        domStyle.parts.length = item.parts.length\n      }\n    } else {\n      var parts = []\n      for (var j = 0; j < item.parts.length; j++) {\n        parts.push(addStyle(item.parts[j]))\n      }\n      stylesInDom[item.id] = { id: item.id, refs: 1, parts: parts }\n    }\n  }\n}\n\nfunction createStyleElement () {\n  var styleElement = document.createElement('style')\n  styleElement.type = 'text/css'\n  head.appendChild(styleElement)\n  return styleElement\n}\n\nfunction addStyle (obj /* StyleObjectPart */) {\n  var update, remove\n  var styleElement = document.querySelector('style[' + ssrIdKey + '~=\"' + obj.id + '\"]')\n\n  if (styleElement) {\n    if (isProduction) {\n      // has SSR styles and in production mode.\n      // simply do nothing.\n      return noop\n    } else {\n      // has SSR styles but in dev mode.\n      // for some reason Chrome can't handle source map in server-rendered\n      // style tags - source maps in <style> only works if the style tag is\n      // created and inserted dynamically. So we remove the server rendered\n      // styles and inject new ones.\n      styleElement.parentNode.removeChild(styleElement)\n    }\n  }\n\n  if (isOldIE) {\n    // use singleton mode for IE9.\n    var styleIndex = singletonCounter++\n    styleElement = singletonElement || (singletonElement = createStyleElement())\n    update = applyToSingletonTag.bind(null, styleElement, styleIndex, false)\n    remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true)\n  } else {\n    // use multi-style-tag mode in all other cases\n    styleElement = createStyleElement()\n    update = applyToTag.bind(null, styleElement)\n    remove = function () {\n      styleElement.parentNode.removeChild(styleElement)\n    }\n  }\n\n  update(obj)\n\n  return function updateStyle (newObj /* StyleObjectPart */) {\n    if (newObj) {\n      if (newObj.css === obj.css &&\n          newObj.media === obj.media &&\n          newObj.sourceMap === obj.sourceMap) {\n        return\n      }\n      update(obj = newObj)\n    } else {\n      remove()\n    }\n  }\n}\n\nvar replaceText = (function () {\n  var textStore = []\n\n  return function (index, replacement) {\n    textStore[index] = replacement\n    return textStore.filter(Boolean).join('\\n')\n  }\n})()\n\nfunction applyToSingletonTag (styleElement, index, remove, obj) {\n  var css = remove ? '' : obj.css\n\n  if (styleElement.styleSheet) {\n    styleElement.styleSheet.cssText = replaceText(index, css)\n  } else {\n    var cssNode = document.createTextNode(css)\n    var childNodes = styleElement.childNodes\n    if (childNodes[index]) styleElement.removeChild(childNodes[index])\n    if (childNodes.length) {\n      styleElement.insertBefore(cssNode, childNodes[index])\n    } else {\n      styleElement.appendChild(cssNode)\n    }\n  }\n}\n\nfunction applyToTag (styleElement, obj) {\n  var css = obj.css\n  var media = obj.media\n  var sourceMap = obj.sourceMap\n\n  if (media) {\n    styleElement.setAttribute('media', media)\n  }\n  if (options.ssrId) {\n    styleElement.setAttribute(ssrIdKey, obj.id)\n  }\n\n  if (sourceMap) {\n    // https://developer.chrome.com/devtools/docs/javascript-debugging\n    // this makes source maps inside style tags work properly in Chrome\n    css += '\\n/*# sourceURL=' + sourceMap.sources[0] + ' */'\n    // http://stackoverflow.com/a/26603875\n    css += '\\n/*# sourceMappingURL=data:application/json;base64,' + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + ' */'\n  }\n\n  if (styleElement.styleSheet) {\n    styleElement.styleSheet.cssText = css\n  } else {\n    while (styleElement.firstChild) {\n      styleElement.removeChild(styleElement.firstChild)\n    }\n    styleElement.appendChild(document.createTextNode(css))\n  }\n}\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/vue-style-loader/lib/addStylesClient.js?");
+
+/***/ }),
+
+/***/ "./node_modules/vue-style-loader/lib/listToStyles.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/vue-style-loader/lib/listToStyles.js ***!
+  \***********************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": function() { return /* binding */ listToStyles; }\n/* harmony export */ });\n/**\n * Translates the list format produced by css-loader into something\n * easier to manipulate.\n */\nfunction listToStyles (parentId, list) {\n  var styles = []\n  var newStyles = {}\n  for (var i = 0; i < list.length; i++) {\n    var item = list[i]\n    var id = item[0]\n    var css = item[1]\n    var media = item[2]\n    var sourceMap = item[3]\n    var part = {\n      id: parentId + ':' + i,\n      css: css,\n      media: media,\n      sourceMap: sourceMap\n    }\n    if (!newStyles[id]) {\n      styles.push(newStyles[id] = { id: id, parts: [part] })\n    } else {\n      newStyles[id].parts.push(part)\n    }\n  }\n  return styles\n}\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/vue-style-loader/lib/listToStyles.js?");
+
+/***/ }),
+
+/***/ "vue":
+/*!******************************************************************!*\
+  !*** external {"commonjs":"vue","commonjs2":"vue","root":"Vue"} ***!
+  \******************************************************************/
+/***/ (function(module) {
+
+"use strict";
+module.exports = __WEBPACK_EXTERNAL_MODULE_vue__;
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/a-callable.js":
+/*!******************************************************!*\
+  !*** ./node_modules/core-js/internals/a-callable.js ***!
+  \******************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar isCallable = __webpack_require__(/*! ../internals/is-callable */ \"./node_modules/core-js/internals/is-callable.js\");\nvar tryToString = __webpack_require__(/*! ../internals/try-to-string */ \"./node_modules/core-js/internals/try-to-string.js\");\n\nvar $TypeError = TypeError;\n\n// `Assert: IsCallable(argument) is true`\nmodule.exports = function (argument) {\n  if (isCallable(argument)) return argument;\n  throw new $TypeError(tryToString(argument) + ' is not a function');\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/a-callable.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/a-possible-prototype.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/core-js/internals/a-possible-prototype.js ***!
+  \****************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar isPossiblePrototype = __webpack_require__(/*! ../internals/is-possible-prototype */ \"./node_modules/core-js/internals/is-possible-prototype.js\");\n\nvar $String = String;\nvar $TypeError = TypeError;\n\nmodule.exports = function (argument) {\n  if (isPossiblePrototype(argument)) return argument;\n  throw new $TypeError(\"Can't set \" + $String(argument) + ' as a prototype');\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/a-possible-prototype.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/an-object.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/core-js/internals/an-object.js ***!
+  \*****************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar isObject = __webpack_require__(/*! ../internals/is-object */ \"./node_modules/core-js/internals/is-object.js\");\n\nvar $String = String;\nvar $TypeError = TypeError;\n\n// `Assert: Type(argument) is Object`\nmodule.exports = function (argument) {\n  if (isObject(argument)) return argument;\n  throw new $TypeError($String(argument) + ' is not an object');\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/an-object.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/array-includes.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/core-js/internals/array-includes.js ***!
+  \**********************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar toIndexedObject = __webpack_require__(/*! ../internals/to-indexed-object */ \"./node_modules/core-js/internals/to-indexed-object.js\");\nvar toAbsoluteIndex = __webpack_require__(/*! ../internals/to-absolute-index */ \"./node_modules/core-js/internals/to-absolute-index.js\");\nvar lengthOfArrayLike = __webpack_require__(/*! ../internals/length-of-array-like */ \"./node_modules/core-js/internals/length-of-array-like.js\");\n\n// `Array.prototype.{ indexOf, includes }` methods implementation\nvar createMethod = function (IS_INCLUDES) {\n  return function ($this, el, fromIndex) {\n    var O = toIndexedObject($this);\n    var length = lengthOfArrayLike(O);\n    if (length === 0) return !IS_INCLUDES && -1;\n    var index = toAbsoluteIndex(fromIndex, length);\n    var value;\n    // Array#includes uses SameValueZero equality algorithm\n    // eslint-disable-next-line no-self-compare -- NaN check\n    if (IS_INCLUDES && el !== el) while (length > index) {\n      value = O[index++];\n      // eslint-disable-next-line no-self-compare -- NaN check\n      if (value !== value) return true;\n    // Array#indexOf ignores holes, Array#includes - not\n    } else for (;length > index; index++) {\n      if ((IS_INCLUDES || index in O) && O[index] === el) return IS_INCLUDES || index || 0;\n    } return !IS_INCLUDES && -1;\n  };\n};\n\nmodule.exports = {\n  // `Array.prototype.includes` method\n  // https://tc39.es/ecma262/#sec-array.prototype.includes\n  includes: createMethod(true),\n  // `Array.prototype.indexOf` method\n  // https://tc39.es/ecma262/#sec-array.prototype.indexof\n  indexOf: createMethod(false)\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/array-includes.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/classof-raw.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/core-js/internals/classof-raw.js ***!
+  \*******************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this */ \"./node_modules/core-js/internals/function-uncurry-this.js\");\n\nvar toString = uncurryThis({}.toString);\nvar stringSlice = uncurryThis(''.slice);\n\nmodule.exports = function (it) {\n  return stringSlice(toString(it), 8, -1);\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/classof-raw.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/classof.js":
+/*!***************************************************!*\
+  !*** ./node_modules/core-js/internals/classof.js ***!
+  \***************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar TO_STRING_TAG_SUPPORT = __webpack_require__(/*! ../internals/to-string-tag-support */ \"./node_modules/core-js/internals/to-string-tag-support.js\");\nvar isCallable = __webpack_require__(/*! ../internals/is-callable */ \"./node_modules/core-js/internals/is-callable.js\");\nvar classofRaw = __webpack_require__(/*! ../internals/classof-raw */ \"./node_modules/core-js/internals/classof-raw.js\");\nvar wellKnownSymbol = __webpack_require__(/*! ../internals/well-known-symbol */ \"./node_modules/core-js/internals/well-known-symbol.js\");\n\nvar TO_STRING_TAG = wellKnownSymbol('toStringTag');\nvar $Object = Object;\n\n// ES3 wrong here\nvar CORRECT_ARGUMENTS = classofRaw(function () { return arguments; }()) === 'Arguments';\n\n// fallback for IE11 Script Access Denied error\nvar tryGet = function (it, key) {\n  try {\n    return it[key];\n  } catch (error) { /* empty */ }\n};\n\n// getting tag from ES6+ `Object.prototype.toString`\nmodule.exports = TO_STRING_TAG_SUPPORT ? classofRaw : function (it) {\n  var O, tag, result;\n  return it === undefined ? 'Undefined' : it === null ? 'Null'\n    // @@toStringTag case\n    : typeof (tag = tryGet(O = $Object(it), TO_STRING_TAG)) == 'string' ? tag\n    // builtinTag case\n    : CORRECT_ARGUMENTS ? classofRaw(O)\n    // ES3 arguments fallback\n    : (result = classofRaw(O)) === 'Object' && isCallable(O.callee) ? 'Arguments' : result;\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/classof.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/copy-constructor-properties.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/core-js/internals/copy-constructor-properties.js ***!
+  \***********************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar hasOwn = __webpack_require__(/*! ../internals/has-own-property */ \"./node_modules/core-js/internals/has-own-property.js\");\nvar ownKeys = __webpack_require__(/*! ../internals/own-keys */ \"./node_modules/core-js/internals/own-keys.js\");\nvar getOwnPropertyDescriptorModule = __webpack_require__(/*! ../internals/object-get-own-property-descriptor */ \"./node_modules/core-js/internals/object-get-own-property-descriptor.js\");\nvar definePropertyModule = __webpack_require__(/*! ../internals/object-define-property */ \"./node_modules/core-js/internals/object-define-property.js\");\n\nmodule.exports = function (target, source, exceptions) {\n  var keys = ownKeys(source);\n  var defineProperty = definePropertyModule.f;\n  var getOwnPropertyDescriptor = getOwnPropertyDescriptorModule.f;\n  for (var i = 0; i < keys.length; i++) {\n    var key = keys[i];\n    if (!hasOwn(target, key) && !(exceptions && hasOwn(exceptions, key))) {\n      defineProperty(target, key, getOwnPropertyDescriptor(source, key));\n    }\n  }\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/copy-constructor-properties.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/create-non-enumerable-property.js":
+/*!**************************************************************************!*\
+  !*** ./node_modules/core-js/internals/create-non-enumerable-property.js ***!
+  \**************************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar DESCRIPTORS = __webpack_require__(/*! ../internals/descriptors */ \"./node_modules/core-js/internals/descriptors.js\");\nvar definePropertyModule = __webpack_require__(/*! ../internals/object-define-property */ \"./node_modules/core-js/internals/object-define-property.js\");\nvar createPropertyDescriptor = __webpack_require__(/*! ../internals/create-property-descriptor */ \"./node_modules/core-js/internals/create-property-descriptor.js\");\n\nmodule.exports = DESCRIPTORS ? function (object, key, value) {\n  return definePropertyModule.f(object, key, createPropertyDescriptor(1, value));\n} : function (object, key, value) {\n  object[key] = value;\n  return object;\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/create-non-enumerable-property.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/create-property-descriptor.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/core-js/internals/create-property-descriptor.js ***!
+  \**********************************************************************/
+/***/ (function(module) {
+
+"use strict";
+eval("\nmodule.exports = function (bitmap, value) {\n  return {\n    enumerable: !(bitmap & 1),\n    configurable: !(bitmap & 2),\n    writable: !(bitmap & 4),\n    value: value\n  };\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/create-property-descriptor.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/define-built-in.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/core-js/internals/define-built-in.js ***!
+  \***********************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar isCallable = __webpack_require__(/*! ../internals/is-callable */ \"./node_modules/core-js/internals/is-callable.js\");\nvar definePropertyModule = __webpack_require__(/*! ../internals/object-define-property */ \"./node_modules/core-js/internals/object-define-property.js\");\nvar makeBuiltIn = __webpack_require__(/*! ../internals/make-built-in */ \"./node_modules/core-js/internals/make-built-in.js\");\nvar defineGlobalProperty = __webpack_require__(/*! ../internals/define-global-property */ \"./node_modules/core-js/internals/define-global-property.js\");\n\nmodule.exports = function (O, key, value, options) {\n  if (!options) options = {};\n  var simple = options.enumerable;\n  var name = options.name !== undefined ? options.name : key;\n  if (isCallable(value)) makeBuiltIn(value, name, options);\n  if (options.global) {\n    if (simple) O[key] = value;\n    else defineGlobalProperty(key, value);\n  } else {\n    try {\n      if (!options.unsafe) delete O[key];\n      else if (O[key]) simple = true;\n    } catch (error) { /* empty */ }\n    if (simple) O[key] = value;\n    else definePropertyModule.f(O, key, {\n      value: value,\n      enumerable: false,\n      configurable: !options.nonConfigurable,\n      writable: !options.nonWritable\n    });\n  } return O;\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/define-built-in.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/define-global-property.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/core-js/internals/define-global-property.js ***!
+  \******************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar global = __webpack_require__(/*! ../internals/global */ \"./node_modules/core-js/internals/global.js\");\n\n// eslint-disable-next-line es/no-object-defineproperty -- safe\nvar defineProperty = Object.defineProperty;\n\nmodule.exports = function (key, value) {\n  try {\n    defineProperty(global, key, { value: value, configurable: true, writable: true });\n  } catch (error) {\n    global[key] = value;\n  } return value;\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/define-global-property.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/descriptors.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/core-js/internals/descriptors.js ***!
+  \*******************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar fails = __webpack_require__(/*! ../internals/fails */ \"./node_modules/core-js/internals/fails.js\");\n\n// Detect IE8's incomplete defineProperty implementation\nmodule.exports = !fails(function () {\n  // eslint-disable-next-line es/no-object-defineproperty -- required for testing\n  return Object.defineProperty({}, 1, { get: function () { return 7; } })[1] !== 7;\n});\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/descriptors.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/document-create-element.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/core-js/internals/document-create-element.js ***!
+  \*******************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar global = __webpack_require__(/*! ../internals/global */ \"./node_modules/core-js/internals/global.js\");\nvar isObject = __webpack_require__(/*! ../internals/is-object */ \"./node_modules/core-js/internals/is-object.js\");\n\nvar document = global.document;\n// typeof document.createElement is 'object' in old IE\nvar EXISTS = isObject(document) && isObject(document.createElement);\n\nmodule.exports = function (it) {\n  return EXISTS ? document.createElement(it) : {};\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/document-create-element.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/engine-user-agent.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/core-js/internals/engine-user-agent.js ***!
+  \*************************************************************/
+/***/ (function(module) {
+
+"use strict";
+eval("\nmodule.exports = typeof navigator != 'undefined' && String(navigator.userAgent) || '';\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/engine-user-agent.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/engine-v8-version.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/core-js/internals/engine-v8-version.js ***!
+  \*************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar global = __webpack_require__(/*! ../internals/global */ \"./node_modules/core-js/internals/global.js\");\nvar userAgent = __webpack_require__(/*! ../internals/engine-user-agent */ \"./node_modules/core-js/internals/engine-user-agent.js\");\n\nvar process = global.process;\nvar Deno = global.Deno;\nvar versions = process && process.versions || Deno && Deno.version;\nvar v8 = versions && versions.v8;\nvar match, version;\n\nif (v8) {\n  match = v8.split('.');\n  // in old Chrome, versions of V8 isn't V8 = Chrome / 10\n  // but their correct versions are not interesting for us\n  version = match[0] > 0 && match[0] < 4 ? 1 : +(match[0] + match[1]);\n}\n\n// BrowserFS NodeJS `process` polyfill incorrectly set `.v8` to `0.0`\n// so check `userAgent` even if `.v8` exists, but 0\nif (!version && userAgent) {\n  match = userAgent.match(/Edge\\/(\\d+)/);\n  if (!match || match[1] >= 74) {\n    match = userAgent.match(/Chrome\\/(\\d+)/);\n    if (match) version = +match[1];\n  }\n}\n\nmodule.exports = version;\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/engine-v8-version.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/enum-bug-keys.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/core-js/internals/enum-bug-keys.js ***!
+  \*********************************************************/
+/***/ (function(module) {
+
+"use strict";
+eval("\n// IE8- don't enum bug keys\nmodule.exports = [\n  'constructor',\n  'hasOwnProperty',\n  'isPrototypeOf',\n  'propertyIsEnumerable',\n  'toLocaleString',\n  'toString',\n  'valueOf'\n];\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/enum-bug-keys.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/export.js":
+/*!**************************************************!*\
+  !*** ./node_modules/core-js/internals/export.js ***!
+  \**************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar global = __webpack_require__(/*! ../internals/global */ \"./node_modules/core-js/internals/global.js\");\nvar getOwnPropertyDescriptor = (__webpack_require__(/*! ../internals/object-get-own-property-descriptor */ \"./node_modules/core-js/internals/object-get-own-property-descriptor.js\").f);\nvar createNonEnumerableProperty = __webpack_require__(/*! ../internals/create-non-enumerable-property */ \"./node_modules/core-js/internals/create-non-enumerable-property.js\");\nvar defineBuiltIn = __webpack_require__(/*! ../internals/define-built-in */ \"./node_modules/core-js/internals/define-built-in.js\");\nvar defineGlobalProperty = __webpack_require__(/*! ../internals/define-global-property */ \"./node_modules/core-js/internals/define-global-property.js\");\nvar copyConstructorProperties = __webpack_require__(/*! ../internals/copy-constructor-properties */ \"./node_modules/core-js/internals/copy-constructor-properties.js\");\nvar isForced = __webpack_require__(/*! ../internals/is-forced */ \"./node_modules/core-js/internals/is-forced.js\");\n\n/*\n  options.target         - name of the target object\n  options.global         - target is the global object\n  options.stat           - export as static methods of target\n  options.proto          - export as prototype methods of target\n  options.real           - real prototype method for the `pure` version\n  options.forced         - export even if the native feature is available\n  options.bind           - bind methods to the target, required for the `pure` version\n  options.wrap           - wrap constructors to preventing global pollution, required for the `pure` version\n  options.unsafe         - use the simple assignment of property instead of delete + defineProperty\n  options.sham           - add a flag to not completely full polyfills\n  options.enumerable     - export as enumerable property\n  options.dontCallGetSet - prevent calling a getter on target\n  options.name           - the .name of the function if it does not match the key\n*/\nmodule.exports = function (options, source) {\n  var TARGET = options.target;\n  var GLOBAL = options.global;\n  var STATIC = options.stat;\n  var FORCED, target, key, targetProperty, sourceProperty, descriptor;\n  if (GLOBAL) {\n    target = global;\n  } else if (STATIC) {\n    target = global[TARGET] || defineGlobalProperty(TARGET, {});\n  } else {\n    target = global[TARGET] && global[TARGET].prototype;\n  }\n  if (target) for (key in source) {\n    sourceProperty = source[key];\n    if (options.dontCallGetSet) {\n      descriptor = getOwnPropertyDescriptor(target, key);\n      targetProperty = descriptor && descriptor.value;\n    } else targetProperty = target[key];\n    FORCED = isForced(GLOBAL ? key : TARGET + (STATIC ? '.' : '#') + key, options.forced);\n    // contained in target\n    if (!FORCED && targetProperty !== undefined) {\n      if (typeof sourceProperty == typeof targetProperty) continue;\n      copyConstructorProperties(sourceProperty, targetProperty);\n    }\n    // add a flag to not completely full polyfills\n    if (options.sham || (targetProperty && targetProperty.sham)) {\n      createNonEnumerableProperty(sourceProperty, 'sham', true);\n    }\n    defineBuiltIn(target, key, sourceProperty, options);\n  }\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/export.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/fails.js":
+/*!*************************************************!*\
+  !*** ./node_modules/core-js/internals/fails.js ***!
+  \*************************************************/
+/***/ (function(module) {
+
+"use strict";
+eval("\nmodule.exports = function (exec) {\n  try {\n    return !!exec();\n  } catch (error) {\n    return true;\n  }\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/fails.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/function-bind-native.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/core-js/internals/function-bind-native.js ***!
+  \****************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar fails = __webpack_require__(/*! ../internals/fails */ \"./node_modules/core-js/internals/fails.js\");\n\nmodule.exports = !fails(function () {\n  // eslint-disable-next-line es/no-function-prototype-bind -- safe\n  var test = (function () { /* empty */ }).bind();\n  // eslint-disable-next-line no-prototype-builtins -- safe\n  return typeof test != 'function' || test.hasOwnProperty('prototype');\n});\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/function-bind-native.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/function-call.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/core-js/internals/function-call.js ***!
+  \*********************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar NATIVE_BIND = __webpack_require__(/*! ../internals/function-bind-native */ \"./node_modules/core-js/internals/function-bind-native.js\");\n\nvar call = Function.prototype.call;\n\nmodule.exports = NATIVE_BIND ? call.bind(call) : function () {\n  return call.apply(call, arguments);\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/function-call.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/function-name.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/core-js/internals/function-name.js ***!
+  \*********************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar DESCRIPTORS = __webpack_require__(/*! ../internals/descriptors */ \"./node_modules/core-js/internals/descriptors.js\");\nvar hasOwn = __webpack_require__(/*! ../internals/has-own-property */ \"./node_modules/core-js/internals/has-own-property.js\");\n\nvar FunctionPrototype = Function.prototype;\n// eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe\nvar getDescriptor = DESCRIPTORS && Object.getOwnPropertyDescriptor;\n\nvar EXISTS = hasOwn(FunctionPrototype, 'name');\n// additional protection from minified / mangled / dropped function names\nvar PROPER = EXISTS && (function something() { /* empty */ }).name === 'something';\nvar CONFIGURABLE = EXISTS && (!DESCRIPTORS || (DESCRIPTORS && getDescriptor(FunctionPrototype, 'name').configurable));\n\nmodule.exports = {\n  EXISTS: EXISTS,\n  PROPER: PROPER,\n  CONFIGURABLE: CONFIGURABLE\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/function-name.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/function-uncurry-this-accessor.js":
+/*!**************************************************************************!*\
+  !*** ./node_modules/core-js/internals/function-uncurry-this-accessor.js ***!
+  \**************************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this */ \"./node_modules/core-js/internals/function-uncurry-this.js\");\nvar aCallable = __webpack_require__(/*! ../internals/a-callable */ \"./node_modules/core-js/internals/a-callable.js\");\n\nmodule.exports = function (object, key, method) {\n  try {\n    // eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe\n    return uncurryThis(aCallable(Object.getOwnPropertyDescriptor(object, key)[method]));\n  } catch (error) { /* empty */ }\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/function-uncurry-this-accessor.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/function-uncurry-this.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/core-js/internals/function-uncurry-this.js ***!
+  \*****************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar NATIVE_BIND = __webpack_require__(/*! ../internals/function-bind-native */ \"./node_modules/core-js/internals/function-bind-native.js\");\n\nvar FunctionPrototype = Function.prototype;\nvar call = FunctionPrototype.call;\nvar uncurryThisWithBind = NATIVE_BIND && FunctionPrototype.bind.bind(call, call);\n\nmodule.exports = NATIVE_BIND ? uncurryThisWithBind : function (fn) {\n  return function () {\n    return call.apply(fn, arguments);\n  };\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/function-uncurry-this.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/get-built-in.js":
+/*!********************************************************!*\
+  !*** ./node_modules/core-js/internals/get-built-in.js ***!
+  \********************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar global = __webpack_require__(/*! ../internals/global */ \"./node_modules/core-js/internals/global.js\");\nvar isCallable = __webpack_require__(/*! ../internals/is-callable */ \"./node_modules/core-js/internals/is-callable.js\");\n\nvar aFunction = function (argument) {\n  return isCallable(argument) ? argument : undefined;\n};\n\nmodule.exports = function (namespace, method) {\n  return arguments.length < 2 ? aFunction(global[namespace]) : global[namespace] && global[namespace][method];\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/get-built-in.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/get-method.js":
+/*!******************************************************!*\
+  !*** ./node_modules/core-js/internals/get-method.js ***!
+  \******************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar aCallable = __webpack_require__(/*! ../internals/a-callable */ \"./node_modules/core-js/internals/a-callable.js\");\nvar isNullOrUndefined = __webpack_require__(/*! ../internals/is-null-or-undefined */ \"./node_modules/core-js/internals/is-null-or-undefined.js\");\n\n// `GetMethod` abstract operation\n// https://tc39.es/ecma262/#sec-getmethod\nmodule.exports = function (V, P) {\n  var func = V[P];\n  return isNullOrUndefined(func) ? undefined : aCallable(func);\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/get-method.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/global.js":
+/*!**************************************************!*\
+  !*** ./node_modules/core-js/internals/global.js ***!
+  \**************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar check = function (it) {\n  return it && it.Math === Math && it;\n};\n\n// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028\nmodule.exports =\n  // eslint-disable-next-line es/no-global-this -- safe\n  check(typeof globalThis == 'object' && globalThis) ||\n  check(typeof window == 'object' && window) ||\n  // eslint-disable-next-line no-restricted-globals -- safe\n  check(typeof self == 'object' && self) ||\n  check(typeof __webpack_require__.g == 'object' && __webpack_require__.g) ||\n  check(typeof this == 'object' && this) ||\n  // eslint-disable-next-line no-new-func -- fallback\n  (function () { return this; })() || Function('return this')();\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/global.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/has-own-property.js":
+/*!************************************************************!*\
+  !*** ./node_modules/core-js/internals/has-own-property.js ***!
+  \************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this */ \"./node_modules/core-js/internals/function-uncurry-this.js\");\nvar toObject = __webpack_require__(/*! ../internals/to-object */ \"./node_modules/core-js/internals/to-object.js\");\n\nvar hasOwnProperty = uncurryThis({}.hasOwnProperty);\n\n// `HasOwnProperty` abstract operation\n// https://tc39.es/ecma262/#sec-hasownproperty\n// eslint-disable-next-line es/no-object-hasown -- safe\nmodule.exports = Object.hasOwn || function hasOwn(it, key) {\n  return hasOwnProperty(toObject(it), key);\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/has-own-property.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/hidden-keys.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/core-js/internals/hidden-keys.js ***!
+  \*******************************************************/
+/***/ (function(module) {
+
+"use strict";
+eval("\nmodule.exports = {};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/hidden-keys.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/ie8-dom-define.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/core-js/internals/ie8-dom-define.js ***!
+  \**********************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar DESCRIPTORS = __webpack_require__(/*! ../internals/descriptors */ \"./node_modules/core-js/internals/descriptors.js\");\nvar fails = __webpack_require__(/*! ../internals/fails */ \"./node_modules/core-js/internals/fails.js\");\nvar createElement = __webpack_require__(/*! ../internals/document-create-element */ \"./node_modules/core-js/internals/document-create-element.js\");\n\n// Thanks to IE8 for its funny defineProperty\nmodule.exports = !DESCRIPTORS && !fails(function () {\n  // eslint-disable-next-line es/no-object-defineproperty -- required for testing\n  return Object.defineProperty(createElement('div'), 'a', {\n    get: function () { return 7; }\n  }).a !== 7;\n});\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/ie8-dom-define.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/indexed-object.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/core-js/internals/indexed-object.js ***!
+  \**********************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this */ \"./node_modules/core-js/internals/function-uncurry-this.js\");\nvar fails = __webpack_require__(/*! ../internals/fails */ \"./node_modules/core-js/internals/fails.js\");\nvar classof = __webpack_require__(/*! ../internals/classof-raw */ \"./node_modules/core-js/internals/classof-raw.js\");\n\nvar $Object = Object;\nvar split = uncurryThis(''.split);\n\n// fallback for non-array-like ES3 and non-enumerable old V8 strings\nmodule.exports = fails(function () {\n  // throws an error in rhino, see https://github.com/mozilla/rhino/issues/346\n  // eslint-disable-next-line no-prototype-builtins -- safe\n  return !$Object('z').propertyIsEnumerable(0);\n}) ? function (it) {\n  return classof(it) === 'String' ? split(it, '') : $Object(it);\n} : $Object;\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/indexed-object.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/inherit-if-required.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/core-js/internals/inherit-if-required.js ***!
+  \***************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar isCallable = __webpack_require__(/*! ../internals/is-callable */ \"./node_modules/core-js/internals/is-callable.js\");\nvar isObject = __webpack_require__(/*! ../internals/is-object */ \"./node_modules/core-js/internals/is-object.js\");\nvar setPrototypeOf = __webpack_require__(/*! ../internals/object-set-prototype-of */ \"./node_modules/core-js/internals/object-set-prototype-of.js\");\n\n// makes subclassing work correct for wrapped built-ins\nmodule.exports = function ($this, dummy, Wrapper) {\n  var NewTarget, NewTargetPrototype;\n  if (\n    // it can work only with native `setPrototypeOf`\n    setPrototypeOf &&\n    // we haven't completely correct pre-ES6 way for getting `new.target`, so use this\n    isCallable(NewTarget = dummy.constructor) &&\n    NewTarget !== Wrapper &&\n    isObject(NewTargetPrototype = NewTarget.prototype) &&\n    NewTargetPrototype !== Wrapper.prototype\n  ) setPrototypeOf($this, NewTargetPrototype);\n  return $this;\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/inherit-if-required.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/inspect-source.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/core-js/internals/inspect-source.js ***!
+  \**********************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this */ \"./node_modules/core-js/internals/function-uncurry-this.js\");\nvar isCallable = __webpack_require__(/*! ../internals/is-callable */ \"./node_modules/core-js/internals/is-callable.js\");\nvar store = __webpack_require__(/*! ../internals/shared-store */ \"./node_modules/core-js/internals/shared-store.js\");\n\nvar functionToString = uncurryThis(Function.toString);\n\n// this helper broken in `core-js@3.4.1-3.4.4`, so we can't use `shared` helper\nif (!isCallable(store.inspectSource)) {\n  store.inspectSource = function (it) {\n    return functionToString(it);\n  };\n}\n\nmodule.exports = store.inspectSource;\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/inspect-source.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/internal-state.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/core-js/internals/internal-state.js ***!
+  \**********************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar NATIVE_WEAK_MAP = __webpack_require__(/*! ../internals/weak-map-basic-detection */ \"./node_modules/core-js/internals/weak-map-basic-detection.js\");\nvar global = __webpack_require__(/*! ../internals/global */ \"./node_modules/core-js/internals/global.js\");\nvar isObject = __webpack_require__(/*! ../internals/is-object */ \"./node_modules/core-js/internals/is-object.js\");\nvar createNonEnumerableProperty = __webpack_require__(/*! ../internals/create-non-enumerable-property */ \"./node_modules/core-js/internals/create-non-enumerable-property.js\");\nvar hasOwn = __webpack_require__(/*! ../internals/has-own-property */ \"./node_modules/core-js/internals/has-own-property.js\");\nvar shared = __webpack_require__(/*! ../internals/shared-store */ \"./node_modules/core-js/internals/shared-store.js\");\nvar sharedKey = __webpack_require__(/*! ../internals/shared-key */ \"./node_modules/core-js/internals/shared-key.js\");\nvar hiddenKeys = __webpack_require__(/*! ../internals/hidden-keys */ \"./node_modules/core-js/internals/hidden-keys.js\");\n\nvar OBJECT_ALREADY_INITIALIZED = 'Object already initialized';\nvar TypeError = global.TypeError;\nvar WeakMap = global.WeakMap;\nvar set, get, has;\n\nvar enforce = function (it) {\n  return has(it) ? get(it) : set(it, {});\n};\n\nvar getterFor = function (TYPE) {\n  return function (it) {\n    var state;\n    if (!isObject(it) || (state = get(it)).type !== TYPE) {\n      throw new TypeError('Incompatible receiver, ' + TYPE + ' required');\n    } return state;\n  };\n};\n\nif (NATIVE_WEAK_MAP || shared.state) {\n  var store = shared.state || (shared.state = new WeakMap());\n  /* eslint-disable no-self-assign -- prototype methods protection */\n  store.get = store.get;\n  store.has = store.has;\n  store.set = store.set;\n  /* eslint-enable no-self-assign -- prototype methods protection */\n  set = function (it, metadata) {\n    if (store.has(it)) throw new TypeError(OBJECT_ALREADY_INITIALIZED);\n    metadata.facade = it;\n    store.set(it, metadata);\n    return metadata;\n  };\n  get = function (it) {\n    return store.get(it) || {};\n  };\n  has = function (it) {\n    return store.has(it);\n  };\n} else {\n  var STATE = sharedKey('state');\n  hiddenKeys[STATE] = true;\n  set = function (it, metadata) {\n    if (hasOwn(it, STATE)) throw new TypeError(OBJECT_ALREADY_INITIALIZED);\n    metadata.facade = it;\n    createNonEnumerableProperty(it, STATE, metadata);\n    return metadata;\n  };\n  get = function (it) {\n    return hasOwn(it, STATE) ? it[STATE] : {};\n  };\n  has = function (it) {\n    return hasOwn(it, STATE);\n  };\n}\n\nmodule.exports = {\n  set: set,\n  get: get,\n  has: has,\n  enforce: enforce,\n  getterFor: getterFor\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/internal-state.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/is-callable.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/core-js/internals/is-callable.js ***!
+  \*******************************************************/
+/***/ (function(module) {
+
+"use strict";
+eval("\n// https://tc39.es/ecma262/#sec-IsHTMLDDA-internal-slot\nvar documentAll = typeof document == 'object' && document.all;\n\n// `IsCallable` abstract operation\n// https://tc39.es/ecma262/#sec-iscallable\n// eslint-disable-next-line unicorn/no-typeof-undefined -- required for testing\nmodule.exports = typeof documentAll == 'undefined' && documentAll !== undefined ? function (argument) {\n  return typeof argument == 'function' || argument === documentAll;\n} : function (argument) {\n  return typeof argument == 'function';\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/is-callable.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/is-forced.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/core-js/internals/is-forced.js ***!
+  \*****************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar fails = __webpack_require__(/*! ../internals/fails */ \"./node_modules/core-js/internals/fails.js\");\nvar isCallable = __webpack_require__(/*! ../internals/is-callable */ \"./node_modules/core-js/internals/is-callable.js\");\n\nvar replacement = /#|\\.prototype\\./;\n\nvar isForced = function (feature, detection) {\n  var value = data[normalize(feature)];\n  return value === POLYFILL ? true\n    : value === NATIVE ? false\n    : isCallable(detection) ? fails(detection)\n    : !!detection;\n};\n\nvar normalize = isForced.normalize = function (string) {\n  return String(string).replace(replacement, '.').toLowerCase();\n};\n\nvar data = isForced.data = {};\nvar NATIVE = isForced.NATIVE = 'N';\nvar POLYFILL = isForced.POLYFILL = 'P';\n\nmodule.exports = isForced;\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/is-forced.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/is-null-or-undefined.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/core-js/internals/is-null-or-undefined.js ***!
+  \****************************************************************/
+/***/ (function(module) {
+
+"use strict";
+eval("\n// we can't use just `it == null` since of `document.all` special case\n// https://tc39.es/ecma262/#sec-IsHTMLDDA-internal-slot-aec\nmodule.exports = function (it) {\n  return it === null || it === undefined;\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/is-null-or-undefined.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/is-object.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/core-js/internals/is-object.js ***!
+  \*****************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar isCallable = __webpack_require__(/*! ../internals/is-callable */ \"./node_modules/core-js/internals/is-callable.js\");\n\nmodule.exports = function (it) {\n  return typeof it == 'object' ? it !== null : isCallable(it);\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/is-object.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/is-possible-prototype.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/core-js/internals/is-possible-prototype.js ***!
+  \*****************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar isObject = __webpack_require__(/*! ../internals/is-object */ \"./node_modules/core-js/internals/is-object.js\");\n\nmodule.exports = function (argument) {\n  return isObject(argument) || argument === null;\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/is-possible-prototype.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/is-pure.js":
+/*!***************************************************!*\
+  !*** ./node_modules/core-js/internals/is-pure.js ***!
+  \***************************************************/
+/***/ (function(module) {
+
+"use strict";
+eval("\nmodule.exports = false;\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/is-pure.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/is-symbol.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/core-js/internals/is-symbol.js ***!
+  \*****************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar getBuiltIn = __webpack_require__(/*! ../internals/get-built-in */ \"./node_modules/core-js/internals/get-built-in.js\");\nvar isCallable = __webpack_require__(/*! ../internals/is-callable */ \"./node_modules/core-js/internals/is-callable.js\");\nvar isPrototypeOf = __webpack_require__(/*! ../internals/object-is-prototype-of */ \"./node_modules/core-js/internals/object-is-prototype-of.js\");\nvar USE_SYMBOL_AS_UID = __webpack_require__(/*! ../internals/use-symbol-as-uid */ \"./node_modules/core-js/internals/use-symbol-as-uid.js\");\n\nvar $Object = Object;\n\nmodule.exports = USE_SYMBOL_AS_UID ? function (it) {\n  return typeof it == 'symbol';\n} : function (it) {\n  var $Symbol = getBuiltIn('Symbol');\n  return isCallable($Symbol) && isPrototypeOf($Symbol.prototype, $Object(it));\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/is-symbol.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/length-of-array-like.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/core-js/internals/length-of-array-like.js ***!
+  \****************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar toLength = __webpack_require__(/*! ../internals/to-length */ \"./node_modules/core-js/internals/to-length.js\");\n\n// `LengthOfArrayLike` abstract operation\n// https://tc39.es/ecma262/#sec-lengthofarraylike\nmodule.exports = function (obj) {\n  return toLength(obj.length);\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/length-of-array-like.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/make-built-in.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/core-js/internals/make-built-in.js ***!
+  \*********************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this */ \"./node_modules/core-js/internals/function-uncurry-this.js\");\nvar fails = __webpack_require__(/*! ../internals/fails */ \"./node_modules/core-js/internals/fails.js\");\nvar isCallable = __webpack_require__(/*! ../internals/is-callable */ \"./node_modules/core-js/internals/is-callable.js\");\nvar hasOwn = __webpack_require__(/*! ../internals/has-own-property */ \"./node_modules/core-js/internals/has-own-property.js\");\nvar DESCRIPTORS = __webpack_require__(/*! ../internals/descriptors */ \"./node_modules/core-js/internals/descriptors.js\");\nvar CONFIGURABLE_FUNCTION_NAME = (__webpack_require__(/*! ../internals/function-name */ \"./node_modules/core-js/internals/function-name.js\").CONFIGURABLE);\nvar inspectSource = __webpack_require__(/*! ../internals/inspect-source */ \"./node_modules/core-js/internals/inspect-source.js\");\nvar InternalStateModule = __webpack_require__(/*! ../internals/internal-state */ \"./node_modules/core-js/internals/internal-state.js\");\n\nvar enforceInternalState = InternalStateModule.enforce;\nvar getInternalState = InternalStateModule.get;\nvar $String = String;\n// eslint-disable-next-line es/no-object-defineproperty -- safe\nvar defineProperty = Object.defineProperty;\nvar stringSlice = uncurryThis(''.slice);\nvar replace = uncurryThis(''.replace);\nvar join = uncurryThis([].join);\n\nvar CONFIGURABLE_LENGTH = DESCRIPTORS && !fails(function () {\n  return defineProperty(function () { /* empty */ }, 'length', { value: 8 }).length !== 8;\n});\n\nvar TEMPLATE = String(String).split('String');\n\nvar makeBuiltIn = module.exports = function (value, name, options) {\n  if (stringSlice($String(name), 0, 7) === 'Symbol(') {\n    name = '[' + replace($String(name), /^Symbol\\(([^)]*)\\).*$/, '$1') + ']';\n  }\n  if (options && options.getter) name = 'get ' + name;\n  if (options && options.setter) name = 'set ' + name;\n  if (!hasOwn(value, 'name') || (CONFIGURABLE_FUNCTION_NAME && value.name !== name)) {\n    if (DESCRIPTORS) defineProperty(value, 'name', { value: name, configurable: true });\n    else value.name = name;\n  }\n  if (CONFIGURABLE_LENGTH && options && hasOwn(options, 'arity') && value.length !== options.arity) {\n    defineProperty(value, 'length', { value: options.arity });\n  }\n  try {\n    if (options && hasOwn(options, 'constructor') && options.constructor) {\n      if (DESCRIPTORS) defineProperty(value, 'prototype', { writable: false });\n    // in V8 ~ Chrome 53, prototypes of some methods, like `Array.prototype.values`, are non-writable\n    } else if (value.prototype) value.prototype = undefined;\n  } catch (error) { /* empty */ }\n  var state = enforceInternalState(value);\n  if (!hasOwn(state, 'source')) {\n    state.source = join(TEMPLATE, typeof name == 'string' ? name : '');\n  } return value;\n};\n\n// add fake Function#toString for correct work wrapped methods / constructors with methods like LoDash isNative\n// eslint-disable-next-line no-extend-native -- required\nFunction.prototype.toString = makeBuiltIn(function toString() {\n  return isCallable(this) && getInternalState(this).source || inspectSource(this);\n}, 'toString');\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/make-built-in.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/math-trunc.js":
+/*!******************************************************!*\
+  !*** ./node_modules/core-js/internals/math-trunc.js ***!
+  \******************************************************/
+/***/ (function(module) {
+
+"use strict";
+eval("\nvar ceil = Math.ceil;\nvar floor = Math.floor;\n\n// `Math.trunc` method\n// https://tc39.es/ecma262/#sec-math.trunc\n// eslint-disable-next-line es/no-math-trunc -- safe\nmodule.exports = Math.trunc || function trunc(x) {\n  var n = +x;\n  return (n > 0 ? floor : ceil)(n);\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/math-trunc.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/object-define-property.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/core-js/internals/object-define-property.js ***!
+  \******************************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar DESCRIPTORS = __webpack_require__(/*! ../internals/descriptors */ \"./node_modules/core-js/internals/descriptors.js\");\nvar IE8_DOM_DEFINE = __webpack_require__(/*! ../internals/ie8-dom-define */ \"./node_modules/core-js/internals/ie8-dom-define.js\");\nvar V8_PROTOTYPE_DEFINE_BUG = __webpack_require__(/*! ../internals/v8-prototype-define-bug */ \"./node_modules/core-js/internals/v8-prototype-define-bug.js\");\nvar anObject = __webpack_require__(/*! ../internals/an-object */ \"./node_modules/core-js/internals/an-object.js\");\nvar toPropertyKey = __webpack_require__(/*! ../internals/to-property-key */ \"./node_modules/core-js/internals/to-property-key.js\");\n\nvar $TypeError = TypeError;\n// eslint-disable-next-line es/no-object-defineproperty -- safe\nvar $defineProperty = Object.defineProperty;\n// eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe\nvar $getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;\nvar ENUMERABLE = 'enumerable';\nvar CONFIGURABLE = 'configurable';\nvar WRITABLE = 'writable';\n\n// `Object.defineProperty` method\n// https://tc39.es/ecma262/#sec-object.defineproperty\nexports.f = DESCRIPTORS ? V8_PROTOTYPE_DEFINE_BUG ? function defineProperty(O, P, Attributes) {\n  anObject(O);\n  P = toPropertyKey(P);\n  anObject(Attributes);\n  if (typeof O === 'function' && P === 'prototype' && 'value' in Attributes && WRITABLE in Attributes && !Attributes[WRITABLE]) {\n    var current = $getOwnPropertyDescriptor(O, P);\n    if (current && current[WRITABLE]) {\n      O[P] = Attributes.value;\n      Attributes = {\n        configurable: CONFIGURABLE in Attributes ? Attributes[CONFIGURABLE] : current[CONFIGURABLE],\n        enumerable: ENUMERABLE in Attributes ? Attributes[ENUMERABLE] : current[ENUMERABLE],\n        writable: false\n      };\n    }\n  } return $defineProperty(O, P, Attributes);\n} : $defineProperty : function defineProperty(O, P, Attributes) {\n  anObject(O);\n  P = toPropertyKey(P);\n  anObject(Attributes);\n  if (IE8_DOM_DEFINE) try {\n    return $defineProperty(O, P, Attributes);\n  } catch (error) { /* empty */ }\n  if ('get' in Attributes || 'set' in Attributes) throw new $TypeError('Accessors not supported');\n  if ('value' in Attributes) O[P] = Attributes.value;\n  return O;\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/object-define-property.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/object-get-own-property-descriptor.js":
+/*!******************************************************************************!*\
+  !*** ./node_modules/core-js/internals/object-get-own-property-descriptor.js ***!
+  \******************************************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar DESCRIPTORS = __webpack_require__(/*! ../internals/descriptors */ \"./node_modules/core-js/internals/descriptors.js\");\nvar call = __webpack_require__(/*! ../internals/function-call */ \"./node_modules/core-js/internals/function-call.js\");\nvar propertyIsEnumerableModule = __webpack_require__(/*! ../internals/object-property-is-enumerable */ \"./node_modules/core-js/internals/object-property-is-enumerable.js\");\nvar createPropertyDescriptor = __webpack_require__(/*! ../internals/create-property-descriptor */ \"./node_modules/core-js/internals/create-property-descriptor.js\");\nvar toIndexedObject = __webpack_require__(/*! ../internals/to-indexed-object */ \"./node_modules/core-js/internals/to-indexed-object.js\");\nvar toPropertyKey = __webpack_require__(/*! ../internals/to-property-key */ \"./node_modules/core-js/internals/to-property-key.js\");\nvar hasOwn = __webpack_require__(/*! ../internals/has-own-property */ \"./node_modules/core-js/internals/has-own-property.js\");\nvar IE8_DOM_DEFINE = __webpack_require__(/*! ../internals/ie8-dom-define */ \"./node_modules/core-js/internals/ie8-dom-define.js\");\n\n// eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe\nvar $getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;\n\n// `Object.getOwnPropertyDescriptor` method\n// https://tc39.es/ecma262/#sec-object.getownpropertydescriptor\nexports.f = DESCRIPTORS ? $getOwnPropertyDescriptor : function getOwnPropertyDescriptor(O, P) {\n  O = toIndexedObject(O);\n  P = toPropertyKey(P);\n  if (IE8_DOM_DEFINE) try {\n    return $getOwnPropertyDescriptor(O, P);\n  } catch (error) { /* empty */ }\n  if (hasOwn(O, P)) return createPropertyDescriptor(!call(propertyIsEnumerableModule.f, O, P), O[P]);\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/object-get-own-property-descriptor.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/object-get-own-property-names.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/core-js/internals/object-get-own-property-names.js ***!
+  \*************************************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar internalObjectKeys = __webpack_require__(/*! ../internals/object-keys-internal */ \"./node_modules/core-js/internals/object-keys-internal.js\");\nvar enumBugKeys = __webpack_require__(/*! ../internals/enum-bug-keys */ \"./node_modules/core-js/internals/enum-bug-keys.js\");\n\nvar hiddenKeys = enumBugKeys.concat('length', 'prototype');\n\n// `Object.getOwnPropertyNames` method\n// https://tc39.es/ecma262/#sec-object.getownpropertynames\n// eslint-disable-next-line es/no-object-getownpropertynames -- safe\nexports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {\n  return internalObjectKeys(O, hiddenKeys);\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/object-get-own-property-names.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/object-get-own-property-symbols.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/core-js/internals/object-get-own-property-symbols.js ***!
+  \***************************************************************************/
+/***/ (function(__unused_webpack_module, exports) {
+
+"use strict";
+eval("\n// eslint-disable-next-line es/no-object-getownpropertysymbols -- safe\nexports.f = Object.getOwnPropertySymbols;\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/object-get-own-property-symbols.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/object-is-prototype-of.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/core-js/internals/object-is-prototype-of.js ***!
+  \******************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this */ \"./node_modules/core-js/internals/function-uncurry-this.js\");\n\nmodule.exports = uncurryThis({}.isPrototypeOf);\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/object-is-prototype-of.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/object-keys-internal.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/core-js/internals/object-keys-internal.js ***!
+  \****************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this */ \"./node_modules/core-js/internals/function-uncurry-this.js\");\nvar hasOwn = __webpack_require__(/*! ../internals/has-own-property */ \"./node_modules/core-js/internals/has-own-property.js\");\nvar toIndexedObject = __webpack_require__(/*! ../internals/to-indexed-object */ \"./node_modules/core-js/internals/to-indexed-object.js\");\nvar indexOf = (__webpack_require__(/*! ../internals/array-includes */ \"./node_modules/core-js/internals/array-includes.js\").indexOf);\nvar hiddenKeys = __webpack_require__(/*! ../internals/hidden-keys */ \"./node_modules/core-js/internals/hidden-keys.js\");\n\nvar push = uncurryThis([].push);\n\nmodule.exports = function (object, names) {\n  var O = toIndexedObject(object);\n  var i = 0;\n  var result = [];\n  var key;\n  for (key in O) !hasOwn(hiddenKeys, key) && hasOwn(O, key) && push(result, key);\n  // Don't enum bug & hidden keys\n  while (names.length > i) if (hasOwn(O, key = names[i++])) {\n    ~indexOf(result, key) || push(result, key);\n  }\n  return result;\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/object-keys-internal.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/object-property-is-enumerable.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/core-js/internals/object-property-is-enumerable.js ***!
+  \*************************************************************************/
+/***/ (function(__unused_webpack_module, exports) {
+
+"use strict";
+eval("\nvar $propertyIsEnumerable = {}.propertyIsEnumerable;\n// eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe\nvar getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;\n\n// Nashorn ~ JDK8 bug\nvar NASHORN_BUG = getOwnPropertyDescriptor && !$propertyIsEnumerable.call({ 1: 2 }, 1);\n\n// `Object.prototype.propertyIsEnumerable` method implementation\n// https://tc39.es/ecma262/#sec-object.prototype.propertyisenumerable\nexports.f = NASHORN_BUG ? function propertyIsEnumerable(V) {\n  var descriptor = getOwnPropertyDescriptor(this, V);\n  return !!descriptor && descriptor.enumerable;\n} : $propertyIsEnumerable;\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/object-property-is-enumerable.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/object-set-prototype-of.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/core-js/internals/object-set-prototype-of.js ***!
+  \*******************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\n/* eslint-disable no-proto -- safe */\nvar uncurryThisAccessor = __webpack_require__(/*! ../internals/function-uncurry-this-accessor */ \"./node_modules/core-js/internals/function-uncurry-this-accessor.js\");\nvar isObject = __webpack_require__(/*! ../internals/is-object */ \"./node_modules/core-js/internals/is-object.js\");\nvar requireObjectCoercible = __webpack_require__(/*! ../internals/require-object-coercible */ \"./node_modules/core-js/internals/require-object-coercible.js\");\nvar aPossiblePrototype = __webpack_require__(/*! ../internals/a-possible-prototype */ \"./node_modules/core-js/internals/a-possible-prototype.js\");\n\n// `Object.setPrototypeOf` method\n// https://tc39.es/ecma262/#sec-object.setprototypeof\n// Works with __proto__ only. Old v8 can't work with null proto objects.\n// eslint-disable-next-line es/no-object-setprototypeof -- safe\nmodule.exports = Object.setPrototypeOf || ('__proto__' in {} ? function () {\n  var CORRECT_SETTER = false;\n  var test = {};\n  var setter;\n  try {\n    setter = uncurryThisAccessor(Object.prototype, '__proto__', 'set');\n    setter(test, []);\n    CORRECT_SETTER = test instanceof Array;\n  } catch (error) { /* empty */ }\n  return function setPrototypeOf(O, proto) {\n    requireObjectCoercible(O);\n    aPossiblePrototype(proto);\n    if (!isObject(O)) return O;\n    if (CORRECT_SETTER) setter(O, proto);\n    else O.__proto__ = proto;\n    return O;\n  };\n}() : undefined);\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/object-set-prototype-of.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/ordinary-to-primitive.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/core-js/internals/ordinary-to-primitive.js ***!
+  \*****************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar call = __webpack_require__(/*! ../internals/function-call */ \"./node_modules/core-js/internals/function-call.js\");\nvar isCallable = __webpack_require__(/*! ../internals/is-callable */ \"./node_modules/core-js/internals/is-callable.js\");\nvar isObject = __webpack_require__(/*! ../internals/is-object */ \"./node_modules/core-js/internals/is-object.js\");\n\nvar $TypeError = TypeError;\n\n// `OrdinaryToPrimitive` abstract operation\n// https://tc39.es/ecma262/#sec-ordinarytoprimitive\nmodule.exports = function (input, pref) {\n  var fn, val;\n  if (pref === 'string' && isCallable(fn = input.toString) && !isObject(val = call(fn, input))) return val;\n  if (isCallable(fn = input.valueOf) && !isObject(val = call(fn, input))) return val;\n  if (pref !== 'string' && isCallable(fn = input.toString) && !isObject(val = call(fn, input))) return val;\n  throw new $TypeError(\"Can't convert object to primitive value\");\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/ordinary-to-primitive.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/own-keys.js":
+/*!****************************************************!*\
+  !*** ./node_modules/core-js/internals/own-keys.js ***!
+  \****************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar getBuiltIn = __webpack_require__(/*! ../internals/get-built-in */ \"./node_modules/core-js/internals/get-built-in.js\");\nvar uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this */ \"./node_modules/core-js/internals/function-uncurry-this.js\");\nvar getOwnPropertyNamesModule = __webpack_require__(/*! ../internals/object-get-own-property-names */ \"./node_modules/core-js/internals/object-get-own-property-names.js\");\nvar getOwnPropertySymbolsModule = __webpack_require__(/*! ../internals/object-get-own-property-symbols */ \"./node_modules/core-js/internals/object-get-own-property-symbols.js\");\nvar anObject = __webpack_require__(/*! ../internals/an-object */ \"./node_modules/core-js/internals/an-object.js\");\n\nvar concat = uncurryThis([].concat);\n\n// all object keys, includes non-enumerable and symbols\nmodule.exports = getBuiltIn('Reflect', 'ownKeys') || function ownKeys(it) {\n  var keys = getOwnPropertyNamesModule.f(anObject(it));\n  var getOwnPropertySymbols = getOwnPropertySymbolsModule.f;\n  return getOwnPropertySymbols ? concat(keys, getOwnPropertySymbols(it)) : keys;\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/own-keys.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/path.js":
+/*!************************************************!*\
+  !*** ./node_modules/core-js/internals/path.js ***!
+  \************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar global = __webpack_require__(/*! ../internals/global */ \"./node_modules/core-js/internals/global.js\");\n\nmodule.exports = global;\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/path.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/require-object-coercible.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/core-js/internals/require-object-coercible.js ***!
+  \********************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar isNullOrUndefined = __webpack_require__(/*! ../internals/is-null-or-undefined */ \"./node_modules/core-js/internals/is-null-or-undefined.js\");\n\nvar $TypeError = TypeError;\n\n// `RequireObjectCoercible` abstract operation\n// https://tc39.es/ecma262/#sec-requireobjectcoercible\nmodule.exports = function (it) {\n  if (isNullOrUndefined(it)) throw new $TypeError(\"Can't call method on \" + it);\n  return it;\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/require-object-coercible.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/shared-key.js":
+/*!******************************************************!*\
+  !*** ./node_modules/core-js/internals/shared-key.js ***!
+  \******************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar shared = __webpack_require__(/*! ../internals/shared */ \"./node_modules/core-js/internals/shared.js\");\nvar uid = __webpack_require__(/*! ../internals/uid */ \"./node_modules/core-js/internals/uid.js\");\n\nvar keys = shared('keys');\n\nmodule.exports = function (key) {\n  return keys[key] || (keys[key] = uid(key));\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/shared-key.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/shared-store.js":
+/*!********************************************************!*\
+  !*** ./node_modules/core-js/internals/shared-store.js ***!
+  \********************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar IS_PURE = __webpack_require__(/*! ../internals/is-pure */ \"./node_modules/core-js/internals/is-pure.js\");\nvar globalThis = __webpack_require__(/*! ../internals/global */ \"./node_modules/core-js/internals/global.js\");\nvar defineGlobalProperty = __webpack_require__(/*! ../internals/define-global-property */ \"./node_modules/core-js/internals/define-global-property.js\");\n\nvar SHARED = '__core-js_shared__';\nvar store = module.exports = globalThis[SHARED] || defineGlobalProperty(SHARED, {});\n\n(store.versions || (store.versions = [])).push({\n  version: '3.36.1',\n  mode: IS_PURE ? 'pure' : 'global',\n  copyright: '© 2014-2024 Denis Pushkarev (zloirock.ru)',\n  license: 'https://github.com/zloirock/core-js/blob/v3.36.1/LICENSE',\n  source: 'https://github.com/zloirock/core-js'\n});\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/shared-store.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/shared.js":
+/*!**************************************************!*\
+  !*** ./node_modules/core-js/internals/shared.js ***!
+  \**************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar store = __webpack_require__(/*! ../internals/shared-store */ \"./node_modules/core-js/internals/shared-store.js\");\n\nmodule.exports = function (key, value) {\n  return store[key] || (store[key] = value || {});\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/shared.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/string-trim.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/core-js/internals/string-trim.js ***!
+  \*******************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this */ \"./node_modules/core-js/internals/function-uncurry-this.js\");\nvar requireObjectCoercible = __webpack_require__(/*! ../internals/require-object-coercible */ \"./node_modules/core-js/internals/require-object-coercible.js\");\nvar toString = __webpack_require__(/*! ../internals/to-string */ \"./node_modules/core-js/internals/to-string.js\");\nvar whitespaces = __webpack_require__(/*! ../internals/whitespaces */ \"./node_modules/core-js/internals/whitespaces.js\");\n\nvar replace = uncurryThis(''.replace);\nvar ltrim = RegExp('^[' + whitespaces + ']+');\nvar rtrim = RegExp('(^|[^' + whitespaces + '])[' + whitespaces + ']+$');\n\n// `String.prototype.{ trim, trimStart, trimEnd, trimLeft, trimRight }` methods implementation\nvar createMethod = function (TYPE) {\n  return function ($this) {\n    var string = toString(requireObjectCoercible($this));\n    if (TYPE & 1) string = replace(string, ltrim, '');\n    if (TYPE & 2) string = replace(string, rtrim, '$1');\n    return string;\n  };\n};\n\nmodule.exports = {\n  // `String.prototype.{ trimLeft, trimStart }` methods\n  // https://tc39.es/ecma262/#sec-string.prototype.trimstart\n  start: createMethod(1),\n  // `String.prototype.{ trimRight, trimEnd }` methods\n  // https://tc39.es/ecma262/#sec-string.prototype.trimend\n  end: createMethod(2),\n  // `String.prototype.trim` method\n  // https://tc39.es/ecma262/#sec-string.prototype.trim\n  trim: createMethod(3)\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/string-trim.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/symbol-constructor-detection.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/core-js/internals/symbol-constructor-detection.js ***!
+  \************************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\n/* eslint-disable es/no-symbol -- required for testing */\nvar V8_VERSION = __webpack_require__(/*! ../internals/engine-v8-version */ \"./node_modules/core-js/internals/engine-v8-version.js\");\nvar fails = __webpack_require__(/*! ../internals/fails */ \"./node_modules/core-js/internals/fails.js\");\nvar global = __webpack_require__(/*! ../internals/global */ \"./node_modules/core-js/internals/global.js\");\n\nvar $String = global.String;\n\n// eslint-disable-next-line es/no-object-getownpropertysymbols -- required for testing\nmodule.exports = !!Object.getOwnPropertySymbols && !fails(function () {\n  var symbol = Symbol('symbol detection');\n  // Chrome 38 Symbol has incorrect toString conversion\n  // `get-own-property-symbols` polyfill symbols converted to object are not Symbol instances\n  // nb: Do not call `String` directly to avoid this being optimized out to `symbol+''` which will,\n  // of course, fail.\n  return !$String(symbol) || !(Object(symbol) instanceof Symbol) ||\n    // Chrome 38-40 symbols are not inherited from DOM collections prototypes to instances\n    !Symbol.sham && V8_VERSION && V8_VERSION < 41;\n});\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/symbol-constructor-detection.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/this-number-value.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/core-js/internals/this-number-value.js ***!
+  \*************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this */ \"./node_modules/core-js/internals/function-uncurry-this.js\");\n\n// `thisNumberValue` abstract operation\n// https://tc39.es/ecma262/#sec-thisnumbervalue\nmodule.exports = uncurryThis(1.0.valueOf);\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/this-number-value.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/to-absolute-index.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/core-js/internals/to-absolute-index.js ***!
+  \*************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar toIntegerOrInfinity = __webpack_require__(/*! ../internals/to-integer-or-infinity */ \"./node_modules/core-js/internals/to-integer-or-infinity.js\");\n\nvar max = Math.max;\nvar min = Math.min;\n\n// Helper for a popular repeating case of the spec:\n// Let integer be ? ToInteger(index).\n// If integer < 0, let result be max((length + integer), 0); else let result be min(integer, length).\nmodule.exports = function (index, length) {\n  var integer = toIntegerOrInfinity(index);\n  return integer < 0 ? max(integer + length, 0) : min(integer, length);\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/to-absolute-index.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/to-indexed-object.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/core-js/internals/to-indexed-object.js ***!
+  \*************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\n// toObject with fallback for non-array-like ES3 strings\nvar IndexedObject = __webpack_require__(/*! ../internals/indexed-object */ \"./node_modules/core-js/internals/indexed-object.js\");\nvar requireObjectCoercible = __webpack_require__(/*! ../internals/require-object-coercible */ \"./node_modules/core-js/internals/require-object-coercible.js\");\n\nmodule.exports = function (it) {\n  return IndexedObject(requireObjectCoercible(it));\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/to-indexed-object.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/to-integer-or-infinity.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/core-js/internals/to-integer-or-infinity.js ***!
+  \******************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar trunc = __webpack_require__(/*! ../internals/math-trunc */ \"./node_modules/core-js/internals/math-trunc.js\");\n\n// `ToIntegerOrInfinity` abstract operation\n// https://tc39.es/ecma262/#sec-tointegerorinfinity\nmodule.exports = function (argument) {\n  var number = +argument;\n  // eslint-disable-next-line no-self-compare -- NaN check\n  return number !== number || number === 0 ? 0 : trunc(number);\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/to-integer-or-infinity.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/to-length.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/core-js/internals/to-length.js ***!
+  \*****************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar toIntegerOrInfinity = __webpack_require__(/*! ../internals/to-integer-or-infinity */ \"./node_modules/core-js/internals/to-integer-or-infinity.js\");\n\nvar min = Math.min;\n\n// `ToLength` abstract operation\n// https://tc39.es/ecma262/#sec-tolength\nmodule.exports = function (argument) {\n  var len = toIntegerOrInfinity(argument);\n  return len > 0 ? min(len, 0x1FFFFFFFFFFFFF) : 0; // 2 ** 53 - 1 == 9007199254740991\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/to-length.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/to-object.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/core-js/internals/to-object.js ***!
+  \*****************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar requireObjectCoercible = __webpack_require__(/*! ../internals/require-object-coercible */ \"./node_modules/core-js/internals/require-object-coercible.js\");\n\nvar $Object = Object;\n\n// `ToObject` abstract operation\n// https://tc39.es/ecma262/#sec-toobject\nmodule.exports = function (argument) {\n  return $Object(requireObjectCoercible(argument));\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/to-object.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/to-primitive.js":
+/*!********************************************************!*\
+  !*** ./node_modules/core-js/internals/to-primitive.js ***!
+  \********************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar call = __webpack_require__(/*! ../internals/function-call */ \"./node_modules/core-js/internals/function-call.js\");\nvar isObject = __webpack_require__(/*! ../internals/is-object */ \"./node_modules/core-js/internals/is-object.js\");\nvar isSymbol = __webpack_require__(/*! ../internals/is-symbol */ \"./node_modules/core-js/internals/is-symbol.js\");\nvar getMethod = __webpack_require__(/*! ../internals/get-method */ \"./node_modules/core-js/internals/get-method.js\");\nvar ordinaryToPrimitive = __webpack_require__(/*! ../internals/ordinary-to-primitive */ \"./node_modules/core-js/internals/ordinary-to-primitive.js\");\nvar wellKnownSymbol = __webpack_require__(/*! ../internals/well-known-symbol */ \"./node_modules/core-js/internals/well-known-symbol.js\");\n\nvar $TypeError = TypeError;\nvar TO_PRIMITIVE = wellKnownSymbol('toPrimitive');\n\n// `ToPrimitive` abstract operation\n// https://tc39.es/ecma262/#sec-toprimitive\nmodule.exports = function (input, pref) {\n  if (!isObject(input) || isSymbol(input)) return input;\n  var exoticToPrim = getMethod(input, TO_PRIMITIVE);\n  var result;\n  if (exoticToPrim) {\n    if (pref === undefined) pref = 'default';\n    result = call(exoticToPrim, input, pref);\n    if (!isObject(result) || isSymbol(result)) return result;\n    throw new $TypeError(\"Can't convert object to primitive value\");\n  }\n  if (pref === undefined) pref = 'number';\n  return ordinaryToPrimitive(input, pref);\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/to-primitive.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/to-property-key.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/core-js/internals/to-property-key.js ***!
+  \***********************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar toPrimitive = __webpack_require__(/*! ../internals/to-primitive */ \"./node_modules/core-js/internals/to-primitive.js\");\nvar isSymbol = __webpack_require__(/*! ../internals/is-symbol */ \"./node_modules/core-js/internals/is-symbol.js\");\n\n// `ToPropertyKey` abstract operation\n// https://tc39.es/ecma262/#sec-topropertykey\nmodule.exports = function (argument) {\n  var key = toPrimitive(argument, 'string');\n  return isSymbol(key) ? key : key + '';\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/to-property-key.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/to-string-tag-support.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/core-js/internals/to-string-tag-support.js ***!
+  \*****************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar wellKnownSymbol = __webpack_require__(/*! ../internals/well-known-symbol */ \"./node_modules/core-js/internals/well-known-symbol.js\");\n\nvar TO_STRING_TAG = wellKnownSymbol('toStringTag');\nvar test = {};\n\ntest[TO_STRING_TAG] = 'z';\n\nmodule.exports = String(test) === '[object z]';\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/to-string-tag-support.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/to-string.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/core-js/internals/to-string.js ***!
+  \*****************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar classof = __webpack_require__(/*! ../internals/classof */ \"./node_modules/core-js/internals/classof.js\");\n\nvar $String = String;\n\nmodule.exports = function (argument) {\n  if (classof(argument) === 'Symbol') throw new TypeError('Cannot convert a Symbol value to a string');\n  return $String(argument);\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/to-string.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/try-to-string.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/core-js/internals/try-to-string.js ***!
+  \*********************************************************/
+/***/ (function(module) {
+
+"use strict";
+eval("\nvar $String = String;\n\nmodule.exports = function (argument) {\n  try {\n    return $String(argument);\n  } catch (error) {\n    return 'Object';\n  }\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/try-to-string.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/uid.js":
+/*!***********************************************!*\
+  !*** ./node_modules/core-js/internals/uid.js ***!
+  \***********************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this */ \"./node_modules/core-js/internals/function-uncurry-this.js\");\n\nvar id = 0;\nvar postfix = Math.random();\nvar toString = uncurryThis(1.0.toString);\n\nmodule.exports = function (key) {\n  return 'Symbol(' + (key === undefined ? '' : key) + ')_' + toString(++id + postfix, 36);\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/uid.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/use-symbol-as-uid.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/core-js/internals/use-symbol-as-uid.js ***!
+  \*************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\n/* eslint-disable es/no-symbol -- required for testing */\nvar NATIVE_SYMBOL = __webpack_require__(/*! ../internals/symbol-constructor-detection */ \"./node_modules/core-js/internals/symbol-constructor-detection.js\");\n\nmodule.exports = NATIVE_SYMBOL\n  && !Symbol.sham\n  && typeof Symbol.iterator == 'symbol';\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/use-symbol-as-uid.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/v8-prototype-define-bug.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/core-js/internals/v8-prototype-define-bug.js ***!
+  \*******************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar DESCRIPTORS = __webpack_require__(/*! ../internals/descriptors */ \"./node_modules/core-js/internals/descriptors.js\");\nvar fails = __webpack_require__(/*! ../internals/fails */ \"./node_modules/core-js/internals/fails.js\");\n\n// V8 ~ Chrome 36-\n// https://bugs.chromium.org/p/v8/issues/detail?id=3334\nmodule.exports = DESCRIPTORS && fails(function () {\n  // eslint-disable-next-line es/no-object-defineproperty -- required for testing\n  return Object.defineProperty(function () { /* empty */ }, 'prototype', {\n    value: 42,\n    writable: false\n  }).prototype !== 42;\n});\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/v8-prototype-define-bug.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/weak-map-basic-detection.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/core-js/internals/weak-map-basic-detection.js ***!
+  \********************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar global = __webpack_require__(/*! ../internals/global */ \"./node_modules/core-js/internals/global.js\");\nvar isCallable = __webpack_require__(/*! ../internals/is-callable */ \"./node_modules/core-js/internals/is-callable.js\");\n\nvar WeakMap = global.WeakMap;\n\nmodule.exports = isCallable(WeakMap) && /native code/.test(String(WeakMap));\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/weak-map-basic-detection.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/well-known-symbol.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/core-js/internals/well-known-symbol.js ***!
+  \*************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar global = __webpack_require__(/*! ../internals/global */ \"./node_modules/core-js/internals/global.js\");\nvar shared = __webpack_require__(/*! ../internals/shared */ \"./node_modules/core-js/internals/shared.js\");\nvar hasOwn = __webpack_require__(/*! ../internals/has-own-property */ \"./node_modules/core-js/internals/has-own-property.js\");\nvar uid = __webpack_require__(/*! ../internals/uid */ \"./node_modules/core-js/internals/uid.js\");\nvar NATIVE_SYMBOL = __webpack_require__(/*! ../internals/symbol-constructor-detection */ \"./node_modules/core-js/internals/symbol-constructor-detection.js\");\nvar USE_SYMBOL_AS_UID = __webpack_require__(/*! ../internals/use-symbol-as-uid */ \"./node_modules/core-js/internals/use-symbol-as-uid.js\");\n\nvar Symbol = global.Symbol;\nvar WellKnownSymbolsStore = shared('wks');\nvar createWellKnownSymbol = USE_SYMBOL_AS_UID ? Symbol['for'] || Symbol : Symbol && Symbol.withoutSetter || uid;\n\nmodule.exports = function (name) {\n  if (!hasOwn(WellKnownSymbolsStore, name)) {\n    WellKnownSymbolsStore[name] = NATIVE_SYMBOL && hasOwn(Symbol, name)\n      ? Symbol[name]\n      : createWellKnownSymbol('Symbol.' + name);\n  } return WellKnownSymbolsStore[name];\n};\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/well-known-symbol.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/whitespaces.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/core-js/internals/whitespaces.js ***!
+  \*******************************************************/
+/***/ (function(module) {
+
+"use strict";
+eval("\n// a string of all valid unicode whitespaces\nmodule.exports = '\\u0009\\u000A\\u000B\\u000C\\u000D\\u0020\\u00A0\\u1680\\u2000\\u2001\\u2002' +\n  '\\u2003\\u2004\\u2005\\u2006\\u2007\\u2008\\u2009\\u200A\\u202F\\u205F\\u3000\\u2028\\u2029\\uFEFF';\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/internals/whitespaces.js?");
+
+/***/ }),
+
+/***/ "./node_modules/core-js/modules/es.number.constructor.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/core-js/modules/es.number.constructor.js ***!
+  \***************************************************************/
+/***/ (function(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar $ = __webpack_require__(/*! ../internals/export */ \"./node_modules/core-js/internals/export.js\");\nvar IS_PURE = __webpack_require__(/*! ../internals/is-pure */ \"./node_modules/core-js/internals/is-pure.js\");\nvar DESCRIPTORS = __webpack_require__(/*! ../internals/descriptors */ \"./node_modules/core-js/internals/descriptors.js\");\nvar global = __webpack_require__(/*! ../internals/global */ \"./node_modules/core-js/internals/global.js\");\nvar path = __webpack_require__(/*! ../internals/path */ \"./node_modules/core-js/internals/path.js\");\nvar uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this */ \"./node_modules/core-js/internals/function-uncurry-this.js\");\nvar isForced = __webpack_require__(/*! ../internals/is-forced */ \"./node_modules/core-js/internals/is-forced.js\");\nvar hasOwn = __webpack_require__(/*! ../internals/has-own-property */ \"./node_modules/core-js/internals/has-own-property.js\");\nvar inheritIfRequired = __webpack_require__(/*! ../internals/inherit-if-required */ \"./node_modules/core-js/internals/inherit-if-required.js\");\nvar isPrototypeOf = __webpack_require__(/*! ../internals/object-is-prototype-of */ \"./node_modules/core-js/internals/object-is-prototype-of.js\");\nvar isSymbol = __webpack_require__(/*! ../internals/is-symbol */ \"./node_modules/core-js/internals/is-symbol.js\");\nvar toPrimitive = __webpack_require__(/*! ../internals/to-primitive */ \"./node_modules/core-js/internals/to-primitive.js\");\nvar fails = __webpack_require__(/*! ../internals/fails */ \"./node_modules/core-js/internals/fails.js\");\nvar getOwnPropertyNames = (__webpack_require__(/*! ../internals/object-get-own-property-names */ \"./node_modules/core-js/internals/object-get-own-property-names.js\").f);\nvar getOwnPropertyDescriptor = (__webpack_require__(/*! ../internals/object-get-own-property-descriptor */ \"./node_modules/core-js/internals/object-get-own-property-descriptor.js\").f);\nvar defineProperty = (__webpack_require__(/*! ../internals/object-define-property */ \"./node_modules/core-js/internals/object-define-property.js\").f);\nvar thisNumberValue = __webpack_require__(/*! ../internals/this-number-value */ \"./node_modules/core-js/internals/this-number-value.js\");\nvar trim = (__webpack_require__(/*! ../internals/string-trim */ \"./node_modules/core-js/internals/string-trim.js\").trim);\n\nvar NUMBER = 'Number';\nvar NativeNumber = global[NUMBER];\nvar PureNumberNamespace = path[NUMBER];\nvar NumberPrototype = NativeNumber.prototype;\nvar TypeError = global.TypeError;\nvar stringSlice = uncurryThis(''.slice);\nvar charCodeAt = uncurryThis(''.charCodeAt);\n\n// `ToNumeric` abstract operation\n// https://tc39.es/ecma262/#sec-tonumeric\nvar toNumeric = function (value) {\n  var primValue = toPrimitive(value, 'number');\n  return typeof primValue == 'bigint' ? primValue : toNumber(primValue);\n};\n\n// `ToNumber` abstract operation\n// https://tc39.es/ecma262/#sec-tonumber\nvar toNumber = function (argument) {\n  var it = toPrimitive(argument, 'number');\n  var first, third, radix, maxCode, digits, length, index, code;\n  if (isSymbol(it)) throw new TypeError('Cannot convert a Symbol value to a number');\n  if (typeof it == 'string' && it.length > 2) {\n    it = trim(it);\n    first = charCodeAt(it, 0);\n    if (first === 43 || first === 45) {\n      third = charCodeAt(it, 2);\n      if (third === 88 || third === 120) return NaN; // Number('+0x1') should be NaN, old V8 fix\n    } else if (first === 48) {\n      switch (charCodeAt(it, 1)) {\n        // fast equal of /^0b[01]+$/i\n        case 66:\n        case 98:\n          radix = 2;\n          maxCode = 49;\n          break;\n        // fast equal of /^0o[0-7]+$/i\n        case 79:\n        case 111:\n          radix = 8;\n          maxCode = 55;\n          break;\n        default:\n          return +it;\n      }\n      digits = stringSlice(it, 2);\n      length = digits.length;\n      for (index = 0; index < length; index++) {\n        code = charCodeAt(digits, index);\n        // parseInt parses a string to a first unavailable symbol\n        // but ToNumber should return NaN if a string contains unavailable symbols\n        if (code < 48 || code > maxCode) return NaN;\n      } return parseInt(digits, radix);\n    }\n  } return +it;\n};\n\nvar FORCED = isForced(NUMBER, !NativeNumber(' 0o1') || !NativeNumber('0b1') || NativeNumber('+0x1'));\n\nvar calledWithNew = function (dummy) {\n  // includes check on 1..constructor(foo) case\n  return isPrototypeOf(NumberPrototype, dummy) && fails(function () { thisNumberValue(dummy); });\n};\n\n// `Number` constructor\n// https://tc39.es/ecma262/#sec-number-constructor\nvar NumberWrapper = function Number(value) {\n  var n = arguments.length < 1 ? 0 : NativeNumber(toNumeric(value));\n  return calledWithNew(this) ? inheritIfRequired(Object(n), this, NumberWrapper) : n;\n};\n\nNumberWrapper.prototype = NumberPrototype;\nif (FORCED && !IS_PURE) NumberPrototype.constructor = NumberWrapper;\n\n$({ global: true, constructor: true, wrap: true, forced: FORCED }, {\n  Number: NumberWrapper\n});\n\n// Use `internal/copy-constructor-properties` helper in `core-js@4`\nvar copyConstructorProperties = function (target, source) {\n  for (var keys = DESCRIPTORS ? getOwnPropertyNames(source) : (\n    // ES3:\n    'MAX_VALUE,MIN_VALUE,NaN,NEGATIVE_INFINITY,POSITIVE_INFINITY,' +\n    // ES2015 (in case, if modules with ES2015 Number statics required before):\n    'EPSILON,MAX_SAFE_INTEGER,MIN_SAFE_INTEGER,isFinite,isInteger,isNaN,isSafeInteger,parseFloat,parseInt,' +\n    // ESNext\n    'fromString,range'\n  ).split(','), j = 0, key; keys.length > j; j++) {\n    if (hasOwn(source, key = keys[j]) && !hasOwn(target, key)) {\n      defineProperty(target, key, getOwnPropertyDescriptor(source, key));\n    }\n  }\n};\n\nif (IS_PURE && PureNumberNamespace) copyConstructorProperties(path[NUMBER], PureNumberNamespace);\nif (FORCED || IS_PURE) copyConstructorProperties(path[NUMBER], NativeNumber);\n\n\n//# sourceURL=webpack://vue-swipe-actions/./node_modules/core-js/modules/es.number.constructor.js?");
 
 /***/ })
 
-/******/ });
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			id: moduleId,
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	!function() {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = function(module) {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				function() { return module['default']; } :
+/******/ 				function() { return module; };
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	!function() {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = function(exports, definition) {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/global */
+/******/ 	!function() {
+/******/ 		__webpack_require__.g = (function() {
+/******/ 			if (typeof globalThis === 'object') return globalThis;
+/******/ 			try {
+/******/ 				return this || new Function('return this')();
+/******/ 			} catch (e) {
+/******/ 				if (typeof window === 'object') return window;
+/******/ 			}
+/******/ 		})();
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	!function() {
+/******/ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	!function() {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = function(exports) {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/publicPath */
+/******/ 	!function() {
+/******/ 		__webpack_require__.p = "";
+/******/ 	}();
+/******/ 	
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module can't be inlined because the eval devtool is used.
+/******/ 	var __webpack_exports__ = __webpack_require__("./node_modules/@vue/cli-service/lib/commands/build/entry-lib-no-default.js");
+/******/ 	
+/******/ 	return __webpack_exports__;
+/******/ })()
+;
 });
-//# sourceMappingURL=vue-swipe-actions.umd.js.map
