@@ -59,6 +59,10 @@ export default {
       type: Object,
       default: null
     },
+    mode: {
+      type: String,
+      default: "translate"
+    },
     threshold: {
       type: Number,
       default: 45
@@ -90,8 +94,23 @@ export default {
       setTimeout(() => {
         window.requestAnimationFrame(() => {
           content.style.transform = translateX(0, 0, 0);
-          right.children[0].style.transform = translateX(0, 0, 0);
-          left.children[0].style.transform = translateX(0, 0, 0);
+
+          if (this.mode === "width") {
+            if (this.hasRight) {
+              right.style.visibility = "hidden";
+              right.style.opacity = "0";
+              right.children[0].style.width = "0px";
+            }
+
+            if (this.hasLeft) {
+              left.style.visibility = "hidden";
+              left.style.opacity = "0";
+              left.children[0].style.width = "0px";
+            }
+          } else {
+            right.children[0].style.transform = translateX(0, 0, 0);
+            left.children[0].style.transform = translateX(0, 0, 0);
+          }
 
           this.closing = false;
         });
@@ -129,6 +148,19 @@ export default {
       this.gesture.on("panstart", this._startListener);
       this.gesture.on("panmove", this._swipeListener);
       this.gesture.on("panend", this._stopListener);
+
+      if (this.mode === "width") {
+        if (this.hasRight) {
+          this.$refs.right.style.transform = "none";
+          this.$refs.right.style.visibility = "hidden";
+          this.$refs.right.style.opacity = "0";
+        }
+        if (this.hasLeft) {
+          this.$refs.left.style.transform = "none";
+          this.$refs.left.style.visibility = "hidden";
+          this.$refs.left.style.opacity = "0";
+        }
+      }
     },
     _distanceSwiped() {
       const contentRect = this.$refs.content.getBoundingClientRect();
@@ -138,7 +170,7 @@ export default {
     _startListener(event) {
       // If it's not a left click
       if (event.which !== 1) return null;
-      
+
       if (this.disabled || this.closing) return null;
 
       this.isTransitioning = false;
@@ -272,10 +304,26 @@ export default {
 
       const children = actions.children;
       const length = children.length;
+
+      if (this.mode === "width") {
+        if (deltaX) {
+          actions.style.visibility = "visible";
+          actions.style.opacity = "1";
+        } else {
+          actions.style.visibility = "hidden";
+          actions.style.opacity = "0";
+        }
+      }
+
       for (let i = 0; i < length; i++) {
         const child = children[i];
         const offsetLeft = actionsWidth - child.offsetLeft - child.offsetWidth;
-        child.style.transform = translateX(deltaX + offsetLeft * progress);
+
+        if (this.mode === "width") {
+          child.style.width = newX + "px";
+        } else {
+          child.style.transform = translateX(deltaX + offsetLeft * progress);
+        }
 
         if (length > 1) child.style.zIndex = `${length - i}`;
       }
@@ -292,11 +340,26 @@ export default {
       const deltaX = Math.max(newX, -actionsWidth);
       const children = actions.children;
 
+      if (this.mode === "width") {
+        if (deltaX) {
+          actions.style.visibility = "visible";
+          actions.style.opacity = "1";
+        } else {
+          actions.style.visibility = "hidden";
+          actions.style.opacity = "0";
+        }
+      }
+
       for (let i = 0; i < children.length; i++) {
         const child = children[i];
-        child.style.transform = translateX(
-          deltaX - child.offsetLeft * progress
-        );
+
+        if (this.mode === "width") {
+          child.style.width = newX + "px";
+        } else {
+          child.style.transform = translateX(
+            deltaX - child.offsetLeft * progress
+          );
+        }
       }
     },
 
