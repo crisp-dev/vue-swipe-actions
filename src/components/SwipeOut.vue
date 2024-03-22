@@ -154,11 +154,13 @@ export default {
           this.$refs.right.style.transform = "none";
           this.$refs.right.style.visibility = "hidden";
           this.$refs.right.style.opacity = "0";
+          this.$refs.right.style.justifyContent = "end";
         }
         if (this.hasLeft) {
           this.$refs.left.style.transform = "none";
           this.$refs.left.style.visibility = "hidden";
           this.$refs.left.style.opacity = "0";
+          this.$refs.left.style.justifyContent = "start";
         }
       }
     },
@@ -354,7 +356,7 @@ export default {
         const child = children[i];
 
         if (this.mode === "width") {
-          child.style.width = newX + "px";
+          child.style.width = -newX + "px";
         } else {
           child.style.transform = translateX(
             deltaX - child.offsetLeft * progress
