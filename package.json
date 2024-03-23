@@ -31,7 +31,7 @@
     "url": "https://github.com/eCollect/vue-swipe-actions"
   },
   "dependencies": {
-    "tinygesture": "1.1.4"
+    "tinygesture": "3.0.0"
   },
   "main": "./dist/vue-swipe-actions.common.js",
   "devDependencies": {
