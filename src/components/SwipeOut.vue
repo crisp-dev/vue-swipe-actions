@@ -59,6 +59,10 @@ export default {
       type: Object,
       default: null
     },
+    margin: {
+      type: Number,
+      default: 0
+    },
     mode: {
       type: String,
       default: "translate"
@@ -322,7 +326,15 @@ export default {
         const offsetLeft = actionsWidth - child.offsetLeft - child.offsetWidth;
 
         if (this.mode === "width") {
-          child.style.width = newX + "px";
+          if (this.margin) {
+            if (newX - this.margin >= 0) {
+              child.style.width = newX - this.margin + "px";
+            } else {
+              child.style.width = "0px";
+            }
+          } else {
+            child.style.width = newX + "px";
+          }
         } else {
           child.style.transform = translateX(deltaX + offsetLeft * progress);
         }
@@ -356,7 +368,15 @@ export default {
         const child = children[i];
 
         if (this.mode === "width") {
-          child.style.width = -newX + "px";
+          if (this.margin) {
+            if (-newX - this.margin >= 0) {
+              child.style.width = -newX - this.margin + "px";
+            } else {
+              child.style.width = "0px";
+            }
+          } else {
+            child.style.width = -newX + "px";
+          }
         } else {
           child.style.transform = translateX(
             deltaX - child.offsetLeft * progress
