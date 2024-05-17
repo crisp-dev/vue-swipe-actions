@@ -316,8 +316,11 @@ export default {
           actions.style.visibility = "visible";
           actions.style.opacity = "1";
         } else {
-          actions.style.visibility = "hidden";
-          actions.style.opacity = "0";
+          // Hide after a delay, in case there is a transition delay via CSS
+          setTimeout(() => {
+            actions.style.visibility = "hidden";
+            actions.style.opacity = "0";
+          }, 500);
         }
       }
 
@@ -359,8 +362,11 @@ export default {
           actions.style.visibility = "visible";
           actions.style.opacity = "1";
         } else {
-          actions.style.visibility = "hidden";
-          actions.style.opacity = "0";
+          // Hide after a delay, in case there is a transition delay via CSS
+          setTimeout(() => {
+            actions.style.visibility = "hidden";
+            actions.style.opacity = "0";
+          }, 500);
         }
       }
 
