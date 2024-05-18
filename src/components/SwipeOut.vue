@@ -321,13 +321,20 @@ export default {
           actions.style.visibility = "visible";
           actions.style.opacity = "1";
         } else {
-          // Hide after a delay, in case there is a transition via CSS
-          this.hideLeftActionsScheduler = setTimeout(() => {
-            this.hideLeftActionsScheduler = null;
+          // Closing action?
+          if (newX === 0) {
+            // Hide after a delay, in case there is a transition via CSS
+            this.hideLeftActionsScheduler = setTimeout(() => {
+              this.hideLeftActionsScheduler = null;
 
+              actions.style.visibility = "hidden";
+              actions.style.opacity = "0";
+            }, 500);
+          } else {
+            // Hide now
             actions.style.visibility = "hidden";
             actions.style.opacity = "0";
-          }, 500);
+          }
         }
       }
 
@@ -371,13 +378,20 @@ export default {
           actions.style.visibility = "visible";
           actions.style.opacity = "1";
         } else {
-          // Hide after a delay, in case there is a transition via CSS
-          this.hideRightActionsScheduler = setTimeout(() => {
-            this.hideRightActionsScheduler = null;
+          // Closing action?
+          if (newX === 0) {
+            // Hide after a delay, in case there is a transition via CSS
+            this.hideRightActionsScheduler = setTimeout(() => {
+              this.hideRightActionsScheduler = null;
 
+              actions.style.visibility = "hidden";
+              actions.style.opacity = "0";
+            }, 500);
+          } else {
+            // Hide now
             actions.style.visibility = "hidden";
             actions.style.opacity = "0";
-          }, 500);
+          }
         }
       }
 
