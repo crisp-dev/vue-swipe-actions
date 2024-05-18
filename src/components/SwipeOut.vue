@@ -43,7 +43,10 @@ export default {
       leftReached: false,
       rightReached: false,
       leftActionsWidth: 0,
-      rightActionsWidth: 0
+      rightActionsWidth: 0,
+
+      hideLeftActionsScheduler: null,
+      hideRightActionsScheduler: null
     };
   },
   computed: {
@@ -313,11 +316,15 @@ export default {
 
       if (this.mode === "width") {
         if (deltaX) {
+          clearTimeout(this.hideLeftActionsScheduler);
+
           actions.style.visibility = "visible";
           actions.style.opacity = "1";
         } else {
-          // Hide after a delay, in case there is a transition delay via CSS
-          setTimeout(() => {
+          // Hide after a delay, in case there is a transition via CSS
+          this.hideLeftActionsScheduler = setTimeout(() => {
+            this.hideLeftActionsScheduler = null;
+
             actions.style.visibility = "hidden";
             actions.style.opacity = "0";
           }, 500);
@@ -359,11 +366,15 @@ export default {
 
       if (this.mode === "width") {
         if (deltaX) {
+          clearTimeout(this.hideRightActionsScheduler);
+
           actions.style.visibility = "visible";
           actions.style.opacity = "1";
         } else {
-          // Hide after a delay, in case there is a transition delay via CSS
-          setTimeout(() => {
+          // Hide after a delay, in case there is a transition via CSS
+          this.hideRightActionsScheduler = setTimeout(() => {
+            this.hideRightActionsScheduler = null;
+
             actions.style.visibility = "hidden";
             actions.style.opacity = "0";
           }, 500);
