@@ -49,7 +49,7 @@
     "vue": "3.4.21"
   },
   "peerDependencies": {
-    "vue": ">= 3.4.x"
+    "vue": ">= 3.2.x"
   },
   "babel": {
     "presets": [
