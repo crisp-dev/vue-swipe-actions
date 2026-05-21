@@ -26,8 +26,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 		__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 		(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-  } else // removed by dead control flow
-{}
+  } else {}
 }(typeof self !== 'undefined' ? self : this, function () {
   function getCurrentScript () {
     var descriptor = Object.getOwnPropertyDescriptor(document, 'currentScript')
@@ -223,7 +222,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 2195:
+/***/ 4576:
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -247,7 +246,7 @@ module.exports = function (it) {
 
 var TO_STRING_TAG_SUPPORT = __webpack_require__(2140);
 var isCallable = __webpack_require__(4901);
-var classofRaw = __webpack_require__(2195);
+var classofRaw = __webpack_require__(4576);
 var wellKnownSymbol = __webpack_require__(8227);
 
 var TO_STRING_TAG = wellKnownSymbol('toStringTag');
@@ -380,16 +379,16 @@ module.exports = function (O, key, value, options) {
 
 "use strict";
 
-var globalThis = __webpack_require__(4576);
+var global = __webpack_require__(4475);
 
 // eslint-disable-next-line es/no-object-defineproperty -- safe
 var defineProperty = Object.defineProperty;
 
 module.exports = function (key, value) {
   try {
-    defineProperty(globalThis, key, { value: value, configurable: true, writable: true });
+    defineProperty(global, key, { value: value, configurable: true, writable: true });
   } catch (error) {
-    globalThis[key] = value;
+    global[key] = value;
   } return value;
 };
 
@@ -417,10 +416,10 @@ module.exports = !fails(function () {
 
 "use strict";
 
-var globalThis = __webpack_require__(4576);
+var global = __webpack_require__(4475);
 var isObject = __webpack_require__(34);
 
-var document = globalThis.document;
+var document = global.document;
 // typeof document.createElement is 'object' in old IE
 var EXISTS = isObject(document) && isObject(document.createElement);
 
@@ -431,50 +430,26 @@ module.exports = function (it) {
 
 /***/ }),
 
-/***/ 8727:
+/***/ 9392:
 /***/ (function(module) {
 
 "use strict";
 
-// IE8- don't enum bug keys
-module.exports = [
-  'constructor',
-  'hasOwnProperty',
-  'isPrototypeOf',
-  'propertyIsEnumerable',
-  'toLocaleString',
-  'toString',
-  'valueOf'
-];
+module.exports = typeof navigator != 'undefined' && String(navigator.userAgent) || '';
 
 
 /***/ }),
 
-/***/ 2839:
+/***/ 7388:
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
 
-var globalThis = __webpack_require__(4576);
+var global = __webpack_require__(4475);
+var userAgent = __webpack_require__(9392);
 
-var navigator = globalThis.navigator;
-var userAgent = navigator && navigator.userAgent;
-
-module.exports = userAgent ? String(userAgent) : '';
-
-
-/***/ }),
-
-/***/ 9519:
-/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
-
-"use strict";
-
-var globalThis = __webpack_require__(4576);
-var userAgent = __webpack_require__(2839);
-
-var process = globalThis.process;
-var Deno = globalThis.Deno;
+var process = global.process;
+var Deno = global.Deno;
 var versions = process && process.versions || Deno && Deno.version;
 var v8 = versions && versions.v8;
 var match, version;
@@ -501,12 +476,31 @@ module.exports = version;
 
 /***/ }),
 
+/***/ 8727:
+/***/ (function(module) {
+
+"use strict";
+
+// IE8- don't enum bug keys
+module.exports = [
+  'constructor',
+  'hasOwnProperty',
+  'isPrototypeOf',
+  'propertyIsEnumerable',
+  'toLocaleString',
+  'toString',
+  'valueOf'
+];
+
+
+/***/ }),
+
 /***/ 6518:
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
 
-var globalThis = __webpack_require__(4576);
+var global = __webpack_require__(4475);
 var getOwnPropertyDescriptor = (__webpack_require__(7347).f);
 var createNonEnumerableProperty = __webpack_require__(6699);
 var defineBuiltIn = __webpack_require__(6840);
@@ -535,11 +529,11 @@ module.exports = function (options, source) {
   var STATIC = options.stat;
   var FORCED, target, key, targetProperty, sourceProperty, descriptor;
   if (GLOBAL) {
-    target = globalThis;
+    target = global;
   } else if (STATIC) {
-    target = globalThis[TARGET] || defineGlobalProperty(TARGET, {});
+    target = global[TARGET] || defineGlobalProperty(TARGET, {});
   } else {
-    target = globalThis[TARGET] && globalThis[TARGET].prototype;
+    target = global[TARGET] && global[TARGET].prototype;
   }
   if (target) for (key in source) {
     sourceProperty = source[key];
@@ -605,7 +599,7 @@ module.exports = !fails(function () {
 var NATIVE_BIND = __webpack_require__(616);
 
 var call = Function.prototype.call;
-// eslint-disable-next-line es/no-function-prototype-bind -- safe
+
 module.exports = NATIVE_BIND ? call.bind(call) : function () {
   return call.apply(call, arguments);
 };
@@ -666,7 +660,6 @@ var NATIVE_BIND = __webpack_require__(616);
 
 var FunctionPrototype = Function.prototype;
 var call = FunctionPrototype.call;
-// eslint-disable-next-line es/no-function-prototype-bind -- safe
 var uncurryThisWithBind = NATIVE_BIND && FunctionPrototype.bind.bind(call, call);
 
 module.exports = NATIVE_BIND ? uncurryThisWithBind : function (fn) {
@@ -683,7 +676,7 @@ module.exports = NATIVE_BIND ? uncurryThisWithBind : function (fn) {
 
 "use strict";
 
-var globalThis = __webpack_require__(4576);
+var global = __webpack_require__(4475);
 var isCallable = __webpack_require__(4901);
 
 var aFunction = function (argument) {
@@ -691,7 +684,7 @@ var aFunction = function (argument) {
 };
 
 module.exports = function (namespace, method) {
-  return arguments.length < 2 ? aFunction(globalThis[namespace]) : globalThis[namespace] && globalThis[namespace][method];
+  return arguments.length < 2 ? aFunction(global[namespace]) : global[namespace] && global[namespace][method];
 };
 
 
@@ -715,7 +708,7 @@ module.exports = function (V, P) {
 
 /***/ }),
 
-/***/ 4576:
+/***/ 4475:
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -796,7 +789,7 @@ module.exports = !DESCRIPTORS && !fails(function () {
 
 var uncurryThis = __webpack_require__(9504);
 var fails = __webpack_require__(9039);
-var classof = __webpack_require__(2195);
+var classof = __webpack_require__(4576);
 
 var $Object = Object;
 var split = uncurryThis(''.split);
@@ -869,7 +862,7 @@ module.exports = store.inspectSource;
 "use strict";
 
 var NATIVE_WEAK_MAP = __webpack_require__(8622);
-var globalThis = __webpack_require__(4576);
+var global = __webpack_require__(4475);
 var isObject = __webpack_require__(34);
 var createNonEnumerableProperty = __webpack_require__(6699);
 var hasOwn = __webpack_require__(9297);
@@ -878,8 +871,8 @@ var sharedKey = __webpack_require__(6119);
 var hiddenKeys = __webpack_require__(421);
 
 var OBJECT_ALREADY_INITIALIZED = 'Object already initialized';
-var TypeError = globalThis.TypeError;
-var WeakMap = globalThis.WeakMap;
+var TypeError = global.TypeError;
+var WeakMap = global.WeakMap;
 var set, get, has;
 
 var enforce = function (it) {
@@ -1431,9 +1424,9 @@ module.exports = getBuiltIn('Reflect', 'ownKeys') || function ownKeys(it) {
 
 "use strict";
 
-var globalThis = __webpack_require__(4576);
+var global = __webpack_require__(4475);
 
-module.exports = globalThis;
+module.exports = global;
 
 
 /***/ }),
@@ -1480,17 +1473,17 @@ module.exports = function (key) {
 "use strict";
 
 var IS_PURE = __webpack_require__(6395);
-var globalThis = __webpack_require__(4576);
+var globalThis = __webpack_require__(4475);
 var defineGlobalProperty = __webpack_require__(9433);
 
 var SHARED = '__core-js_shared__';
 var store = module.exports = globalThis[SHARED] || defineGlobalProperty(SHARED, {});
 
 (store.versions || (store.versions = [])).push({
-  version: '3.48.0',
+  version: '3.37.1',
   mode: IS_PURE ? 'pure' : 'global',
-  copyright: '© 2013–2025 Denis Pushkarev (zloirock.ru), 2025–2026 CoreJS Company (core-js.io). All rights reserved.',
-  license: 'https://github.com/zloirock/core-js/blob/v3.48.0/LICENSE',
+  copyright: '© 2014-2024 Denis Pushkarev (zloirock.ru)',
+  license: 'https://github.com/zloirock/core-js/blob/v3.37.1/LICENSE',
   source: 'https://github.com/zloirock/core-js'
 });
 
@@ -1556,11 +1549,11 @@ module.exports = {
 "use strict";
 
 /* eslint-disable es/no-symbol -- required for testing */
-var V8_VERSION = __webpack_require__(9519);
+var V8_VERSION = __webpack_require__(7388);
 var fails = __webpack_require__(9039);
-var globalThis = __webpack_require__(4576);
+var global = __webpack_require__(4475);
 
-var $String = globalThis.String;
+var $String = global.String;
 
 // eslint-disable-next-line es/no-object-getownpropertysymbols -- required for testing
 module.exports = !!Object.getOwnPropertySymbols && !fails(function () {
@@ -1586,7 +1579,7 @@ var uncurryThis = __webpack_require__(9504);
 
 // `thisNumberValue` abstract operation
 // https://tc39.es/ecma262/#sec-thisnumbervalue
-module.exports = uncurryThis(1.1.valueOf);
+module.exports = uncurryThis(1.0.valueOf);
 
 
 /***/ }),
@@ -1744,7 +1737,7 @@ var wellKnownSymbol = __webpack_require__(8227);
 
 var TO_STRING_TAG = wellKnownSymbol('toStringTag');
 var test = {};
-// eslint-disable-next-line unicorn/no-immediate-mutation -- ES3 syntax limitation
+
 test[TO_STRING_TAG] = 'z';
 
 module.exports = String(test) === '[object z]';
@@ -1796,7 +1789,7 @@ var uncurryThis = __webpack_require__(9504);
 
 var id = 0;
 var postfix = Math.random();
-var toString = uncurryThis(1.1.toString);
+var toString = uncurryThis(1.0.toString);
 
 module.exports = function (key) {
   return 'Symbol(' + (key === undefined ? '' : key) + ')_' + toString(++id + postfix, 36);
@@ -1813,9 +1806,9 @@ module.exports = function (key) {
 /* eslint-disable es/no-symbol -- required for testing */
 var NATIVE_SYMBOL = __webpack_require__(4495);
 
-module.exports = NATIVE_SYMBOL &&
-  !Symbol.sham &&
-  typeof Symbol.iterator == 'symbol';
+module.exports = NATIVE_SYMBOL
+  && !Symbol.sham
+  && typeof Symbol.iterator == 'symbol';
 
 
 /***/ }),
@@ -1846,10 +1839,10 @@ module.exports = DESCRIPTORS && fails(function () {
 
 "use strict";
 
-var globalThis = __webpack_require__(4576);
+var global = __webpack_require__(4475);
 var isCallable = __webpack_require__(4901);
 
-var WeakMap = globalThis.WeakMap;
+var WeakMap = global.WeakMap;
 
 module.exports = isCallable(WeakMap) && /native code/.test(String(WeakMap));
 
@@ -1861,14 +1854,14 @@ module.exports = isCallable(WeakMap) && /native code/.test(String(WeakMap));
 
 "use strict";
 
-var globalThis = __webpack_require__(4576);
+var global = __webpack_require__(4475);
 var shared = __webpack_require__(5745);
 var hasOwn = __webpack_require__(9297);
 var uid = __webpack_require__(3392);
 var NATIVE_SYMBOL = __webpack_require__(4495);
 var USE_SYMBOL_AS_UID = __webpack_require__(7040);
 
-var Symbol = globalThis.Symbol;
+var Symbol = global.Symbol;
 var WellKnownSymbolsStore = shared('wks');
 var createWellKnownSymbol = USE_SYMBOL_AS_UID ? Symbol['for'] || Symbol : Symbol && Symbol.withoutSetter || uid;
 
@@ -1903,7 +1896,7 @@ module.exports = '\u0009\u000A\u000B\u000C\u000D\u0020\u00A0\u1680\u2000\u2001\u
 var $ = __webpack_require__(6518);
 var IS_PURE = __webpack_require__(6395);
 var DESCRIPTORS = __webpack_require__(3724);
-var globalThis = __webpack_require__(4576);
+var global = __webpack_require__(4475);
 var path = __webpack_require__(9167);
 var uncurryThis = __webpack_require__(9504);
 var isForced = __webpack_require__(2796);
@@ -1920,10 +1913,10 @@ var thisNumberValue = __webpack_require__(1240);
 var trim = (__webpack_require__(3802).trim);
 
 var NUMBER = 'Number';
-var NativeNumber = globalThis[NUMBER];
+var NativeNumber = global[NUMBER];
 var PureNumberNamespace = path[NUMBER];
 var NumberPrototype = NativeNumber.prototype;
-var TypeError = globalThis.TypeError;
+var TypeError = global.TypeError;
 var stringSlice = uncurryThis(''.slice);
 var charCodeAt = uncurryThis(''.charCodeAt);
 
@@ -2092,7 +2085,7 @@ if (FORCED || IS_PURE) copyConstructorProperties(path[NUMBER], NativeNumber);
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry needs to be wrapped in an IIFE because it needs to be in strict mode.
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
 !function() {
 "use strict";
 // ESM COMPAT FLAG
@@ -2103,7 +2096,7 @@ __webpack_require__.d(__webpack_exports__, {
   SwipeOut: function() { return /* reexport */ SwipeOut; }
 });
 
-;// ./node_modules/@vue/cli-service/lib/commands/build/setPublicPath.js
+;// CONCATENATED MODULE: ./node_modules/@vue/cli-service/lib/commands/build/setPublicPath.js
 /* eslint-disable no-var */
 // This file is imported into lib/wc client bundles.
 
@@ -2130,7 +2123,7 @@ if (typeof window !== 'undefined') {
 
 // EXTERNAL MODULE: external {"commonjs":"vue","commonjs2":"vue","root":"Vue"}
 var external_commonjs_vue_commonjs2_vue_root_Vue_ = __webpack_require__(9274);
-;// ./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib/index.js??clonedRuleSet-82.use[1]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[3]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/components/SwipeOut.vue?vue&type=template&id=21c2b524
+;// CONCATENATED MODULE: ./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib/index.js??clonedRuleSet-82.use[1]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[3]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/components/SwipeOut.vue?vue&type=template&id=32890e32
 
 var _hoisted_1 = {
   key: 0,
@@ -2164,11 +2157,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     revealLeft: $options.revealLeft
   })], 512)], 2);
 }
-;// ./src/components/SwipeOut.vue?vue&type=template&id=21c2b524
+;// CONCATENATED MODULE: ./src/components/SwipeOut.vue?vue&type=template&id=32890e32
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.number.constructor.js
 var es_number_constructor = __webpack_require__(2892);
-;// ./node_modules/tinygesture/dist/TinyGesture.js
+;// CONCATENATED MODULE: ./node_modules/tinygesture/dist/TinyGesture.js
 class TinyGesture {
     constructor(element, options) {
         this.element = element;
@@ -2475,7 +2468,7 @@ try {
 }
 catch (err) { }
 //# sourceMappingURL=TinyGesture.js.map
-;// ./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib/index.js??clonedRuleSet-82.use[1]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/components/SwipeOut.vue?vue&type=script&lang=js
+;// CONCATENATED MODULE: ./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib/index.js??clonedRuleSet-82.use[1]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/components/SwipeOut.vue?vue&type=script&lang=js
 
 /* eslint-disable */
 
@@ -2682,35 +2675,38 @@ function translateX(x) {
     },
     _stopListener: function _stopListener(event) {
       if (!this.isActive || this.disabled || this.closing) return null;
-      var oldLeft = this.$refs.content.getBoundingClientRect().left;
-      this.isActive = false;
+      if (this.$refs.content) {
+        var oldLeft = this.$refs.content.getBoundingClientRect().left;
+        this.isActive = false;
 
-      // close left actions
-      if (this.startLeft > 0 && this.gesture.touchMoveX <= -this.threshold) return this.closeActions(); // _animateSlide(0, oldLeft);
+        // close left actions
+        if (this.startLeft > 0 && this.gesture.touchMoveX <= -this.threshold) return this.closeActions(); // _animateSlide(0, oldLeft);
 
-      // close right actions
-      if (this.startLeft < 0 && this.gesture.touchMoveX >= this.threshold) return this.closeActions(); // this._animateSlide(0, oldLeft);
+        // close right actions
+        if (this.startLeft < 0 && this.gesture.touchMoveX >= this.threshold) return this.closeActions(); // this._animateSlide(0, oldLeft);
 
-      var currentLeft = this.startLeft + this.gesture.touchMoveX;
-      // reveal left actions
-      if (this.direction === "ltr" && currentLeft >= this.threshold) {
-        this.$emit("swipeout:reveal", {
-          direction: this.direction,
-          item: this.item,
-          close: this.closeActions
-        });
+        var currentLeft = this.startLeft + this.gesture.touchMoveX;
+        // reveal left actions
+        if (this.direction === "ltr" && currentLeft >= this.threshold) {
+          this.$emit("swipeout:reveal", {
+            direction: this.direction,
+            item: this.item,
+            close: this.closeActions
+          });
+        }
+
+        // reveal right actions
+        if (this.direction === "rtl" && currentLeft <= -this.threshold) {
+          this.$emit("swipeout:reveal", {
+            direction: this.direction,
+            item: this.item,
+            close: this.closeActions
+          });
+        }
+        this.direction = null;
+        return this._animateSlide(this.startLeft, oldLeft);
       }
-
-      // reveal right actions
-      if (this.direction === "rtl" && currentLeft <= -this.threshold) {
-        this.$emit("swipeout:reveal", {
-          direction: this.direction,
-          item: this.item,
-          close: this.closeActions
-        });
-      }
-      this.direction = null;
-      return this._animateSlide(this.startLeft, oldLeft);
+      return;
     },
     // shift actions
     _shiftLeftActions: function _shiftLeftActions(newX) {
@@ -2825,16 +2821,16 @@ function translateX(x) {
     }
   }
 });
-;// ./src/components/SwipeOut.vue?vue&type=script&lang=js
+;// CONCATENATED MODULE: ./src/components/SwipeOut.vue?vue&type=script&lang=js
  
-;// ./node_modules/mini-css-extract-plugin/dist/loader.js??clonedRuleSet-54.use[0]!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-54.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-54.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/components/SwipeOut.vue?vue&type=style&index=0&id=21c2b524&lang=css
+;// CONCATENATED MODULE: ./node_modules/mini-css-extract-plugin/dist/loader.js??clonedRuleSet-54.use[0]!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-54.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-54.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/components/SwipeOut.vue?vue&type=style&index=0&id=32890e32&lang=css
 // extracted by mini-css-extract-plugin
 
-;// ./src/components/SwipeOut.vue?vue&type=style&index=0&id=21c2b524&lang=css
+;// CONCATENATED MODULE: ./src/components/SwipeOut.vue?vue&type=style&index=0&id=32890e32&lang=css
 
 // EXTERNAL MODULE: ./node_modules/vue-loader/dist/exportHelper.js
 var exportHelper = __webpack_require__(6262);
-;// ./src/components/SwipeOut.vue
+;// CONCATENATED MODULE: ./src/components/SwipeOut.vue
 
 
 
@@ -2845,10 +2841,10 @@ var exportHelper = __webpack_require__(6262);
 const __exports__ = /*#__PURE__*/(0,exportHelper/* default */.A)(SwipeOutvue_type_script_lang_js, [['render',render]])
 
 /* harmony default export */ var SwipeOut = (__exports__);
-;// ./src/components/index.js
+;// CONCATENATED MODULE: ./src/components/index.js
 
 
-;// ./node_modules/@vue/cli-service/lib/commands/build/entry-lib-no-default.js
+;// CONCATENATED MODULE: ./node_modules/@vue/cli-service/lib/commands/build/entry-lib-no-default.js
 
 
 
