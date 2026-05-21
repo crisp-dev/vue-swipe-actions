@@ -259,46 +259,50 @@ export default {
     _stopListener(event) {
       if (!this.isActive || this.disabled || this.closing) return null;
 
-      const oldLeft = this.$refs.content.getBoundingClientRect().left;
+      if (this.$refs.content) {
+        const oldLeft = this.$refs.content.getBoundingClientRect().left;
 
-      this.isActive = false;
+        this.isActive = false;
 
-      // close left actions
-      if (this.startLeft > 0 && this.gesture.touchMoveX <= -this.threshold)
-        return this.closeActions(); // _animateSlide(0, oldLeft);
+        // close left actions
+        if (this.startLeft > 0 && this.gesture.touchMoveX <= -this.threshold)
+          return this.closeActions(); // _animateSlide(0, oldLeft);
 
-      // close right actions
-      if (this.startLeft < 0 && this.gesture.touchMoveX >= this.threshold)
-        return this.closeActions(); // this._animateSlide(0, oldLeft);
+        // close right actions
+        if (this.startLeft < 0 && this.gesture.touchMoveX >= this.threshold)
+          return this.closeActions(); // this._animateSlide(0, oldLeft);
 
-      const currentLeft = this.startLeft + this.gesture.touchMoveX;
-      // reveal left actions
-      if (
-        this.direction === "ltr" &&
-        currentLeft >= this.threshold
-      ) {
-        this.$emit("swipeout:reveal", {
-          direction: this.direction,
-          item: this.item,
-          close: this.closeActions
-        });
+        const currentLeft = this.startLeft + this.gesture.touchMoveX;
+        // reveal left actions
+        if (
+          this.direction === "ltr" &&
+          currentLeft >= this.threshold
+        ) {
+          this.$emit("swipeout:reveal", {
+            direction: this.direction,
+            item: this.item,
+            close: this.closeActions
+          });
+        }
+
+        // reveal right actions
+        if (
+          this.direction === "rtl" &&
+          currentLeft <= -this.threshold
+        ) {
+          this.$emit("swipeout:reveal", {
+            direction: this.direction,
+            item: this.item,
+            close: this.closeActions
+          });
+        }
+
+        this.direction = null;
+
+        return this._animateSlide(this.startLeft, oldLeft);
       }
 
-      // reveal right actions
-      if (
-        this.direction === "rtl" &&
-        currentLeft <= -this.threshold
-      ) {
-        this.$emit("swipeout:reveal", {
-          direction: this.direction,
-          item: this.item,
-          close: this.closeActions
-        });
-      }
-
-      this.direction = null;
-
-      return this._animateSlide(this.startLeft, oldLeft);
+      return;
     },
     // shift actions
     _shiftLeftActions(newX) {
