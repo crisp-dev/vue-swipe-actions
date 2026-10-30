@@ -1,11 +1,14 @@
 {
-  "name": "vue-swipe-actions",
+  "name": "@crisp-fix/vue-swipe-actions",
   "description": "iOS style swipe actions",
-  "version": "1.0.12",
+  "version": "1.1.0",
   "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
-    "_build": "NODE_ENV=production vue-cli-service build",
+    "build": "NODE_ENV=production vue-cli-service build",
     "build-bundle": "NODE_ENV=production vue-cli-service build --mode production --target lib --name vue-swipe-actions ./src/components/index.js",
     "lint": "vue-cli-service lint",
     "deploy": "gh-pages-deploy"
